@@ -1,0 +1,83 @@
+\documentclass[a4paper]{llncs}
+
+\usepackage{wrapfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% to hide columns
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\usepackage{multirow}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{subfiles}
+%\usepackage{times}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{textgreek}
+
+\usepackage{relsize}
+%\usepackage{slantsc}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{epstopdf}
+
+\usepackage{algorithm,algorithmic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{url}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\synctex=1
+\newcommand{\soga}{\textsl{SOGA}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hres}{\cellcolor{lightgray}}
+
+\begin{document}
+
+\mainmatter
+
+\title{\soga: Inference of Probabilistic Programs by Second-order Gaussian Approximation Reproducibility Report}
+
+\institute{
+University of Trieste, Italy \and
+IMT School for Advanced Studies Lucca, Italy
+}
+
+\author{Francesca Randone \inst{1} \and Emilio Incerto \inst{2} \and Luca Bortolussi \inst{1} \and Mirco Tribastone\inst{2}}
+
+\allowdisplaybreaks[0]
+
+\maketitle
+\setcounter{table}{4}
+\begin{table}[t]
+\caption{Evaluation of parallelism on the 5 models of Table~3 with 15 iterations. For each model we report the runtime as the number of processor, shown in the columns, increases.}
+    \label{tab:parallel}
+    \centering
+    \begin{tabular}{ccccccccc}
+\toprule
+\emph{Model} & 1 & 2 & 4 & 6 & 8 & 10 & 12 & 20 \\
+\midrule
+\emph{ContinuousRW} {%for t in parSensitivityRes["randomwalk"]%}& {{t}}{%endfor%} \\
+\emph{Bernoulli} {%for t in parSensitivityRes["bernoulli"]%}& {{t}}{%endfor%} \\
+\emph{ClinicalTrial} {%for t in parSensitivityRes["clinicaltrial"]%}& {{t}}{%endfor%} \\
+\emph{CoinBias} {%for t in parSensitivityRes["coinbias"]%}& {{t}}{%endfor%} \\
+\emph{SurveyUnbias} {%for t in parSensitivityRes["surveyunbias"]%}& {{t}}{%endfor%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

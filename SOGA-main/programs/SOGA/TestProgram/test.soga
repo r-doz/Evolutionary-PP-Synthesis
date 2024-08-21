@@ -1,0 +1,15 @@
+r1 = exprnd(1 , 2 );
+r2 = exprnd( 1 ,  2 );
+
+cnt=0;
+x=0;
+
+for i in range(2) {
+    if r1-r2 >= 0 {
+        cnt=cnt+1;
+    } else {
+        x = x + 1;
+    } end if;
+} end for;
+
+observe(cnt == 0);

@@ -1,0 +1,17 @@
+def main(){
+	mu1 := uniform(-10,10);
+	mu2 := uniform(-10,10);
+
+	data := readCSV("data/altermu2/y.csv");
+	n := data.length;
+	y := array(n);
+
+	for i in [0..n){ 
+		y[i] = gauss(mu1+mu2, 1); 
+	}
+	for i in [0..n){ 
+		observe(y[i] == data[i]);
+	}
+
+	return mu1;
+}

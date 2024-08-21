@@ -1,0 +1,8 @@
+array[500] sum;
+x = gauss(1,1);
+
+for i in range(500) {
+    sum[i] = gauss(0,1) + x;
+} end for;
+
+observe(x == 1);

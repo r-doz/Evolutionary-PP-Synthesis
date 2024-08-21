@@ -1,0 +1,81 @@
+\documentclass[a4paper]{llncs}
+
+\usepackage{wrapfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% to hide columns
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\usepackage{multirow}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{subfiles}
+%\usepackage{times}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{textgreek}
+
+\usepackage{relsize}
+%\usepackage{slantsc}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{epstopdf}
+
+\usepackage{algorithm,algorithmic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{url}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\synctex=1
+\newcommand{\soga}{\textsl{SOGA}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hres}{\cellcolor{lightgray}}
+
+\begin{document}
+
+\mainmatter
+
+\title{\soga: Inference of Probabilistic Programs by Second-order Gaussian Approximation Reproducibility Report}
+
+\institute{
+University of Trieste, Italy \and
+IMT School for Advanced Studies Lucca, Italy
+}
+
+\author{Francesca Randone \inst{1} \and Emilio Incerto \inst{2} \and Luca Bortolussi \inst{1} \and Mirco Tribastone\inst{2}}
+
+\allowdisplaybreaks[0]
+
+\maketitle
+\setcounter{table}{3}
+\begin{table}[t]
+\caption{Evaluation of \soga's runtime under an increasing number of Gaussian components used to represent non-Gaussian distributions (\emph{\#comp}). The ground-truth value is computed via PSI: 0.800 for Coinbias and 0.416 for Surveyunbias.}
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+ & \multicolumn{3}{c}{Coinbias} & \multicolumn{3}{c}{Surveyunbias} \\
+ \cmidrule(l){2-4}  \cmidrule(l){5-7}
+\#comp. & \ \ \emph{time} \ \ & \ \ $|\%e|$ \ \ &\ \  \emph{C} \ \ & \ \ \emph{time}\ \  &\ \  $|\%e|$ \ \ &\ \  \emph{C}\ \   \\
+\midrule{% for i in [1,2,4,6] %}
+{{i}} {%for j in range(6)%}&{{cmpSensitivityRes[i|string()][j+1]}}{%endfor%}\\
+{% endfor %}\bottomrule
+\end{tabular}
+\label{tab:sendCmp}
+\end{table}
+
+\end{document}

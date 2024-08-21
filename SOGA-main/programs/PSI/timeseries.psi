@@ -1,0 +1,20 @@
+def main(){
+	alpha := uniform(-5,5);
+	beta := uniform(-5,5);
+	lambda := uniform(0,1);
+
+	datax := readCSV("data/timeseries/x.csv");
+	datay := readCSV("data/timeseries/y.csv");
+	n := datax.length;
+	y := array(n);
+
+	y[0] = datax[0];
+	for i in [1..40){ 
+		y[i] = gauss(alpha + beta*datax[i] + lambda*y[i-1], 0.25); 
+	}
+	for i in [1..40) {
+		cobserve(y[i], datay[i]);
+	}
+
+	return alpha;
+}

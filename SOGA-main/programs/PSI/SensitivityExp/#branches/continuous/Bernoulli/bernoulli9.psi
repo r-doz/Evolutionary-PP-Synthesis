@@ -1,0 +1,14 @@
+def main(){
+	theta := uniform(0,1);
+	
+	data := [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1];
+	n := data.length;
+	y := array(n);
+
+	for i in [0..9){ 
+		y[i] = flip(theta); 
+		observe(y[i] == data[i]);
+	}
+
+	return theta;
+}

@@ -1,0 +1,13 @@
+random Boolean hasFakeCoin ~ BooleanDistrib(0.5);
+
+random Real FakeCoinWeight ~ Gaussian(0.5,1);
+
+random Real obsDiff ~
+  if hasFakeCoin then 
+	Gaussian(FakeCoinWeight-0.5,1)
+  else 
+	0;
+
+obs obsDiff = 0;
+
+query hasFakeCoin;

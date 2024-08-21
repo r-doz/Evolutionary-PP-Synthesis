@@ -1,0 +1,17 @@
+array[2] lower;
+array[8] higher;
+sum = 0;
+
+for i in range(2) {
+    lower[i] = uniform([200,400],2);
+    sum = sum + lower[i];
+} end for;
+
+for i in range(8) {
+    higher[i] = uniform([300,600],2);
+    sum = sum + higher[i];
+} end for;
+
+sum = 0.1*sum;
+noise = gm([0.879, 0.121], [0, 0], [58.6279793543178, 186.4248959479004]);
+sum = sum + noise;

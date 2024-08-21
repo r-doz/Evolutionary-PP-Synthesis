@@ -1,0 +1,15 @@
+/*array[4000] y;
+x = gauss(1,1);
+
+for i in range(4000) {
+    y[i] = gauss(1,1);
+    x = x + y[i];
+} end for;*/
+
+array[4000] sum;
+x = gauss(1,1);
+
+for i in range(4000) {
+    sum[i] = sum[i] + x;
+} end for;
+

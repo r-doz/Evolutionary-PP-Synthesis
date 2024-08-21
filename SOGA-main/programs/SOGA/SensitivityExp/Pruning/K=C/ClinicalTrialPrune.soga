@@ -1,0 +1,30 @@
+data contr = [0, 0, 1, 0, 0];
+data treat = [1, 0, 1, 1, 1];
+
+
+isEff = gm([0.5,0.5],[1.,0.],[0.,0.]);
+probTreated = uniform([0,1],2);
+
+if isEff == 1 {
+    probContr = uniform([0,1],2);
+} else {
+    probContr = probTreated;
+} end if;
+
+for i in range(5) {
+    if uniform([0,1],2) - probContr < 0 {
+        ycontr = 1;
+    } else {
+        ycontr = 0;
+    } end if;
+    observe(ycontr == contr[i]);
+} end for;
+
+for i in range(5) {
+    if uniform([0,1],2) - probTreated < 0 {
+        ytreat = 1;
+    } else {
+        ytreat = 0;
+    } end if;    
+    observe(ytreat == treat[i]);
+} end for;

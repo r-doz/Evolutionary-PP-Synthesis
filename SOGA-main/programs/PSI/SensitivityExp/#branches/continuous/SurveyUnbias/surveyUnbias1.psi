@@ -1,0 +1,22 @@
+
+def main(){
+    ans1 := [1, 1, 1, 0, 0, 1, 0, 1];
+    ans2 := [0, 1, 0, 1, 1, 0, 0];
+
+    bias := array(2);
+    for i in [0..2){
+        bias[i] = beta(1,1);
+    }
+ 
+    ansB1 := array(1);
+    for i in [0..1){
+	  if flip(bias[0]) {
+		ansB1[i] = 1;
+	  } else {
+	  	ansB1[i] = 0;
+	  }
+	  observe(ansB1[i]==ans1[i]);
+    }
+
+    return bias[0];
+}

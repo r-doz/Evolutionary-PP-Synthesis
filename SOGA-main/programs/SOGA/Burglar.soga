@@ -1,0 +1,41 @@
+earthquake = gm([0.0001, 0.9999], [1., 0.], [0., 0.]);
+burglary = gm([0.001, 0.999], [1., 0.], [0., 0.]);
+
+if earthquake == 0 {
+    if burglary == 0 {
+        alarm = 0;
+    } else {
+        alarm = 1;
+    } end if;
+} else {
+    alarm = 1;
+} end if;
+
+if earthquake == 1 {
+    phoneWorking = gm([0.7, 0.3], [1., 0.], [0., 0.]);
+} else {
+    phoneWorking = gm([0.99, 0.01], [1., 0.], [0., 0.]);
+} end if;
+
+if alarm == 1 {
+    if earthquake == 1 {
+        maryWakes = gm([0.8, 0.2], [1., 0.], [0., 0.]);
+    } else {
+        maryWakes = gm([0.6, 0.4], [1., 0.], [0., 0.]);
+    } end if;
+} else {
+    maryWakes = gm([0.2, 0.8], [1., 0.], [0., 0.]);
+} end if;
+
+if maryWakes == 1 {
+    if phoneWorking == 1 {
+        called = 1;
+    } else {
+        called = 0;
+    } end if;
+} else {
+    called = 0;
+} end if;
+
+observe(called == 1);
+

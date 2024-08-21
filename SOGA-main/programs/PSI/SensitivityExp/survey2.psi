@@ -1,0 +1,34 @@
+
+def main(){
+    ans1 := [1,1,1,1,0,0];
+    ans2 := [0,1,1,1,0];
+
+    bias1 := uniform(0,1);
+    bias2 := uniform(0,1);
+
+    ansb1 := array(6);
+    
+    for i in [0..6){
+        if bernoulli(bias1) == 1 {
+		ansb1[i] = 1;
+	} else {
+		ansb1[i] = 0;
+	}
+	observe(ansb1[i] == ans1[i]);
+    }
+
+    ansb2 := array(5);
+    
+    for i in [0..5){
+        if bernoulli(bias2) == 1 {
+		ansb2[i] = 1;
+	} else {
+		ansb2[i] = 0;
+	}
+	observe(ansb2[i] == ans2[i]);
+    }
+    return bias1; 
+}
+
+
+

@@ -1,0 +1,25 @@
+/* assigns distributions */
+skillA = gm([1],[100],[10]);
+skillB = gm([1],[100],[10]);
+skillC = gm([1],[100],[10]);
+skillD = gm([1],[100],[10]);
+skillE = gm([1],[100],[10]);
+skillF = gm([1],[100],[10]);
+
+
+
+perfA = gm([1],[0],[15])+skillA;
+perfB = gm([1],[0],[15])+skillB;
+perfC = gm([1],[0],[15])+skillC;
+perfD = gm([1],[0],[15])+skillD;
+perfE = gm([1],[0],[15])+skillE;
+perfF = gm([1],[0],[15])+skillF;
+
+    
+/* constraints to observations */
+observe(perfA-perfB > 0);
+observe(perfA-perfC > 0);
+observe(perfA-perfD > 0);
+observe(perfA-perfE > 0);
+observe(perfA-perfF > 0);
+

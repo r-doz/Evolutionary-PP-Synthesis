@@ -1,0 +1,23 @@
+/* This is an example of a program written in the SOGA syntax.
+   This program models the toss of a coin with bias uniformly distributed. */
+   
+/* At the beginning of the file it is possible to declare 'data', i.e. read-only array. 
+   Here we use data to store the observed results of tossing the coin 10 times. */
+
+data obs = [0, 1, 0, 0, 0, 0, 0, 0, 0, 1];
+
+/* The following instruction assigns a variable 'theta' with a continuous uniform distribution in [0,1]. The parameter 2 specifies that during the pre-processing phase SOGA will approximate the distribution with a Gaussian Mixture of 2 components */
+
+theta = uniform([0,1], 2);
+ 
+/* The loop simulates 10 tossings of a coin. Loops must have a deterministic number of iterations. */ 
+for i in range(10) {
+/* The conditional statement simulates a Bernoulli with parameter theta. This is needed because currently SOGA does not support distributions dependent on probabilistic parameters. */
+    if uniform([0,1], 2) - theta < 0 {
+        y = 1;
+    } else { 
+        y = 0; 
+    } end if;
+/* The observe statement conditions the the toss of the coin to the observed values, by accessing the data array 'obs' */
+    observe(y == obs[i]);
+} end for;

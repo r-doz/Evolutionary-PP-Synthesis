@@ -1,0 +1,19 @@
+name,Mean,MCSE,StdDev,5%,50%,95%,N_Eff,N_Eff/s,R_hat
+"lp__",-73.8898,0.0179581,1.60452,-77.1816,-73.3822,-72.3519,7983.1,532.207,1.00007
+"accept_stat__",0.907252,0.000665228,0.156832,0.543247,0.977948,1,55581.3,3705.42,0.999993
+"stepsize__",0.0134579,nan,1.26289e-015,0.0134579,0.0134579,0.0134579,nan,nan,nan
+"treedepth__",4.26641,0.00693135,1.94994,1,5,7,79141.7,5276.12,0.999995
+"n_leapfrog__",54.854,0.192928,53.4498,1,39,155,76754.2,5116.95,0.999991
+"divergent__",0,nan,0,0,0,0,nan,nan,nan
+"energy__",74.887,0.019345,1.88645,72.7196,74.4393,78.5889,9509.39,633.96,1.00006
+"mu[1]",0.17,0.058,5.7,-8.6,0.16,9.0,9472,631,1.00
+"mu[2]",0.14,0.058,5.7,-8.7,0.15,8.9,9472,631,1.00
+# Inference for Stan model: altermu2_model
+# 1 chains: each with iter=(100000); warmup=(0); thin=(1); 100000 iterations saved.
+# 
+# Warmup took 0.092 seconds
+# Sampling took 15 seconds
+# Samples were drawn using hmc with nuts.
+# For each parameter, N_Eff is a crude measure of effective sample size,
+# and R_hat is the potential scale reduction factor on split chains (at 
+# convergence, R_hat=1).

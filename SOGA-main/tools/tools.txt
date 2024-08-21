@@ -1,0 +1,39 @@
+# PSI (https://github.com/eth-sri/psi)
+
+## to generate symbolic formula, on the folder containing PSI invoke (eventually with print on file)
+time ./psi namefile --expectation --raw --mathematica
+
+## to compute numerical value in Mathematica copy and paste symbolic formula into
+Timing[N[ symbolic_formula ]]
+
+
+# CMDSTAN (https://mc-stan.org/users/interfaces/cmdstan)
+
+## For cmdstan installed via conda go to the cmdstan home directory
+
+## to compile the model (from Windows, for Linux use make instead of mingw32-make)
+mingw32-make namefile.exe
+
+## to run the model
+namefile.exe sample num_samples=1000 data file=namefile.data.r output file=namefile.csv
+## to print a summary
+bin\stansummary.exe namefile.csv -c nameoutfile.csv
+
+## In nameoutfile.csv look for Mean of target variables
+
+# AQUA (https://github.com/uiuc-arc/AQUA)
+
+## in AQUA-master run
+java -cp "target/aqua-1.0.jar:lib/storm-1.0.jar" aqua.analyses.AnalysisRunner namefolder
+
+## this generates in namefolder the file analysis_namevar
+## to get the mean posterior of namevar one has to perform the scalar product of the two vector saved as "data" in the file analysis_namevar
+
+# BLOG (https://bayesianlogic.github.io/pages/users-manual.html)
+
+## In the BLOG home directory run
+bin/blog namefile.blog -o nameoutfile
+
+## In nameoutfile for every query, the file contains a list of (value, log_probability) pairs.
+
+

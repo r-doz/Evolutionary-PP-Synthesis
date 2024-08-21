@@ -1,0 +1,26 @@
+usa = gm([0.5,0.5],[1,0],[0,0]);
+
+if uniform([0,1],2) < 0.01 {
+    usagpa = 4;
+} else {
+    usagpa = uniform([0,4], 2);
+} end if;
+
+
+if uniform([0,1],2) < 0.01 {
+    indgpa = 10;
+} else {
+    indgpa = uniform([0,10], 2);
+} end if;
+
+if usa == 1
+{
+	gpa = usagpa;
+}
+else
+{
+    gpa = indgpa;
+}
+end if;
+        
+observe(gpa==4);

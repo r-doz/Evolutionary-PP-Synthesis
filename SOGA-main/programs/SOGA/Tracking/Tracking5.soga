@@ -1,0 +1,26 @@
+x = 2;
+y = -1; 
+
+for i in range(5) {
+    x = x + gm([1.], [0.], [1.]);
+    y = y + gm([1.], [0.], [1.]);    
+} end for;
+
+distx = x*x;
+disty = y*y;
+dist = distx + disty; 
+
+ if dist > 10 {
+    out = 1;
+} else {
+    out = 0;
+} end if;
+    
+if out == 1 {
+    observed = 10;
+} else {
+    observed = dist + gm([1.], [0.], [1.]);
+} end if;
+
+
+observe(out == 1);

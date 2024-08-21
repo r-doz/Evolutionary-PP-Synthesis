@@ -1,0 +1,87 @@
+\documentclass[a4paper]{llncs}
+
+\usepackage{wrapfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% to hide columns
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\usepackage{multirow}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{subfiles}
+%\usepackage{times}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{textgreek}
+
+\usepackage{relsize}
+%\usepackage{slantsc}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{epstopdf}
+
+\usepackage{algorithm,algorithmic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{url}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\synctex=1
+\newcommand{\soga}{\textsl{SOGA}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hres}{\cellcolor{lightgray}}
+
+\begin{document}
+
+\mainmatter
+
+\title{\soga: Inference of Probabilistic Programs by Second-order Gaussian Approximation Reproducibility Report}
+
+\institute{
+University of Trieste, Italy \and
+IMT School for Advanced Studies Lucca, Italy
+}
+
+\author{Francesca Randone \inst{1} \and Emilio Incerto \inst{2} \and Luca Bortolussi \inst{1} \and Mirco Tribastone\inst{2}}
+
+\allowdisplaybreaks[0]
+
+\maketitle
+\setcounter{table}{2}
+\begin{table}[t]
+\caption{Evaluation of \soga's runtimes for programs with increasing number of iterations ($it.$). For each model we report: number of paths in the program (\emph{paths}), the number of components of the output distribution ($C$), \soga\ runtime ($time$) and the relative error with respect to PSI results ($|\%e|$).}
+     \centering
+      \resizebox{\textwidth}{!}{\begin{tabular}{ccrccrccrcc}
+            \toprule 
+         & & \multicolumn{3}{c}{\emph{DiscreteRW}}&\multicolumn{3}{c}{\emph{ContinuousRW}} & \multicolumn{3}{c}{\emph{Bernoulli}} \\
+         \cmidrule(l){3-5}  \cmidrule(l){6-8} \cmidrule(l){9-11}  
+    \emph{it.} & \emph{paths}  \ \ & \emph{C} \ \ & \ \ \emph{time} \ \ & \emph{$|\%e|$} \ \ &\ \emph{C} \ \ & \ \ \emph{time} \ \ & \emph{$|\%e|$} \ \ & \emph{C} \ \ & \ \ \emph{time} \ \ & \emph{$|\%e|$} \ \ \\
+    \midrule 
+    {%for it in range(1,16,2)%}{{it}} &  {{branchSensitivityRes[(it)|string()][1]}}{%for i in range(2,11)%} & {{branchSensitivityRes[(it)|string()][i]}}{%endfor%}\\
+    {% endfor %}\midrule
+    & & \multicolumn{3}{c}{\emph{ClinicalTrial}}&\multicolumn{3}{c}{\emph{CoinBias}} & \multicolumn{3}{c}{\emph{SurveyUnbias}} \\
+         \cmidrule(l){3-5}  \cmidrule(l){6-8} \cmidrule(l){9-11}  
+    \emph{it.} & \emph{paths}  \ \ & \emph{C} \ \ & \ \ \emph{time} \ \ & \emph{$|\%e|$} \ \ &\ \emph{C} \ \ & \ \ \emph{time} \ \ & \emph{$|\%e|$} \ \ & \emph{C} \ \ & \ \ \emph{time} \ \ & \emph{$|\%e|$} \ \ \\
+    \midrule  
+    {%for it in range(1,16,2)%}{{it}} &  {{branchSensitivityRes[(it)|string()][1]}}{%for i in range(11,20)%} & {{branchSensitivityRes[(it)|string()][i]}}{%endfor%}\\
+    {% endfor %}\bottomrule
+   \end{tabular}}
+   \label{tab:sensBranch}
+\end{table}
+
+\end{document}

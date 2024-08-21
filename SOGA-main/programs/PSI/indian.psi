@@ -1,0 +1,18 @@
+def main(){
+	usa := flip(0.5);
+	pusa := flip(0.01);
+	pindia := flip(0.01);
+	if usa {
+		if pusa {
+			gpa := 4; }
+		else {
+			gpa := uniform(0,4); }
+	} else {
+		if pindia {
+			gpa := 10; }
+		else {
+			gpa := uniform(0,10); }
+	}
+	observe(gpa == 4);
+	return usa
+}

@@ -1,0 +1,83 @@
+\documentclass[a4paper]{llncs}
+
+\usepackage{wrapfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% to hide columns
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\usepackage{multirow}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{subfiles}
+%\usepackage{times}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{textgreek}
+
+\usepackage{relsize}
+%\usepackage{slantsc}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{epstopdf}
+
+\usepackage{algorithm,algorithmic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{url}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\synctex=1
+\newcommand{\soga}{\textsl{SOGA}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hres}{\cellcolor{lightgray}}
+
+\begin{document}
+
+\mainmatter
+
+\title{\soga: Inference of Probabilistic Programs by Second-order Gaussian Approximation Reproducibility Report}
+
+\institute{
+University of Trieste, Italy \and
+IMT School for Advanced Studies Lucca, Italy
+}
+
+\author{Francesca Randone \inst{1} \and Emilio Incerto \inst{2} \and Luca Bortolussi \inst{1} \and Mirco Tribastone\inst{2}}
+
+\allowdisplaybreaks[0]
+
+\maketitle
+\setcounter{table}{1}
+\begin{table}[t]
+    \centering
+    \caption{Evaluation of \soga{} accuracy and runtime as variables increase by using PyMC as ground truth due to PSI timing out. Each row shows the model's number of variables (\# vars), absolute percentage errors ($|\%e|$), and \soga{} runtime.} 
+     \begin{tabular}{cccccc}
+     \toprule 
+        &\multicolumn{2}{c}{\emph{SOGA}}&\multicolumn{2}{c}{\emph{PyMC}}\\
+        \cmidrule(l){2-3}  \cmidrule(l){4-5}
+        \emph{Model}&
+    \ \ \emph{time (s)}  \ \ &  \ \  \emph{value} \ \ & \emph{time (s)} 
+    & \ \  \emph{value} \ \  &\ \  $|\%e|$ \ \  \\
+    \midrule{% for var_row in varSensitivityRes %}
+        $\textsl{{ '{' }}{{var_row[0]}}{{ '}' }}_{{ '{' }}{{var_row[-1]}}{{ '}' }}$ & {{var_row[1]}} & {{var_row[2]}} & {{var_row[3]}} & {{var_row[4]}} &{{var_row[5]}} \\{% endfor %}
+    \bottomrule
+    \end{tabular}
+    \label{tab:sensVar}
+\end{table}
+
+\end{document}

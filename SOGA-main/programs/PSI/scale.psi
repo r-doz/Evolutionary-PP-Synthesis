@@ -1,0 +1,12 @@
+def main(){
+	hasFake := flip(0.5);
+	wFake := gauss(0.5,1);
+	observe(wFake > 0.1 && wFake < 1);
+	if hasFake {
+		balance := wFake - 0.5 + gauss(0, 1);
+	} else {
+		balance := 0;
+	} 
+	observe(balance == 0);
+	return hasFake;
+}

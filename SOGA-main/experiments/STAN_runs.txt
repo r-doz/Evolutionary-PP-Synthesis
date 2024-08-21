@@ -1,0 +1,12 @@
+program,runs
+"altermu",100000
+"altermu2",100000
+"bayespointmachine",100000
+"bernoulli",10000
+"clickgraph",20000
+"coinbias",5000
+"normalmixtures",5000
+"radarquery",20000
+"surveyunbias",5000
+"timeseries",5000
+"trueskills",1000

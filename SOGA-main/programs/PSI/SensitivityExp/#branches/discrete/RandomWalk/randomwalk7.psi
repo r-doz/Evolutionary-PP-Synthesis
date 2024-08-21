@@ -1,0 +1,13 @@
+def main(){
+	x := 0.;
+	
+	for i in [0..7){ 
+		if flip(0.5) {
+			x = x-1;
+		} else {
+			x = x+1;
+		};
+	}
+
+	return x;
+}

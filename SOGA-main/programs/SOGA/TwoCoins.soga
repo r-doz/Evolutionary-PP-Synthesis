@@ -1,0 +1,14 @@
+first = gm([0.5,0.5], [0.,1.], [0.,0.]);
+second = gm([0.5,0.5], [0.,1.], [0.,0.]);
+
+if first == 1 {
+    if second == 1 {
+        both = 1;
+    } else {
+        both = 0;
+    } end if;
+} else {
+    both = 0;
+} end if;
+
+observe(both == 0);

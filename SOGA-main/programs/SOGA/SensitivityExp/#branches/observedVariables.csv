@@ -1,0 +1,5 @@
+RandomWalk, x
+Bernoulli, theta
+ClinicalTrial, isEff
+CoinBias, bias
+SurveyUnbias, bias1

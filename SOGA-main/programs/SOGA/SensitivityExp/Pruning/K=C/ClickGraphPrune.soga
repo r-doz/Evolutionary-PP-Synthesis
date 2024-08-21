@@ -1,0 +1,34 @@
+data obs0 = [1, 1, 1, 0, 0];
+data obs1 = [1, 1, 1, 0, 0];
+
+simAll = uniform([0,1],2);
+
+for i in range(5) {
+    if uniform([0,1],2) - simAll < 0 {
+        sim = 1;
+    } else {
+        sim = 0;
+    } end if;
+
+    beta1 = uniform([0,1],2);
+    if sim == 1 {
+        beta2 = beta1;
+    } else {
+        beta2 = uniform([0,1],2);
+    } end if;
+
+    if  uniform([0,1],2) -  beta1 < 0 {
+        click0 = 1;
+    } else {
+        click0 = 0;
+    } end if;
+    observe(click0 == obs0[i]);
+
+    if  uniform([0,1],2) -  beta2 < 0 {
+        click1 = 1;
+    } else {
+        click1 = 0;
+    } end if;
+    observe(click1 == obs1[i]);
+    
+} end for;

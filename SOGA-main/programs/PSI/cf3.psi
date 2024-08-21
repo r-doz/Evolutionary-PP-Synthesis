@@ -1,0 +1,27 @@
+def main(){
+    obs := readCSV("data/cf/cf3.csv");
+    n := 3;
+    a := array(n);
+    b := array(n);
+    for i in [0..n){
+	a[i] = gauss(0,25);
+	b[i] = gauss(0,25);
+    };
+    c := gauss(0,25);
+
+    mean := c;
+    for i in [0..n){
+	mean = mean + a[i]*b[i];
+    };
+
+    y := array(40);
+    for i in [0..40) {
+	y[i] = gauss(mean,1);
+    };
+
+    for i in [0..40) {
+	cobserve(y[i], obs[i]);
+    };
+
+    return mean;
+}

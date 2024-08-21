@@ -1,0 +1,10 @@
+aliceDunnit = gm([0.3,0.7], [1.,0.], [0.,0.]);
+
+if aliceDunnit == 1 {
+    withGun = gm([0.03,0.97], [1.,0.], [0.,0.]);
+} else {
+    withGun = gm([0.8,0.2], [1.,0.], [0.,0.]);
+} end if;
+
+observe(withGun == 1);
+

@@ -1,0 +1,24 @@
+random Boolean usa ~ BooleanDistrib(0.5);
+random Boolean perfect ~ BooleanDistrib(0.01);
+random Real usagpa ~ 
+	if perfect then
+		4
+	else
+		UniformReal(0,4);
+random Real indgpa ~ 
+	if perfect then
+		10
+	else
+		UniformReal(0,10);
+
+random Real gpa ~
+	if usa then
+		usagpa
+	else
+		indgpa;
+
+// Observations
+obs gpa = 4;
+
+// Queries
+query usa;

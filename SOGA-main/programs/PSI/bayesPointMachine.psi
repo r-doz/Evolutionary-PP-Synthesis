@@ -1,0 +1,21 @@
+// skipped
+
+
+def main(){ // train
+    features1 := readCSV("data/BPM/trainingFeatures1.csv");
+    features2 := readCSV("data/BPM/trainingFeatures2.csv");
+    features3 := readCSV("data/BPM/trainingFeatures3.csv");
+    outcomes := readCSV("data/BPM/trainingOutcomes.csv");
+    noise := 0.1;
+    n := features1.length;
+    weights := array(3);
+    for i in [0..3){ weights[i] = gauss(0,1); }
+    for i in [0..n){
+        mean := features1[i]*weights[0]
+            + features2[i]*weights[1]
+            + features3[i]*weights[2];
+        result := gauss(mean,noise) > 0;
+        observe(result == outcomes[i]);
+    }
+    return weights[0];
+}

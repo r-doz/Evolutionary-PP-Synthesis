@@ -1,0 +1,14 @@
+name,Mean,MCSE,StdDev,5%,50%,95%,N_Eff,N_Eff/s,R_hat
+"lp__",0,nan,0,0,0,0,nan,nan,nan
+"log_p__",-7.27542,0.0252559,0.73605,-8.52345,-7.0304,-6.75067,849.353,inf,0.999897
+"log_g__",-0.517703,0.0241018,0.704216,-1.86079,-0.231444,-0.00280703,853.712,inf,0.999326
+"theta",0.234938,0.00386269,0.120117,0.0826401,0.217163,0.460631,967.008,inf,1.00029
+# Inference for Stan model: bernoulli_model
+# 1 chains: each with iter=(1001); warmup=(0); thin=(0); 1001 iterations saved.
+# 
+# Warmup took 0.00 seconds
+# Sampling took 0.00 seconds
+# Samples were drawn using meanfield with .
+# For each parameter, N_Eff is a crude measure of effective sample size,
+# and R_hat is the potential scale reduction factor on split chains (at 
+# convergence, R_hat=1).

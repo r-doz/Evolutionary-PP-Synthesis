@@ -1,0 +1,22 @@
+data feat1 = [63, 16, 28, 55, 22, 20];
+data feat2 = [38, 23, 40, 27, 18, 40];
+data feat3 = [1, 1, 1, 1, 1, 1];
+
+array[3] w;
+array[6] mean;
+
+for i in range(3) {
+    w[i] = gm([1.], [0.], [1.]);
+} end for;
+
+for i in range(6) {
+    mean[i] = feat1[i]*w[0] + feat2[i]*w[1] + feat3[i]*w[2];
+    mean[i] = gm([1.], [0.], [0.1]) + mean[i];
+} end for;
+
+observe(mean[0] > 0);
+observe(mean[1] < 0);
+observe(mean[2] > 0);
+observe(mean[3] > 0);
+observe(mean[4] < 0);
+observe(mean[5] < 0);

@@ -1,0 +1,94 @@
+\documentclass[a4paper]{llncs}
+
+\usepackage{wrapfig}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% to hide columns
+\usepackage{array}
+\newcolumntype{H}{>{\setbox0=\hbox\bgroup}c<{\egroup}@{}}
+
+\usepackage{multirow}
+
+\usepackage{booktabs} % For formal tables
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{subfiles}
+%\usepackage{times}
+\usepackage{enumerate}
+\usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{textgreek}
+
+\usepackage{relsize}
+%\usepackage{slantsc}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{epstopdf}
+
+\usepackage{algorithm,algorithmic}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{url}
+
+\lstdefinestyle{DOS}
+{
+    backgroundcolor=\color{black},
+    basicstyle=\scriptsize\color{white}\ttfamily
+}
+
+\synctex=1
+\newcommand{\soga}{\textsl{SOGA}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hres}{\cellcolor{lightgray}}
+
+\begin{document}
+
+\mainmatter
+
+\title{\soga: Inference of Probabilistic Programs by Second-order Gaussian Approximation Reproducibility Report}
+
+\institute{
+University of Trieste, Italy \and
+IMT School for Advanced Studies Lucca, Italy
+}
+
+\author{Francesca Randone \inst{1} \and Emilio Incerto \inst{2} \and Luca Bortolussi \inst{1} \and Mirco Tribastone\inst{2}}
+
+\allowdisplaybreaks[0]
+
+\maketitle
+\setcounter{table}{5}
+
+\begin{table}[t]
+    \centering
+    \caption{Comparing ground truth and \soga\ with varying pruning factors $K$, calculated using PSI. Rows display absolute percentage errors ($|\%e|$) for different $K$, with $C$ denoting components without pruning.}
+     \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
+     \toprule 
+        & & \multicolumn{9}{c}{\emph{SOGA}}\\ 
+        \cmidrule(l){3-11}
+        &  &\multicolumn{3}{c}{\emph{K{=}$\infty$}}&\multicolumn{2}{c}{\emph{K{=}$\lceil.015C\rceil$}}&\multicolumn{2}{c}{\emph{K{=}$\lceil.00725C\rceil$}}&\multicolumn{2}{c}{\emph{K{=}$\lceil.003625C\rceil$}}\\
+         \cmidrule(l){3-5} \cmidrule(l){6-7} \cmidrule(l){8-9} \cmidrule(l){10-11}
+        \emph{Model}&
+     \ \ \emph{Ground Truth} \ \ & 
+     \ \ \emph{time}  \ \ &   \ \ $|\%e|$ \ \ & $C$ &
+     \ \ \emph{time}  \ \ &  \ \ $|\%e|$ \ \ & 
+     \ \ \emph{time}  \ \ &  \ \ $|\%e|$ \ \ &
+     \ \ \emph{time}  \ \ &  \ \ $|\%e|$ \ \ \\
+    \midrule
+    \textsl{Bernoulli}       & 0.250 {%if(pruneSensitivityRes["bernoulli"][0]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["bernoulli"][0]}} & {{pruneSensitivityRes["bernoulli"][1]}}{%endif%} & 1954 {%if(pruneSensitivityRes["bernoulli"][2]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["bernoulli"][2]}} & {{pruneSensitivityRes["bernoulli"][3]}}{%endif%} {%if(pruneSensitivityRes["bernoulli"][4]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["bernoulli"][4]}} & {{pruneSensitivityRes["bernoulli"][5]}}{%endif%} {%if(pruneSensitivityRes["bernoulli"][6]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["bernoulli"][6]}} & {{pruneSensitivityRes["bernoulli"][7]}}{%endif%}\\
+    \textsl{ClickGraph}      & 0.614  {%if(pruneSensitivityRes["clickgraph"][0]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clickgraph"][0]}} & {{pruneSensitivityRes["clickgraph"][1]}}{%endif%} & 4600 {%if(pruneSensitivityRes["clickgraph"][2]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clickgraph"][2]}} & {{pruneSensitivityRes["clickgraph"][3]}}{%endif%} {%if(pruneSensitivityRes["clickgraph"][4]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clickgraph"][4]}} & {{pruneSensitivityRes["clickgraph"][5]}}{%endif%} {%if(pruneSensitivityRes["clickgraph"][6]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clickgraph"][6]}} & {{pruneSensitivityRes["clickgraph"][7]}}{%endif%}\\
+    \textsl{ClinicalTrial}   & 0.755  {%if(pruneSensitivityRes["clinicaltrial"][0]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clinicaltrial"][0]}} & {{pruneSensitivityRes["clinicaltrial"][1]}}{%endif%}  & 5795 {%if(pruneSensitivityRes["clinicaltrial"][2]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clinicaltrial"][2]}} & {{pruneSensitivityRes["clinicaltrial"][3]}}{%endif%} {%if(pruneSensitivityRes["clinicaltrial"][4]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clinicaltrial"][4]}} & {{pruneSensitivityRes["clinicaltrial"][5]}}{%endif%} {%if(pruneSensitivityRes["clinicaltrial"][6]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["clinicaltrial"][6]}} & {{pruneSensitivityRes["clinicaltrial"][7]}}{%endif%}\\
+     \textsl{RadarQuery}     & 6.333  {%if(pruneSensitivityRes["radarquery"][0]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["radarquery"][0]}} & {{pruneSensitivityRes["radarquery"][1]}}{%endif%}  & 2042 {%if(pruneSensitivityRes["radarquery"][2]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["radarquery"][2]}} & {{pruneSensitivityRes["radarquery"][3]}}{%endif%} {%if(pruneSensitivityRes["radarquery"][4]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["radarquery"][4]}} & {{pruneSensitivityRes["radarquery"][5]}}{%endif%} {%if(pruneSensitivityRes["radarquery"][6]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["radarquery"][6]}} & {{pruneSensitivityRes["radarquery"][7]}}{%endif%}\\
+     \textsl{Coinbias} & 0.421  {%if(pruneSensitivityRes["coinbias"][0]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["coinbias"][0]}} & {{pruneSensitivityRes["coinbias"][1]}}{%endif%} & 7687 {%if(pruneSensitivityRes["coinbias"][2]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["coinbias"][2]}} & {{pruneSensitivityRes["coinbias"][3]}}{%endif%} {%if(pruneSensitivityRes["coinbias"][4]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["coinbias"][4]}} & {{pruneSensitivityRes["coinbias"][5]}}{%endif%} {%if(pruneSensitivityRes["coinbias"][6]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["coinbias"][6]}} & {{pruneSensitivityRes["coinbias"][7]}}{%endif%}\\
+     \textsl{Surveyunbias} & 0.625  {%if(pruneSensitivityRes["surveyunbias"][0]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["surveyunbias"][0]}} & {{pruneSensitivityRes["surveyunbias"][1]}}{%endif%} & 6902 {%if(pruneSensitivityRes["surveyunbias"][2]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["surveyunbias"][2]}} & {{pruneSensitivityRes["surveyunbias"][3]}}{%endif%} {%if(pruneSensitivityRes["surveyunbias"][4]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["surveyunbias"][4]}} & {{pruneSensitivityRes["surveyunbias"][5]}}{%endif%} {%if(pruneSensitivityRes["surveyunbias"][6]=="to")%}& \multicolumn{2}{c}{to}{%else%}& {{pruneSensitivityRes["surveyunbias"][6]}} & {{pruneSensitivityRes["surveyunbias"][7]}}{%endif%}\\
+    \bottomrule
+    \end{tabular}}
+    \label{tab:pruning}
+\end{table}
+
+\end{document}

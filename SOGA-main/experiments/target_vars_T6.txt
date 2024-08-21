@@ -1,0 +1,6 @@
+CF1, "mean"
+CF2, "mean"
+CF3, "mean"
+CF5, "mean"
+CF10, "mean"
+CF20, "mean"

@@ -1,0 +1,17 @@
+data toss = [1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0];
+
+bias = beta([2,5],2); 
+
+for i in range(9) {
+    if uniform([0,1],2) - bias < 0 {
+        y = 1;
+    } else {
+        y = 0;
+    } end if;
+
+    observe(y == toss[i]);
+    
+} end for;
+
+
+

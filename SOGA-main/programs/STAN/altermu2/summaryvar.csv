@@ -1,0 +1,15 @@
+name,Mean,MCSE,StdDev,5%,50%,95%,N_Eff,N_Eff/s,R_hat
+"lp__",0,nan,0,0,0,0,nan,nan,nan
+"log_p__",-118.186,0.13508,4.23574,-122.263,-117.504,-116.821,983.276,inf,0.999285
+"log_g__",-0.973489,0.0309557,0.974827,-2.82123,-0.676843,-0.062841,991.688,inf,0.999155
+"mu[1]",-7.6,0.0050,0.16,-7.9,-7.6,-7.4,1072,inf,1.00
+"mu[2]",7.8,0.0055,0.17,7.5,7.8,8.1,937,inf,1.00
+# Inference for Stan model: altermu2_model
+# 1 chains: each with iter=(1001); warmup=(0); thin=(0); 1001 iterations saved.
+# 
+# Warmup took 0.00 seconds
+# Sampling took 0.00 seconds
+# Samples were drawn using meanfield with .
+# For each parameter, N_Eff is a crude measure of effective sample size,
+# and R_hat is the potential scale reduction factor on split chains (at 
+# convergence, R_hat=1).

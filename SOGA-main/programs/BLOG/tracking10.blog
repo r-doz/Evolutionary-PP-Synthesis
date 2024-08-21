@@ -1,0 +1,24 @@
+// aircraft model
+random Real X(Timestep t) ~
+  if t == @0 then Gaussian(2, 1)
+  else Gaussian(X(prev(t)), 1);
+random Real Y(Timestep t) ~
+  if t == @0 then Gaussian(-1, 1)
+  else Gaussian(Y(prev(t)), 1);
+
+// distance
+random Real dist(Timestep t) ~ X(t)*X(t) + Y(t)*Y(t);
+
+random Boolean out(Timestep t) ~ dist(t) > 10.0;
+		
+random Real obs_dist(Timestep t) ~
+	if out(t) then
+		10
+	else
+		Gaussian(dist(t), 1);
+
+// Observetions
+obs out(@10) = true;
+
+// Query
+query obs_dist(@10);

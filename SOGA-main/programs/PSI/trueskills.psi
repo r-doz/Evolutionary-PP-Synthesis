@@ -1,0 +1,12 @@
+def main(){
+	skillA := gauss(100,10);
+	skillB := gauss(100,10);
+	skillC := gauss(100,10);
+	perfA := gauss(skillA, 15);
+	perfB := gauss(skillB, 15);
+	perfC := gauss(skillC, 15);
+
+	observe(perfA > perfB && perfA > perfC);
+
+	return skillA;
+}

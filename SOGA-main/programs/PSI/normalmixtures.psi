@@ -1,0 +1,24 @@
+def main(){
+	mu1 := gauss(-10,1);
+	mu2 := gauss(10,1);
+	theta := uniform(0,1);
+	
+	data := readCSV("data/normalmixture/y.csv");
+	n := data.length;
+	y := array(n);
+
+	for i in [0..n){ 
+		p := flip(theta);
+		if p {
+			y[i] = gauss(mu1, 1);
+		} else {
+			y[i] = gauss(mu2, 1);
+		}		 
+	}
+	
+	for i in [0..n){
+		observe(y[i] == data[i]);
+	}
+
+	return theta;
+}

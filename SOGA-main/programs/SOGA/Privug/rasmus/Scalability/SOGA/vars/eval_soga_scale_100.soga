@@ -1,0 +1,18 @@
+/*array[100] y;
+x = gauss(1,1);
+sum = gauss(0,1);
+
+for i in range(100) {
+    y[i] = gauss(1,1);
+    x = x + y[i];
+} end for;*/
+
+array[100] sum;
+x = gauss(1,1);
+
+for i in range(100) {
+    sum[i] = sum[i] + x;
+} end for;
+
+
+

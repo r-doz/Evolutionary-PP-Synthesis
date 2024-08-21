@@ -1,0 +1,28 @@
+data ans1 = [1, 1, 1, 0, 0, 1, 0, 1];
+data ans2 = [0, 1, 0, 1, 1, 0, 0];
+
+bias1 = uniform([0,1], 2);
+bias2 = uniform([0,1], 2);
+
+for i in range(8) {
+    if uniform([0,1],2) - bias1 < 0 {
+        ansb1 = 1;
+    } else {
+        ansb1 = 0;
+    } end if;
+    
+    observe(ansb1 == ans1[i]);
+    
+}end for;
+
+for i in range(7) { 
+
+    if uniform([0,1],2) - bias2 < 0 {
+        ansb2 = 1;
+    } else {
+        ansb2 = 0;
+    } end if;
+
+    observe(ansb2 == ans2[i]);
+    
+} end for;

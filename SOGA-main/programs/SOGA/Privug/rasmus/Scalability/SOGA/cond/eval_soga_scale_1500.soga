@@ -1,0 +1,9 @@
+
+
+x = gauss(1, 1);
+y = gauss(1, 1);
+
+for i in range(1500):
+    x = x + y;
+end for;
+observe(x==1);

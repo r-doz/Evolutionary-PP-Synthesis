@@ -1,0 +1,9 @@
+def main(){ // bothHeads
+    firstCoin := flip(1/2):ℝ; // TODO: this annotation should not be necessary
+    secondCoin := flip(1/2):ℝ; // TODO: this annotation should not be necessary
+    bothHeads := firstCoin!=0 && secondCoin!=0;
+    observe(bothHeads == 0);
+    firstCoin = Expectation(firstCoin);
+    secondCoin = Expectation(secondCoin);
+    return (firstCoin,secondCoin); // expected: δ(1/3)[firstCoin]·δ(1/3)[secondCoin]
+}

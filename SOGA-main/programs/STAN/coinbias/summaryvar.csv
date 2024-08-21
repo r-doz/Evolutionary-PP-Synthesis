@@ -1,0 +1,14 @@
+name,Mean,MCSE,StdDev,5%,50%,95%,N_Eff,N_Eff/s,R_hat
+"lp__",0,nan,0,0,0,0,nan,nan,nan
+"log_p__",-5.30109,0.0265324,0.743253,-6.8809,-5.02338,-4.75164,784.73,inf,1.00082
+"log_g__",-0.465295,0.0230407,0.624218,-1.81857,-0.224723,-0.00132354,733.977,inf,1.00152
+"bias",0.41707,0.00494493,0.141913,0.19739,0.409787,0.660322,823.616,inf,0.999436
+# Inference for Stan model: coinbias_model
+# 1 chains: each with iter=(1001); warmup=(0); thin=(0); 1001 iterations saved.
+# 
+# Warmup took 0.00 seconds
+# Sampling took 0.00 seconds
+# Samples were drawn using meanfield with .
+# For each parameter, N_Eff is a crude measure of effective sample size,
+# and R_hat is the potential scale reduction factor on split chains (at 
+# convergence, R_hat=1).

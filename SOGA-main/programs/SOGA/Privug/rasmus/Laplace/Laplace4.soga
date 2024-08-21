@@ -1,0 +1,17 @@
+array[2] lower;
+array[18] higher;
+sum = 0;
+
+for i in range(2) {
+    lower[i] = gauss(300,100);
+    sum = sum + lower[i];
+} end for;
+
+for i in range(18) {
+    higher[i] = gauss(450,150);
+    sum = sum + higher[i];
+} end for;
+
+sum = 0.05*sum;
+noise = gm([0.879, 0.121], [0, 0], [29.3139896771589, 93.2124479739502]);
+sum = sum + noise;

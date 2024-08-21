@@ -1,0 +1,16 @@
+def main(){
+    controlGroup := [0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
+    treatedGroup := [1, 0, 1, 1, 1];
+
+    isEffective := flip(1/2);
+    probIfTreated := beta(1,1);
+    probIfControl := if isEffective { beta(1,1) } else { probIfTreated };
+
+    for i in [0..1){
+        observe(controlGroup[i] == flip(probIfControl));
+    }
+    //for i in [0..5){
+    //    observe(treatedGroup[i] == flip(probIfTreated));
+    //}
+    return isEffective;
+}

@@ -13,7 +13,7 @@ params = {
 
     # Evolutionary Parameters
     'POPULATION_SIZE': 500,
-    'GENERATIONS': 50,
+    'GENERATIONS': 75, #50,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all",
 

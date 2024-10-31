@@ -4,6 +4,7 @@ from stats.stats import stats
 from scipy.stats import multivariate_normal
 import random
 import time
+import signal
 import sys
 import numpy as np
 import re
@@ -12,6 +13,14 @@ sys.path.insert(1, '../SOGA-main/src')
 from sogaPreprocessor import *
 from producecfg import *
 from libSOGA import *
+
+# Define a custom exception for timeouts
+class TimeoutException(Exception):
+    pass
+
+# Define a handler function for the timeout
+def handler(signum, frame):
+    raise TimeoutException("Code execution exceeded time limit")
 
 class soga_fitness(base_ff):
     """Fitness function for finding the length of the shortest path between
@@ -28,18 +37,20 @@ class soga_fitness(base_ff):
         # We need to calculate the likelihood of these data
         data_var_list = ['a', 'b']
         #data = np.random.uniform(0, 1, 100)
-        data = [[np.random.normal(1, 2), np.random.normal(8, 2)] for _ in range(10000)]
+        data = [[np.random.normal(1, 2), np.random.normal(8, 2)] for _ in range(5000)]
     
 
         p = ind.phenotype
         p = preprocess_program(p)
-        #print("\n" + p)
+        #print("\n" + p)s
         #print("\n -----------------------------------------")
 
         fitness = 0
         #t0 = time.time()
 
         try:
+            signal.signal(signal.SIGALRM, handler)
+            signal.alarm(15)  # Set the timeout to 15 seconds
             compiledText=compile2SOGA_text(p)
             cfg = produce_cfg_text(compiledText)
             output_dist = start_SOGA(cfg)
@@ -65,11 +76,16 @@ class soga_fitness(base_ff):
                 sum_likelihood = sum_likelihood + likelihood[j]
             #fitness = log_total_likelihood
             fitness = sum_likelihood/len(data)
-        except:
-                fitness = self.default_fitness
+            signal.alarm(0)  # Cancel the timeout
 
-                if not hasattr(params['FITNESS_FUNCTION'], "multi_objective"):
-                    stats['invalids'] += 1
+        except TimeoutException as e:
+            print("Caught TimeoutException")
+            fitness = self.default_fitness
+
+        except:
+            fitness = self.default_fitness
+            if not hasattr(params['FITNESS_FUNCTION'], "multi_objective"):
+                stats['invalids'] += 1
 
         #t1 = time.time()
 

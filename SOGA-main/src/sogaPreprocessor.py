@@ -186,6 +186,17 @@ def compile2SOGA(input_prog):
 
     return temp_file.name
 
+def compile2SOGA_text(input_prog):
+    progr=input_prog
+    progr=compileExpRnd(input_prog=progr)
+    #progr=compileUniform(input_prog=progr)
+    progr=compileBeta(input_prog=progr)
+    progr=compileLaplace(input_prog=progr)
+
+    progr=compileGauss(input_prog=progr)
+    progr=compileBernoulli(input_prog=progr)
+    return progr
+
 if __name__ == '__main__':
 
 	import matplotlib.pyplot as plt

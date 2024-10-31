@@ -9,7 +9,7 @@
             "console": "integratedTerminal",
             "cwd": "${fileDirname}",
             "purpose":["debug-in-terminal"],
-            "args": ["--fitness_function", "max_in_list", "--grammar_file", "MIL_base.pybnf"]
+            "args": ["--fitness_function", "soga_fitness", "--grammar_file", "soga_grammar_simple_ok.pybnf"]
         },
         {
             "name": "Python Debugger: Python File",

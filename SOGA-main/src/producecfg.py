@@ -376,3 +376,16 @@ def produce_cfg(filename):
     walker = ParseTreeWalker()
     walker.walk(cfg, tree) 
     return cfg
+
+
+def produce_cfg_text(program):
+    """ Parses filename using ANTLR4. Returns a CFG object. """
+    #input_file =  open('../script/'+ filename + '.txt', 'r').read()
+    lexer = SOGALexer(InputStream(program))
+    stream = CommonTokenStream(lexer)
+    parser = SOGAParser(stream)
+    tree = parser.progr()
+    cfg = CFG()
+    walker = ParseTreeWalker()
+    walker.walk(cfg, tree) 
+    return cfg

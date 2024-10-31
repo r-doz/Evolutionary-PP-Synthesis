@@ -15,7 +15,7 @@ class base_ff:
     default_fitness = np.NaN
 
     # Default fitness objective is to minimise fitness.
-    maximise = False
+    maximise = True
 
     def __init__(self):
         pass

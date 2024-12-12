@@ -1,11 +1,12 @@
 # Grammar for a SOGA program
 
 <fc> ::= <code>
-<code> ::= <instr> |<instr>{::}<code> #| <instr>{::}<instr>
+<code> ::= a = <gm> ; {::}b = <gm>; {::}if a < 0 { {: <hole> :} } else { {: <hole> :} } end if;
+<hole> ::= <instr> |<instr>{::}<hole>
 
 #Definition of instruction
 
-<instr> ::= <assignment> #| <conditional> | <loop>
+<instr> ::= <assignment> | <conditional>  #| <loop>
 
 #Assignment
 
@@ -17,34 +18,31 @@
 <add> ::= <add_term> | <add_term> + <add_term> | <add_term>  - <add_term>
 <add_term> ::= <vars> | <num>  * <vars> | <const_term>
 <vars> ::= <idv> | <gm> | <uniform>
-<gm> ::= gm(<list>,<list>,<list>)
-<list> ::= [<element>]
-<element> ::= <num> | <num>,<element> | <num>.<num> | <num>.<num>,<element>
-<uniform> ::= uniform([<num>, <num>], <num_pos>)
+
+<gm> ::= gm(<triplets>)
+<triplets> ::= [<element>, <element>, <element>] | [<element>, <element>, <element>], <triplets>
+<element> ::= <num> | <num>.<num>
+
+<uniform> ::= uniform([<num>, <num_pos>], <int_pos_trunc>)
+<num_pos> ::= <int_pos> | <num>.<int_pos>
 
 <mul> ::= <vars> * <vars> | <num> * <vars>
 
 
 #Conditional
 
-<conditional> ::= if <bexpr> { {: <block> :} } else { {: <block> :} } end if;
+<conditional> ::= if <bexpr> { {: <hole> :} } else { {: <hole> :} } end if;
 
 <bexpr> ::= <idv> <equal> <num> | <lexpr> <loperator> <num>
-<lexpr> ::= <monom> | <monom> + <lexpr> | <monom> - <lexpr>
+<lexpr> ::= <monom> | <monom> + <lexpr> # | <monom> - <lexpr>
 <monom> ::= <vars> | <num> * <vars> 
 <loperator> ::=  < | <= | >= | >
 <equal> ::= == | != 
-
-<block> ::= <instr> | <instr> {::} <block>
-
-
-#Loop
-
-<loop> ::= for <idv> in range(<num>) { {: <block> :} } end for;
 
 
 #Terminal nodes
 
 <num> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
-<num_pos> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+<int_pos> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+<int_pos_trunc> ::= 1 | 2 | 3 | 4
 <idv> ::=  a | b | c | d | e

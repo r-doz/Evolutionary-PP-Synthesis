@@ -37,12 +37,19 @@ class soga_fitness(base_ff):
         # We need to calculate the likelihood of these data
         data_var_list = ['a', 'b']
         #data = np.random.uniform(0, 1, 100)
-        data = [[np.random.normal(1, 2), np.random.normal(8, 2)] for _ in range(5000)]
-    
+        #data = [[np.random.normal(1, 2), np.random.normal(8, 2)] for _ in range(5000)]
+        data = []
+        for _ in range(5000):
+            a = np.random.normal(1, 2)
+            if a < 0:
+                b = a * 3
+            else: 
+                b = np.random.normal(8, 1)
+            data.append([a, b])
 
         p = ind.phenotype
         p = preprocess_program(p)
-        #print("\n" + p)s
+        #print("\n" + p)
         #print("\n -----------------------------------------")
 
         fitness = 0
@@ -58,22 +65,28 @@ class soga_fitness(base_ff):
             # Calculate the likelihood of the data
 
             likelihood = np.zeros(len(data))
-            #log_total_likelihood = 0
-            sum_likelihood = 0
+            indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
+            marginal_means_components = []
+            marginal_covariance_matrices_components = []
+            for i in range(output_dist.gm.n_comp()):
+                marginal_means = []
+                covariance_index = []
+                marginal_covariance_matrix = []
+                for element, index_list in indexes.items():
+                    marginal_means.append(output_dist.gm.mu[i][index_list][0])
+                    covariance_index.append(index_list[0])
+
+                marginal_covariance_matrix.append(output_dist.gm.sigma[i][np.ix_(covariance_index,covariance_index)])
+                marginal_means_components.append(marginal_means)
+                marginal_covariance_matrices_components.append(marginal_covariance_matrix)
+
             for j in range(len(data)):
-                indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
                 for i in range(output_dist.gm.n_comp()):
-                    marginal_means = []
-                    covariance_index = []
-                    for element, index_list in indexes.items():
-                        marginal_means.append(output_dist.gm.mu[i][index_list][0])
-                        covariance_index.append(index_list[0])
+                    likelihood[j] = likelihood[j] + output_dist.gm.pi[i] * multivariate_normal.pdf(data[j], mean = marginal_means_components[i], cov = marginal_covariance_matrices_components[i][0], allow_singular=True)
 
-                    marginal_covariance_matrix = output_dist.gm.sigma[i][np.ix_(covariance_index,covariance_index)]
-
-                    likelihood[j] = likelihood[j] + np.log(output_dist.gm.pi[i] * multivariate_normal.pdf(data[j], mean = marginal_means, cov = marginal_covariance_matrix, allow_singular=True))
+                likelihood[j] = np.log(likelihood[j])
                 #log_total_likelihood = log_total_likelihood + np.log(likelihood[j])
-                sum_likelihood = sum_likelihood + likelihood[j]
+            sum_likelihood = np.sum(likelihood)
             #fitness = log_total_likelihood
             fitness = sum_likelihood/len(data)
             signal.alarm(0)  # Cancel the timeout
@@ -84,8 +97,9 @@ class soga_fitness(base_ff):
 
         except:
             fitness = self.default_fitness
-            if not hasattr(params['FITNESS_FUNCTION'], "multi_objective"):
-                stats['invalids'] += 1
+            #I do not define the indiviaduals as invalid in order to allow crossover
+            #if not hasattr(params['FITNESS_FUNCTION'], "multi_objective"):
+                #stats['invalids'] += 1
 
         #t1 = time.time()
 

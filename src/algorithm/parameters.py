@@ -13,7 +13,7 @@ params = {
 
     # Evolutionary Parameters
     'POPULATION_SIZE': 500,
-    'GENERATIONS': 75, #50,
+    'GENERATIONS': 50,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all",
 
@@ -68,13 +68,13 @@ params = {
 
     # SELECTION
     # Set selection operator.
-    'SELECTION': "operators.selection.tournament",
+    'SELECTION':"operators.selection.truncation", #"operators.selection.truncation", "operators.selection.tournament"
     # For tournament selection
     'TOURNAMENT_SIZE': 2,
     # For truncation selection
-    'SELECTION_PROPORTION': 0.5,
+    'SELECTION_PROPORTION': 0.1, #0.5,
     # Allow for selection of invalid individuals during selection process.
-    'INVALID_SELECTION': False,
+    'INVALID_SELECTION': True,
 
     # OPERATOR OPTIONS
     # Boolean flag for selecting whether or not mutation is confined to
@@ -83,7 +83,7 @@ params = {
 
     # CROSSOVER
     # Set crossover operator.
-    'CROSSOVER': "operators.crossover.variable_onepoint",
+    'CROSSOVER': "operators.crossover.variable_twopoint",
     # Set crossover probability.
     'CROSSOVER_PROBABILITY': 0.75,
     # Prevents crossover from generating invalids.
@@ -104,7 +104,7 @@ params = {
     # Set replacement operator.
     'REPLACEMENT': "operators.replacement.generational",
     # Set elite size.
-    'ELITE_SIZE': None,
+    'ELITE_SIZE': 10,
 
     # DEBUGGING
     # Use this to turn on debugging mode. This mode doesn't write any files

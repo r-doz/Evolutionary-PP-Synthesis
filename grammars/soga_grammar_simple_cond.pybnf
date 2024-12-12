@@ -5,7 +5,7 @@
 
 #Definition of instruction
 
-<instr> ::= <assignment> #| <conditional> | <loop>
+<instr> ::= <assignment> | <conditional>  #| <loop>
 
 #Assignment
 
@@ -33,7 +33,7 @@
 <conditional> ::= if <bexpr> { {: <block> :} } else { {: <block> :} } end if;
 
 <bexpr> ::= <idv> <equal> <num> | <lexpr> <loperator> <num>
-<lexpr> ::= <monom> # | <monom> + <lexpr> | <monom> - <lexpr>
+<lexpr> ::= <monom> | <monom> + <lexpr> # | <monom> - <lexpr>
 <monom> ::= <vars> | <num> * <vars> 
 <loperator> ::=  < | <= | >= | >
 <equal> ::= == | != 

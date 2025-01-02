@@ -12,8 +12,8 @@ params = {
     'STEP': 'step',
 
     # Evolutionary Parameters
-    'POPULATION_SIZE': 500,
-    'GENERATIONS': 50,
+    'POPULATION_SIZE': 300,
+    'GENERATIONS': 250,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all",
 
@@ -24,15 +24,17 @@ params = {
     'RUNS': 1,
 
     # Class of problem
-    'FITNESS_FUNCTION': "supervised_learning.regression",
+    #'FITNESS_FUNCTION': "supervised_learning.regression",
+    'FITNESS_FUNCTION': "soga_fitness",
 
     # Select problem dataset
-    'DATASET_TRAIN': "Vladislavleva4/Train.txt",
+    'DATASET_TRAIN': None,
     'DATASET_TEST': None,
     'DATASET_DELIMITER': None,
 
     # Set grammar file
-    'GRAMMAR_FILE': "supervised_learning/Vladislavleva4.bnf",
+    #'GRAMMAR_FILE': "soga_holes.pybnf",
+    'GRAMMAR_FILE': "soga_grammar_simple_cond.pybnf",
 
     # Set the number of depths permutations are calculated for
     # (starting from the minimum path of the grammar).
@@ -49,10 +51,10 @@ params = {
     'TARGET': "ponyge_rocks",
 
     # Set max sizes of individuals
-    'MAX_TREE_DEPTH': 90,  # SET TO 90 DUE TO PYTHON EVAL() STACK LIMIT.
+    'MAX_TREE_DEPTH': 16,  # SET TO 90 DUE TO PYTHON EVAL() STACK LIMIT.
     # INCREASE AT YOUR OWN RISK.
     'MAX_TREE_NODES': None,
-    'CODON_SIZE': 100000,
+    'CODON_SIZE': 500,
     'MAX_GENOME_LENGTH': None,
     'MAX_WRAPS': 0,
 
@@ -68,9 +70,9 @@ params = {
 
     # SELECTION
     # Set selection operator.
-    'SELECTION':"operators.selection.truncation", #"operators.selection.truncation", "operators.selection.tournament"
+    'SELECTION':"operators.selection.tournament", #"operators.selection.truncation", "operators.selection.tournament"
     # For tournament selection
-    'TOURNAMENT_SIZE': 2,
+    'TOURNAMENT_SIZE': 3,
     # For truncation selection
     'SELECTION_PROPORTION': 0.1, #0.5,
     # Allow for selection of invalid individuals during selection process.
@@ -128,7 +130,7 @@ params = {
 
     # MULTIPROCESSING
     # Multi-core parallel processing of phenotype evaluations.
-    'MULTICORE': False,
+    'MULTICORE': True,
     # Set the number of cpus to be used for multiprocessing
     'CORES': cpu_count(),
 
@@ -163,13 +165,13 @@ params = {
     # string of each phenotype in a big list of all phenotypes. Saves all
     # fitness information on each individual. Gives you an idea of how much
     # repetition is in standard GE/GP.
-    'CACHE': False,
+    'CACHE': True,
     # Uses the cache to look up the fitness of duplicate individuals. CACHE
     # must be set to True if you want to use this.
-    'LOOKUP_FITNESS': False,
+    'LOOKUP_FITNESS': True,
     # Uses the cache to give a bad fitness to duplicate individuals. CACHE
     # must be True if you want to use this (obviously)
-    'LOOKUP_BAD_FITNESS': False,
+    'LOOKUP_BAD_FITNESS': True,
     # Removes duplicate individuals from the population by replacing them
     # with mutated versions of the original individual. Hopefully this will
     # encourage diversity in the population.

@@ -1,5 +1,5 @@
 import numpy as np
-
+import importlib
 from algorithm.mapper import mapper
 from algorithm.parameters import params
 
@@ -125,7 +125,10 @@ class Individual(object):
         :return: Nothing unless multi-core evaluation is being used. In that
         case, returns self.
         """
-
+        if not callable(params['FITNESS_FUNCTION']):
+            module = importlib.import_module('fitness.' + params['FITNESS_FUNCTION'])
+            params['FITNESS_FUNCTION'] = getattr(module, params['FITNESS_FUNCTION'])
+            params['FITNESS_FUNCTION'] = params['FITNESS_FUNCTION']()
         # Evaluate fitness using specified fitness function.
         self.fitness = params['FITNESS_FUNCTION'](self)
 

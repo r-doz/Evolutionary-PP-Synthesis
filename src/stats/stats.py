@@ -1,7 +1,7 @@
 from copy import copy
 from sys import stdout
 from time import time
-
+import importlib
 import numpy as np
 from algorithm.parameters import params
 from utilities.algorithm.NSGA2 import compute_pareto_metrics
@@ -372,7 +372,8 @@ def print_final_stats():
         print("\n\nBest:\n  Fitness:\t", trackers.best_ever.fitness)
 
     print("  Phenotype:", trackers.best_ever.phenotype)
-    print("  Genome:", trackers.best_ever.genome)
+    #print("  Genome:", trackers.best_ever.genome)
+    print("Likelihood on 5000 points: ", likelihood_of_program(trackers.best_ever.phenotype))
     print_generation_stats()
 
 
@@ -388,3 +389,9 @@ def print_final_moo_stats():
     for ind in trackers.best_ever:
         print(" ", ind)
     print_generation_stats()
+
+def likelihood_of_program(phenotype):
+    module = importlib.import_module(params['FITNESS_FUNCTION'].__module__)
+    likelihood_func = getattr(module, 'likelihood_of_program_wrt_data')
+    fitness = likelihood_func(phenotype, 5000)
+    return fitness

@@ -84,6 +84,7 @@ def save_plot_from_data(data, name):
 
     # Plot data.
     ax1.plot(data)
+    print(data)
 
     # Set labels.
     ax1.set_ylabel(name, fontsize=14)

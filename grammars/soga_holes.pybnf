@@ -10,7 +10,7 @@
 
 #Assignment
 
-<assignment> ::= <idv> = <const>; | <idv> = <add>; | <idv> = <mul>;
+<assignment> ::= <idv> = <const>; | <idv> = <add>;  #| <idv> = <mul>;
 
 <const> ::= <const_term> | <const_term> + <const_term> | <const_term> - <const_term>
 <const_term> ::= <num> | <num> * <num> 

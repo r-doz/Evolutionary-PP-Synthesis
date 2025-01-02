@@ -1,7 +1,6 @@
 from algorithm.parameters import params
 from fitness.base_ff_classes.base_ff import base_ff
-from stats.stats import stats
-from scipy.stats import multivariate_normal
+from torch.distributions.multivariate_normal import MultivariateNormal
 import random
 import time
 import signal
@@ -10,7 +9,7 @@ import numpy as np
 import re
 import torch
 # caution: path[0] is reserved for script path (or '' in REPL)
-sys.path.insert(1, '../SOGA-main/src')
+sys.path.insert(1, '../SOGAtorch/src')
 from sogaPreprocessor import *
 from producecfg import *
 from libSOGA import *
@@ -24,7 +23,7 @@ class TimeoutException(Exception):
 def handler(signum, frame):
     raise TimeoutException("Code execution exceeded time limit")
 
-class soga_fitness(base_ff):
+class SOGATorch_fitness(base_ff):
     """Fitness function for finding the length of the shortest path between
     two nodes in a grade compared to the known shortest path. Takes a path (
     list of node labels as strings) and returns fitness. Penalises output
@@ -33,12 +32,25 @@ class soga_fitness(base_ff):
     def __init__(self):
         # Initialise base fitness function class.
         super().__init__()
-        
 
     def evaluate(self, ind, **kwargs):
         self.default_fitness = -np.inf
+        # We need to calculate the likelihood of these data
+        data_var_list = ['a', 'b']
+        #data = np.random.uniform(0, 1, 100)
+        #data = [[np.random.normal(1, 2), np.random.normal(8, 2)] for _ in range(5000)]
+        data = []
+        for _ in range(500):
+            a = np.random.normal(1, 2)
+            if a < 0:
+                b = a * 3
+            else: 
+                b = np.random.normal(8, 1)
+            data.append([a, b])
+
         p = ind.phenotype
-        #p = smooth_program(p)
+        p = preprocess_program(p)
+        p = smooth_program(p)
         #print("\n" + p)
         #print("\n -----------------------------------------")
 
@@ -48,7 +60,41 @@ class soga_fitness(base_ff):
         try:
             signal.signal(signal.SIGALRM, handler)
             signal.alarm(15)  # Set the timeout to 15 seconds
-            fitness = likelihood_of_program_wrt_data(p)
+            compiledText=compile2SOGA_text(p)
+            cfg = produce_cfg_text(compiledText)
+            output_dist = start_SOGA(cfg)
+
+            # Calculate the likelihood of the data
+
+            likelihood = torch.zeros(len(data))
+            indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
+            marginal_means_components = []
+            marginal_covariance_matrices_components = []
+            
+            for i in range(output_dist.gm.n_comp()):
+                marginal_means = []
+                covariance_index = []
+                marginal_covariance_matrix = []
+                
+                for element, index_list in indexes.items():
+                    marginal_means.append(output_dist.gm.mu[i][index_list][0])
+                    covariance_index.append(index_list[0])
+                
+                covariance_index_tensor = torch.tensor(covariance_index)
+                marginal_covariance_matrix.append(output_dist.gm.sigma[i][covariance_index_tensor][:, covariance_index_tensor])
+                marginal_means_components.append(torch.tensor(marginal_means))
+                marginal_covariance_matrices_components.append(marginal_covariance_matrix)
+            
+            for j in range(len(data)):
+                data_tensor = torch.tensor(data[j])
+                for i in range(output_dist.gm.n_comp()):
+                    mvn = MultivariateNormal(marginal_means_components[i], marginal_covariance_matrices_components[i][0])
+                    likelihood[j] += output_dist.gm.pi[i] * torch.exp(mvn.log_prob(data_tensor))
+                
+                likelihood[j] = torch.log(likelihood[j])
+            
+            sum_likelihood = torch.sum(likelihood)
+            fitness = sum_likelihood / len(data)
             signal.alarm(0)  # Cancel the timeout
 
         except TimeoutException as e:
@@ -65,7 +111,7 @@ class soga_fitness(base_ff):
 
         #if t1 - t0 > 4:
             #fitness = self.default_fitness
-        #print(fitness)
+        print(fitness)
         return fitness
 
 def generate_list():
@@ -172,48 +218,3 @@ def smooth_program(program_text):
     # Join the lines back into a single text
     return '\n'.join(modified_lines)   
 
-def likelihood_of_program_wrt_data(p, data_size = 100):
-    p = preprocess_program(p)
-    data_var_list = ['a', 'b']
-    #data = [[np.random.normal(1, 2), np.random.normal(8, 2)] for _ in range(data_size)]
-    
-    data = []
-    for _ in range(data_size):
-        a = np.random.normal(1, 2)
-        if a < 0:
-            b = a * 3
-        else: 
-            b = np.random.normal(8, 1)
-        data.append([a, b])
-    
-    compiledText=compile2SOGA_text(p)
-    cfg = produce_cfg_text(compiledText)
-    output_dist = start_SOGA(cfg)
-
-    # Calculate the likelihood of the data
-
-    likelihood = np.zeros(len(data))
-    indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
-    marginal_means_components = []
-    marginal_covariance_matrices_components = []
-    for i in range(output_dist.gm.n_comp()):
-        marginal_means = []
-        covariance_index = []
-        marginal_covariance_matrix = []
-        for element, index_list in indexes.items():
-            marginal_means.append(output_dist.gm.mu[i][index_list][0])
-            covariance_index.append(index_list[0])
-
-        marginal_covariance_matrix.append(output_dist.gm.sigma[i][np.ix_(covariance_index,covariance_index)])
-        marginal_means_components.append(marginal_means)
-        marginal_covariance_matrices_components.append(marginal_covariance_matrix)
-
-    for j in range(len(data)):
-        for i in range(output_dist.gm.n_comp()):
-            likelihood[j] = likelihood[j] + output_dist.gm.pi[i] * multivariate_normal.pdf(data[j], mean = marginal_means_components[i], cov = marginal_covariance_matrices_components[i][0], allow_singular=True)
-
-        likelihood[j] = np.log(likelihood[j])
-        #log_total_likelihood = log_total_likelihood + np.log(likelihood[j])
-    sum_likelihood = np.sum(likelihood)
-    #fitness = log_total_likelihood
-    return sum_likelihood/len(data)

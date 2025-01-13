@@ -12,8 +12,8 @@ params = {
     'STEP': 'step',
 
     # Evolutionary Parameters
-    'POPULATION_SIZE': 300,
-    'GENERATIONS': 1000,
+    'POPULATION_SIZE': 200,
+    'GENERATIONS': 500,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all", 
 
@@ -62,7 +62,7 @@ params = {
 
     # INITIALISATION
     # Set initialisation operator.
-    'INITIALISATION': "operators.initialisation.rvd",
+    'INITIALISATION': "operators.initialisation.PI_grow",
     # Set the maximum genome length for initialisation.
     'INIT_GENOME_LENGTH': 200,
     # Set the maximum tree depth for initialisation.

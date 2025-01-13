@@ -175,7 +175,7 @@ def smooth_program(program_text):
     # Join the lines back into a single text
     return '\n'.join(modified_lines)   
 
-def likelihood_of_program_wrt_data(p, data_size = 200):
+def likelihood_of_program_wrt_data(p, data_size = 100):
     p = preprocess_program(p)
     data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
     dependencies_benefit = 0
@@ -190,8 +190,8 @@ def likelihood_of_program_wrt_data(p, data_size = 200):
             for value in values:
                 value_index = output_dist.var_list.index(value)
                 cov_value = output_dist.gm.cov()[key_index, value_index]
-                if((output_dist.gm.cov()[key_index, key_index]!= 0) & (output_dist.gm.cov()[value_index, value_index]!= 0) ):
-                    cov_value = cov_value/(torch.sqrt(np.abs(output_dist.gm.cov()[key_index, key_index] * output_dist.gm.cov()[value_index, value_index])))
+                #if((output_dist.gm.cov()[key_index, key_index]!= 0) & (output_dist.gm.cov()[value_index, value_index]!= 0) ):
+                    #cov_value = cov_value/(torch.sqrt(np.abs(output_dist.gm.cov()[key_index, key_index] * output_dist.gm.cov()[value_index, value_index])))
                 #if cov_value < 1e-10:
                     #raise ValueError(f"Variable {key} and {value} have covariance 0")
                 dependencies_benefit += weights[key] * np.log(np.abs(cov_value))

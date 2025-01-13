@@ -40,7 +40,8 @@ def generational(new_pop, old_pop):
     # new population.
     for ind in old_pop[:params['ELITE_SIZE']]:
         new_pop.insert(0, ind)
-
+        
+    print(new_pop[0].fitness)
     # Return the top POPULATION_SIZE individuals of the new pop, including
     # elites.
     return new_pop[:params['POPULATION_SIZE']]

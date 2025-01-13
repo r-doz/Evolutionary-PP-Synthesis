@@ -13,19 +13,21 @@ params = {
 
     # Evolutionary Parameters
     'POPULATION_SIZE': 300,
-    'GENERATIONS': 250,
+    'GENERATIONS': 1000,
     'HILL_CLIMBING_HISTORY': 1000,
-    'SCHC_COUNT_METHOD': "count_all",
+    'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
     'EXPERIMENT_NAME': None,
+    'PROGRAM_NAME': 'mog1',
+    'DEPENDENCIES_BENEFIT': True,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
     'RUNS': 1,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",
-    'FITNESS_FUNCTION': "soga_fitness",
+    'FITNESS_FUNCTION': "soga_fitness_trueskills",
 
     # Select problem dataset
     'DATASET_TRAIN': None,
@@ -34,7 +36,7 @@ params = {
 
     # Set grammar file
     #'GRAMMAR_FILE': "soga_holes.pybnf",
-    'GRAMMAR_FILE': "soga_grammar_simple_cond.pybnf",
+    'GRAMMAR_FILE': "soga_mog1.pybnf",
 
     # Set the number of depths permutations are calculated for
     # (starting from the minimum path of the grammar).
@@ -51,7 +53,7 @@ params = {
     'TARGET': "ponyge_rocks",
 
     # Set max sizes of individuals
-    'MAX_TREE_DEPTH': 16,  # SET TO 90 DUE TO PYTHON EVAL() STACK LIMIT.
+    'MAX_TREE_DEPTH': 24,  # SET TO 90 DUE TO PYTHON EVAL() STACK LIMIT.
     # INCREASE AT YOUR OWN RISK.
     'MAX_TREE_NODES': None,
     'CODON_SIZE': 500,
@@ -60,7 +62,7 @@ params = {
 
     # INITIALISATION
     # Set initialisation operator.
-    'INITIALISATION': "operators.initialisation.PI_grow",
+    'INITIALISATION': "operators.initialisation.rvd",
     # Set the maximum genome length for initialisation.
     'INIT_GENOME_LENGTH': 200,
     # Set the maximum tree depth for initialisation.

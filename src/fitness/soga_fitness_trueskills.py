@@ -3,7 +3,7 @@ from fitness.base_ff_classes.base_ff import base_ff
 from stats.stats import stats
 from scipy.stats import multivariate_normal
 import random
-import time
+import time as timeit
 import signal
 import sys
 import numpy as np
@@ -11,6 +11,7 @@ import re
 import torch
 from torch.distributions.multivariate_normal import MultivariateNormal
 import fitness.data_generating_process as dgp
+import threading
 
 # caution: path[0] is reserved for script path (or '' in REPL)
 sys.path.insert(1, '../SOGA-main/src')
@@ -23,9 +24,49 @@ torch.set_default_dtype(torch.float64)
 class TimeoutException(Exception):
     pass
 
+def timeout_handler():
+    raise TimeoutException()
+
 # Define a handler function for the timeout
-def handler(signum, frame):
-    raise TimeoutException("Code execution exceeded time limit")
+#def handler(signum, frame):
+#    raise TimeoutException("Code execution exceeded time limit")
+
+def compute_likelihood(output_dist, data_var_list, data):
+    """ computes the likelihood of output_dist with respect to variables data_var_list sampled in data """
+
+    data = torch.tensor(data)
+    likelihood = 0
+    # extract indexes of the variables in the data
+    data_var_index = [output_dist.var_list.index(element) for element in data_var_list ]
+    
+    for k in range(output_dist.gm.n_comp()):
+        # extract the covariance matrix only for the variables in the data
+        sigma = output_dist.gm.sigma[k][data_var_index][:, data_var_index]
+        # selects indices of delta (discrete) variables and non-delta (continuous) variables
+        deltas = np.where(np.diag(sigma) == 0)[0]
+        not_deltas = np.where(np.diag(sigma) != 0)[0]
+        # saves means of delta and non-delta variables and covariance matrix of non-delta
+        mu_delta = torch.tensor(output_dist.gm.mu[k][deltas])
+        mu_not_delta = torch.tensor(output_dist.gm.mu[k][not_deltas])
+        sigma_not_delta = torch.tensor(sigma[not_deltas][:, not_deltas])
+        try:
+            # computes pdf of non-delta variables 
+            if len(mu_not_delta) >= 1:  # if there is at least one continuous variable
+                continuous_pdf = output_dist.gm.pi[k]*MultivariateNormal(mu_not_delta, sigma_not_delta).log_prob(data[:,not_deltas]).exp()
+            else:
+                continuous_pdf = output_dist.gm.pi[k]*torch.ones(len(data))
+            # computes pmf of delta variables
+            if len(mu_delta) >= 1:   # if there is at least one discrete variable
+                discrete_pmf = torch.all((mu_delta == data[:, deltas]),dim=1)
+            else:
+                discrete_pmf = torch.ones(len(data))
+        except ValueError:  # if the covariance matrix is singular
+            return torch.tensor(-np.inf)
+        except:
+            raise
+        likelihood += continuous_pdf*discrete_pmf # sums likelihood of every data over all components
+    
+    return torch.sum(torch.log(likelihood))/len(data)
 
 class soga_fitness_trueskills(base_ff):
     """Fitness function for finding the length of the shortest path between
@@ -46,23 +87,26 @@ class soga_fitness_trueskills(base_ff):
         #print("\n -----------------------------------------")
 
         fitness = 0
+        timer = threading.Timer(60, timeout_handler)
         #t0 = time.time()
-
         try:
-            signal.signal(signal.SIGALRM, handler)
-            signal.alarm(20)  # Set the timeout to 20 seconds
+            #signal.signal(signal.SIGALRM, handler)
+            #signal.alarm(20)  # Set the timeout to 20 seconds
+            timer.start()
             fitness = likelihood_of_program_wrt_data(p)
-            signal.alarm(0)  # Cancel the timeout
-
+            #signal.alarm(0)  # Cancel the timeout
         except TimeoutException as e:
             print("Caught TimeoutException")
             fitness = self.default_fitness
-
-        except:
-            fitness = self.default_fitness
+        #except:
+        #    fitness = self.default_fitness
             #I do not define the indiviaduals as invalid in order to allow crossover
             #if not hasattr(params['FITNESS_FUNCTION'], "multi_objective"):
                 #stats['invalids'] += 1
+        finally:
+            timer.cancel()
+        
+        
 
         #t1 = time.time()
 
@@ -175,6 +219,45 @@ def smooth_program(program_text):
     # Join the lines back into a single text
     return '\n'.join(modified_lines)   
 
+
+#def likelihood_of_program_wrt_data(p, data_size = 100):
+    
+#    p = preprocess_program(p)
+#    data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
+#    dependencies_benefit = 0
+#    data = dgp.generate_dataset(params['PROGRAM_NAME'], data_size)
+    
+    # Computes output distribution of the program
+#    compiledText=compile2SOGA_text(p)
+#    cfg = produce_cfg_text(compiledText)
+#    try:                                
+#        output_dist = start_SOGA(cfg)
+#    except IndexError: # program has no valid paths
+#        stats['invalids'] += 1
+#        return -np.inf
+
+    # Calculate the benefit of dependencies
+ #   if(params['DEPENDENCIES_BENEFIT']):
+ #       for key, values in dependencies.items():
+ #           key_index = output_dist.var_list.index(key)
+ #           for value in values:
+ #               value_index = output_dist.var_list.index(value)
+ #               cov_value = output_dist.gm.cov()[key_index, value_index]
+                #if((output_dist.gm.cov()[key_index, key_index]!= 0) & (output_dist.gm.cov()[value_index, value_index]!= 0) ):
+                    #cov_value = cov_value/(torch.sqrt(np.abs(output_dist.gm.cov()[key_index, key_index] * output_dist.gm.cov()[value_index, value_index])))
+                #if cov_value < 1e-10:
+                    #raise ValueError(f"Variable {key} and {value} have covariance 0")
+ #               dependencies_benefit += weights[key] * np.log(np.abs(cov_value))
+
+    # Calculate the likelihood of the data
+ #   likelihood = compute_likelihood(output_dist, data_var_list, data)
+
+    # Calculate fitness
+ #   fitness = likelihood + dependencies_benefit
+ #   return fitness
+
+# old version of likelihood
+
 def likelihood_of_program_wrt_data(p, data_size = 100):
     p = preprocess_program(p)
     data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
@@ -184,6 +267,7 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
     compiledText=compile2SOGA_text(p)
     cfg = produce_cfg_text(compiledText)
     output_dist = start_SOGA(cfg)
+   
     if(params['DEPENDENCIES_BENEFIT']):
         for key, values in dependencies.items():
             key_index = output_dist.var_list.index(key)
@@ -197,7 +281,7 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
                 dependencies_benefit += weights[key] * np.log(np.abs(cov_value))
 
     # Calculate the likelihood of the data
-
+    start = timeit.time()
     likelihood = torch.zeros(len(data))
     indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
     marginal_means_components = []
@@ -206,15 +290,15 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
     excluded_indices_components = []
 
 
-    for i in range(output_dist.gm.n_comp()):
+    for i in range(output_dist.gm.n_comp()):    
         marginal_means = []
         covariance_index = []
         marginal_covariance_matrix = []
         excluded_indices = []
         
         for element, index_list in indexes.items():
-            marginal_means.append(output_dist.gm.mu[i][index_list][0])
-            covariance_index.append(index_list[0])
+            marginal_means.append(output_dist.gm.mu[i][index_list][0]) # le medie delle variabili di cui calcola la marginale
+            covariance_index.append(index_list[0])  # gli indici delle variabili di cui calcola la marginale
         
         covariance_index_tensor = torch.tensor(covariance_index)
         cov_matrix = output_dist.gm.sigma[i][covariance_index_tensor][:, covariance_index_tensor]
@@ -226,7 +310,7 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
             if cov != 0:
                 filtered_covariance_index.append(idx)
             else:
-                excluded_indices.append(ind)
+                excluded_indices.append(ind)  # why ind?
             ind += 1
 
         filtered_covariance_index_tensor = torch.tensor(filtered_covariance_index)
@@ -240,7 +324,7 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
     
     for j in range(len(data)):
         for i in range(output_dist.gm.n_comp()):
-            # Check if the original data values not filtered are equal to the marginal means components not filtered
+           # Check if the original data values not filtered are equal to the marginal means components not filtered
             original_data_values = [data[j][idx] for idx in range(len(data[j])) if idx in excluded_indices]
             original_means_values = [marginal_means_components[i][idx].item() for idx in range(len(marginal_means_components[i])) if idx in excluded_indices]
             
@@ -251,12 +335,18 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
             filtered_data = torch.tensor([value for idx, value in enumerate(data[j]) if idx not in excluded_indices_components[i]])
             mvn = MultivariateNormal(filtered_means_components[i], torch.tensor(marginal_covariance_matrices_components[i]))
             likelihood[j] += output_dist.gm.pi[i] * torch.exp(mvn.log_prob(filtered_data))
-        
+       
         likelihood[j] = torch.log(likelihood[j])
-    
+   
     sum_likelihood = torch.sum(likelihood)
     fitness = (sum_likelihood)/ len(data) + dependencies_benefit
-    #print('likelihood: ', (sum_likelihood)/ len(data))
-    #print('dependencies benefit: ', dependencies_benefit )
+    end = timeit.time()
+    print('Time: ', end - start, 'Fitness: ', fitness)
+    start = timeit.time()
+    fitness2 = compute_likelihood(output_dist, data_var_list, data) + dependencies_benefit
+    end = timeit.time()
+    print('Time: ', end - start, 'Fitness2: ', fitness2)
+   #print('likelihood: ', (sum_likelihood)/ len(data))
+   #print('dependencies benefit: ', dependencies_benefit )
     return fitness
 

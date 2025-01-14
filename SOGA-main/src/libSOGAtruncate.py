@@ -149,7 +149,7 @@ def negate(trunc):
             trunc = trunc.replace('>', '<=')
     elif '==' in trunc:
         trunc = trunc.replace('==', '!=')
-    elif '!=' in turnc:
+    elif '!=' in trunc:
         trunc = trunc.replace('!=', '==')
     return trunc
 

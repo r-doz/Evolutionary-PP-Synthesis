@@ -10,6 +10,11 @@ def get_vars(process_name):
         data_var_list = ['mu', 'sigma', 'x']
         dependencies = {'x': ['mu', 'sigma']}
         weights = {'x': 0.1}  # Weights for the dependencies
+        return data_var_list, dependencies, weights   
+    if process_name == 'burglary':
+        data_var_list = ['burglary', 'earthquake', 'alarm', 'johncalls']
+        dependencies = {'alarm': ['burglary', 'earthquake'], 'johncalls': ['alarm']}
+        weights = {'alarm': 0.1, 'johncalls':0.1}  # Weights for the dependencies
         return data_var_list, dependencies, weights       
     else:
         raise ValueError(f"Unknown process name: {process_name}")
@@ -19,6 +24,8 @@ def generate_dataset(process_name, data_size):
         return generate_trueskills_dataset(data_size)
     if process_name == 'mog1':
         return generate_mog1_dataset(data_size)
+    if process_name == 'burglary':
+        return generate_burglary_dataset(data_size)
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -50,4 +57,26 @@ def generate_mog1_dataset(data_size):
         sigma = np.random.normal(2, 1)
         x = mu + sigma * np.random.normal(1, 1)
         data.append([mu, sigma, x])
+    return data
+
+def generate_burglary_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        burglary = np.random.binomial(1, 0.001)
+        earthquake = np.random.binomial(1, 0.002)
+        if burglary:
+            if earthquake:
+                alarm = np.random.binomial(1, 0.95)
+            else:
+                alarm = np.random.binomial(1, 0.94)
+        else:
+            if earthquake:
+                alarm = np.random.binomial(1, 0.29)
+            else:
+                alarm = np.random.binomial(1, 0.001)
+        if alarm:
+            johncalls = np.random.binomial(1, 0.9)
+        else:
+            johncalls = np.random.binomial(1, 0.05)
+        data.append([burglary, earthquake, alarm, johncalls])
     return data

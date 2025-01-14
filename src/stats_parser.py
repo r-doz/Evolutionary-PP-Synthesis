@@ -272,31 +272,50 @@ def save_average_plot_across_runs(filename):
     data = np.genfromtxt(filename, delimiter=',')[:, :-1]
 
     # Generate average and standard deviations of loaded data.
-    #ave = np.nanmean(data, axis=1)
-    #std = np.nanstd(data, axis=1)
+    ave = np.nanmean(data, axis=1)
+    std = np.nanstd(data, axis=1)
     median = np.nanmedian(data, axis=1)
     quantile1 = np.nanquantile(data, 0.25 , axis=1)
     quantile2 = np.nanquantile(data, 0.75 , axis=1)
 
     # Calculate max and min of standard deviation.
-    #stdmax = ave + std
-    #stdmin = ave - std
-
-    #qmax = median + quantile
-    #qmin = median - quantile
+    stdmax = ave + std
+    stdmin = ave - std
 
     # Generate generation range over which data is to be graphed.
-    #max_gens = len(ave)
-    max_gens = len(median)
+    max_gens = len(ave)
+    #max_gens = len(median)
     r = range(1, max_gens + 1)
 
     # Initialise figure plot.
-    fig = plt.figure()
-    ax1 = fig.add_subplot(1, 1, 1)
+    #fig = plt.figure()
+    #ax1 = fig.add_subplot(1, 1, 1)
 
     # Plot data and standard deviation infill.
     #ax1.plot(r, ave, color="blue")
     #ax1.fill_between(r, stdmin, stdmax, color="DodgerBlue", alpha=0.5)
+
+   # ax1.plot(r, median, color="blue")
+    #ax1.fill_between(r, quantile1, quantile2, color="DodgerBlue", alpha=0.5)
+
+    # Set x-axis limits.
+    #plt.xlim(0, max_gens + 1)
+
+    # Set title and axes.
+    #plt.title("Average " + stat_name)
+    #plt.xlabel('Generation', fontsize=14)
+    #plt.ylabel('Average ' + stat_name, fontsize=14)
+
+    # Save graph under the same name as the original .csv file but with a
+    # .pdf extension instead.
+    #new_filename = filename[:-3] + "pdf"
+    #plt.savefig(str(new_filename))
+
+    #plt.close()
+
+    # Initialise figure plot.
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1, 1, 1)
 
     ax1.plot(r, median, color="blue")
     ax1.fill_between(r, quantile1, quantile2, color="DodgerBlue", alpha=0.5)

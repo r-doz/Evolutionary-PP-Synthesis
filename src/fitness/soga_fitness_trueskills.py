@@ -1,6 +1,6 @@
 from algorithm.parameters import params
 from fitness.base_ff_classes.base_ff import base_ff
-from stats.stats import stats
+#from stats.stats import stats
 from scipy.stats import multivariate_normal
 import random
 import time as timeit
@@ -233,7 +233,7 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
     try:                                
         output_dist = start_SOGA(cfg)
     except IndexError: # program has no valid paths
-        stats['invalids'] += 1
+        #stats['invalids'] += 1
         return -np.inf
 
     # Calculate the benefit of dependencies

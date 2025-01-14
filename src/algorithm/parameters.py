@@ -23,7 +23,7 @@ params = {
     'DEPENDENCIES_BENEFIT': True,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 2,
+    'RUNS': 4,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",

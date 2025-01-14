@@ -220,54 +220,23 @@ def smooth_program(program_text):
     return '\n'.join(modified_lines)   
 
 
-#def likelihood_of_program_wrt_data(p, data_size = 100):
-    
-#    p = preprocess_program(p)
-#    data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
-#    dependencies_benefit = 0
-#    data = dgp.generate_dataset(params['PROGRAM_NAME'], data_size)
-    
-    # Computes output distribution of the program
-#    compiledText=compile2SOGA_text(p)
-#    cfg = produce_cfg_text(compiledText)
-#    try:                                
-#        output_dist = start_SOGA(cfg)
-#    except IndexError: # program has no valid paths
-#        stats['invalids'] += 1
-#        return -np.inf
-
-    # Calculate the benefit of dependencies
- #   if(params['DEPENDENCIES_BENEFIT']):
- #       for key, values in dependencies.items():
- #           key_index = output_dist.var_list.index(key)
- #           for value in values:
- #               value_index = output_dist.var_list.index(value)
- #               cov_value = output_dist.gm.cov()[key_index, value_index]
-                #if((output_dist.gm.cov()[key_index, key_index]!= 0) & (output_dist.gm.cov()[value_index, value_index]!= 0) ):
-                    #cov_value = cov_value/(torch.sqrt(np.abs(output_dist.gm.cov()[key_index, key_index] * output_dist.gm.cov()[value_index, value_index])))
-                #if cov_value < 1e-10:
-                    #raise ValueError(f"Variable {key} and {value} have covariance 0")
- #               dependencies_benefit += weights[key] * np.log(np.abs(cov_value))
-
-    # Calculate the likelihood of the data
- #   likelihood = compute_likelihood(output_dist, data_var_list, data)
-
-    # Calculate fitness
- #   fitness = likelihood + dependencies_benefit
- #   return fitness
-
-# old version of likelihood
-
 def likelihood_of_program_wrt_data(p, data_size = 100):
+    
     p = preprocess_program(p)
     data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
     dependencies_benefit = 0
     data = dgp.generate_dataset(params['PROGRAM_NAME'], data_size)
     
+    # Computes output distribution of the program
     compiledText=compile2SOGA_text(p)
     cfg = produce_cfg_text(compiledText)
-    output_dist = start_SOGA(cfg)
-   
+    try:                                
+        output_dist = start_SOGA(cfg)
+    except IndexError: # program has no valid paths
+        stats['invalids'] += 1
+        return -np.inf
+
+    # Calculate the benefit of dependencies
     if(params['DEPENDENCIES_BENEFIT']):
         for key, values in dependencies.items():
             key_index = output_dist.var_list.index(key)
@@ -281,72 +250,103 @@ def likelihood_of_program_wrt_data(p, data_size = 100):
                 dependencies_benefit += weights[key] * np.log(np.abs(cov_value))
 
     # Calculate the likelihood of the data
-    start = timeit.time()
-    likelihood = torch.zeros(len(data))
-    indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
-    marginal_means_components = []
-    filtered_means_components = []
-    marginal_covariance_matrices_components = []
-    excluded_indices_components = []
+    likelihood = compute_likelihood(output_dist, data_var_list, data)
+
+    # Calculate fitness
+    fitness = likelihood + dependencies_benefit
+    return fitness.item()
+
+# old version of likelihood
+
+#def likelihood_of_program_wrt_data(p, data_size = 100):
+#    p = preprocess_program(p)
+#    data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
+#   dependencies_benefit = 0
+#    data = dgp.generate_dataset(params['PROGRAM_NAME'], data_size)
+    
+#    compiledText=compile2SOGA_text(p)
+#    cfg = produce_cfg_text(compiledText)
+#    output_dist = start_SOGA(cfg)
+   
+#    if(params['DEPENDENCIES_BENEFIT']):
+#        for key, values in dependencies.items():
+#            key_index = output_dist.var_list.index(key)
+#            for value in values:
+#                value_index = output_dist.var_list.index(value)
+#                cov_value = output_dist.gm.cov()[key_index, value_index]
+#                #if((output_dist.gm.cov()[key_index, key_index]!= 0) & (output_dist.gm.cov()[value_index, value_index]!= 0) ):
+#                    #cov_value = cov_value/(torch.sqrt(np.abs(output_dist.gm.cov()[key_index, key_index] * output_dist.gm.cov()[value_index, value_index])))
+#                #if cov_value < 1e-10:
+#                    #raise ValueError(f"Variable {key} and {value} have covariance 0")
+#                dependencies_benefit += weights[key] * np.log(np.abs(cov_value))
+
+    # Calculate the likelihood of the data
+#    start = timeit.time()
+#    likelihood = torch.zeros(len(data))
+#    indexes = {element: [index for index, value in enumerate(output_dist.var_list) if value == element] for element in data_var_list}
+#    marginal_means_components = []
+#    filtered_means_components = []
+#    marginal_covariance_matrices_components = []
+#    excluded_indices_components = []
 
 
-    for i in range(output_dist.gm.n_comp()):    
-        marginal_means = []
-        covariance_index = []
-        marginal_covariance_matrix = []
-        excluded_indices = []
+#    for i in range(output_dist.gm.n_comp()):    
+#        marginal_means = []
+#        covariance_index = []
+#        marginal_covariance_matrix = []
+#        excluded_indices = []
         
-        for element, index_list in indexes.items():
-            marginal_means.append(output_dist.gm.mu[i][index_list][0]) # le medie delle variabili di cui calcola la marginale
-            covariance_index.append(index_list[0])  # gli indici delle variabili di cui calcola la marginale
+#        for element, index_list in indexes.items():
+#            marginal_means.append(output_dist.gm.mu[i][index_list][0]) # le medie delle variabili di cui calcola la marginale
+#            covariance_index.append(index_list[0])  # gli indici delle variabili di cui calcola la marginale
         
-        covariance_index_tensor = torch.tensor(covariance_index)
-        cov_matrix = output_dist.gm.sigma[i][covariance_index_tensor][:, covariance_index_tensor]
+#        covariance_index_tensor = torch.tensor(covariance_index)
+#        cov_matrix = output_dist.gm.sigma[i][covariance_index_tensor][:, covariance_index_tensor]
 
         # Exclude variables whose covariance is 0 and memorize their indices
-        filtered_covariance_index = []
-        ind = 0
-        for idx, cov in zip(covariance_index, torch.diag(torch.tensor(cov_matrix))):
-            if cov != 0:
-                filtered_covariance_index.append(idx)
-            else:
-                excluded_indices.append(ind)  # why ind?
-            ind += 1
+#        filtered_covariance_index = []
+#        ind = 0
+#        for idx, cov in zip(covariance_index, torch.diag(torch.tensor(cov_matrix))):
+#            if cov != 0:
+#                filtered_covariance_index.append(idx)
+#            else:
+#                excluded_indices.append(ind)  # why ind?
+#            ind += 1
 
-        filtered_covariance_index_tensor = torch.tensor(filtered_covariance_index)
-        filtered_cov_matrix = output_dist.gm.sigma[i][filtered_covariance_index_tensor][:, filtered_covariance_index_tensor]
+#        filtered_covariance_index_tensor = torch.tensor(filtered_covariance_index)
+#        filtered_cov_matrix = output_dist.gm.sigma[i][filtered_covariance_index_tensor][:, filtered_covariance_index_tensor]
 
         #marginal_covariance_matrix.append(output_dist.gm.sigma[i][covariance_index_tensor][:, covariance_index_tensor])
-        marginal_means_components.append(torch.tensor(marginal_means))
-        filtered_means_components.append(torch.tensor([value for idx, value in enumerate(marginal_means) if idx not in excluded_indices]))
-        marginal_covariance_matrices_components.append(filtered_cov_matrix)
-        excluded_indices_components.append(excluded_indices)
+#        marginal_means_components.append(torch.tensor(marginal_means))
+#        filtered_means_components.append(torch.tensor([value for idx, value in enumerate(marginal_means) if idx not in excluded_indices]))
+#        marginal_covariance_matrices_components.append(filtered_cov_matrix)
+#        excluded_indices_components.append(excluded_indices)
     
-    for j in range(len(data)):
-        for i in range(output_dist.gm.n_comp()):
-           # Check if the original data values not filtered are equal to the marginal means components not filtered
-            original_data_values = [data[j][idx] for idx in range(len(data[j])) if idx in excluded_indices]
-            original_means_values = [marginal_means_components[i][idx].item() for idx in range(len(marginal_means_components[i])) if idx in excluded_indices]
+#    for j in range(len(data)):
+#        for i in range(output_dist.gm.n_comp()):
+#           # Check if the original data values not filtered are equal to the marginal means components not filtered
+#            original_data_values = [data[j][idx] for idx in range(len(data[j])) if idx in excluded_indices]
+#            original_means_values = [marginal_means_components[i][idx].item() for idx in range(len(marginal_means_components[i])) if idx in excluded_indices]
             
-            if original_data_values != original_means_values:
-                likelihood[j] += 0
-                continue
+#            if original_data_values != original_means_values:
+#                likelihood[j] += 0
+#                continue
 
-            filtered_data = torch.tensor([value for idx, value in enumerate(data[j]) if idx not in excluded_indices_components[i]])
-            mvn = MultivariateNormal(filtered_means_components[i], torch.tensor(marginal_covariance_matrices_components[i]))
-            likelihood[j] += output_dist.gm.pi[i] * torch.exp(mvn.log_prob(filtered_data))
+ #           filtered_data = torch.tensor([value for idx, value in enumerate(data[j]) if idx not in excluded_indices_components[i]])
+ #           mvn = MultivariateNormal(filtered_means_components[i], torch.tensor(marginal_covariance_matrices_components[i]))
+ #           likelihood[j] += output_dist.gm.pi[i] * torch.exp(mvn.log_prob(filtered_data))
        
-        likelihood[j] = torch.log(likelihood[j])
+ #       likelihood[j] = torch.log(likelihood[j])
    
-    sum_likelihood = torch.sum(likelihood)
-    fitness = (sum_likelihood)/ len(data) + dependencies_benefit
-    end = timeit.time()
-    print('Time: ', end - start, 'Fitness: ', fitness)
-    start = timeit.time()
-    fitness2 = compute_likelihood(output_dist, data_var_list, data) + dependencies_benefit
-    end = timeit.time()
-    print('Time: ', end - start, 'Fitness2: ', fitness2)
+#    sum_likelihood = torch.sum(likelihood)
+#    fitness = (sum_likelihood)/ len(data) + dependencies_benefit
+#    end = timeit.time()
+#    print('Time: ', end - start, 'Fitness: ', fitness)
+#    start = timeit.time()
+#    fitness2 = compute_likelihood(output_dist, data_var_list, data) + dependencies_benefit
+#    end = timeit.time()
+#    print('Time: ', end - start, 'Fitness2: ', fitness2)
    #print('likelihood: ', (sum_likelihood)/ len(data))
    #print('dependencies benefit: ', dependencies_benefit )
-    return fitness
+#    return fitness
 

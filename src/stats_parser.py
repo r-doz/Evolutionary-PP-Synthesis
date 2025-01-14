@@ -144,7 +144,7 @@ def parse_stats_from_runs(experiment_name):
 
     # Get list of all stats to parse. Check stats file of first run from
     # runs folder.
-    ping_file = path.join(file_path, str(runs[0]), "stats.tsv")
+    ping_file = path.join(file_path, str(runs[1]), "stats.tsv")
 
     # Load in data and get the names of all stats.
     stats = list(pd.read_csv(ping_file, sep="\t"))

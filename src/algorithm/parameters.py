@@ -18,7 +18,7 @@ params = {
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'mog1',
+    'EXPERIMENT_NAME': 'mog1', # name of the folder
     'PROGRAM_NAME': 'mog1',
     'DEPENDENCIES_BENEFIT': True,
     # Set default number of runs to be done.

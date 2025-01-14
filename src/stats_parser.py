@@ -1,6 +1,6 @@
 from sys import path
 
-path.append("../src")
+#path.append("../src")
 
 from utilities.algorithm.general import check_python_version
 
@@ -163,9 +163,14 @@ def parse_stats_from_runs(experiment_name):
             # Get file name
             file_name = path.join(file_path, str(run), "stats.tsv")
 
-            # Load in data
-            data = pd.read_csv(file_name, sep="\t")
-
+            try:
+                # Load in data
+                data = pd.read_csv(file_name, sep="\t")
+            except FileNotFoundError:
+                s = "scripts.parse_stats.parse_stats_from_runs\nError: " \
+                    "File %s does not exist." % file_name
+                continue
+            
             try:
                 # Try to extract specific stat from the data.
                 if list(data[stat]):
@@ -184,6 +189,8 @@ def parse_stats_from_runs(experiment_name):
         try:
             # Generate numpy array of all stats
             summary_stats = np.array(summary_stats)
+            summary_stats = np.where(summary_stats == -np.inf, np.nan, summary_stats)
+
 
             # Append Stat to header.
             header = header + stat + "_mean,"
@@ -191,10 +198,25 @@ def parse_stats_from_runs(experiment_name):
             summary_stats_mean = np.nanmean(summary_stats, axis=0)
             full_stats.append(summary_stats_mean)
 
+            header = header + stat + "_median,"
+
+            summary_stats_median = np.nanmedian(summary_stats, axis=0)
+            full_stats.append(summary_stats_median)
+
             # Append Stat to header.
             header = header + stat + "_std,"
+            #repalce -inf with nan
             summary_stats_std = np.nanstd(summary_stats, axis=0)
             full_stats.append(summary_stats_std)
+
+            header = header + stat + "_quantile1,"
+            summary_stats_quantile1 = np.nanquantile(summary_stats,0.25, axis=0)
+            full_stats.append(summary_stats_quantile1)
+
+            header = header + stat + "_quantile2,"
+            summary_stats_quantile2 = np.nanquantile(summary_stats,0.75, axis=0)
+            full_stats.append(summary_stats_quantile2)
+            
             summary_stats = np.transpose(summary_stats)
 
             # Save stats as a .csv file.
@@ -250,15 +272,22 @@ def save_average_plot_across_runs(filename):
     data = np.genfromtxt(filename, delimiter=',')[:, :-1]
 
     # Generate average and standard deviations of loaded data.
-    ave = np.nanmean(data, axis=1)
-    std = np.nanstd(data, axis=1)
+    #ave = np.nanmean(data, axis=1)
+    #std = np.nanstd(data, axis=1)
+    median = np.nanmedian(data, axis=1)
+    quantile1 = np.nanquantile(data, 0.25 , axis=1)
+    quantile2 = np.nanquantile(data, 0.75 , axis=1)
 
     # Calculate max and min of standard deviation.
-    stdmax = ave + std
-    stdmin = ave - std
+    #stdmax = ave + std
+    #stdmin = ave - std
+
+    #qmax = median + quantile
+    #qmin = median - quantile
 
     # Generate generation range over which data is to be graphed.
-    max_gens = len(ave)
+    #max_gens = len(ave)
+    max_gens = len(median)
     r = range(1, max_gens + 1)
 
     # Initialise figure plot.
@@ -266,16 +295,21 @@ def save_average_plot_across_runs(filename):
     ax1 = fig.add_subplot(1, 1, 1)
 
     # Plot data and standard deviation infill.
-    ax1.plot(r, ave, color="blue")
-    ax1.fill_between(r, stdmin, stdmax, color="DodgerBlue", alpha=0.5)
+    #ax1.plot(r, ave, color="blue")
+    #ax1.fill_between(r, stdmin, stdmax, color="DodgerBlue", alpha=0.5)
+
+    ax1.plot(r, median, color="blue")
+    ax1.fill_between(r, quantile1, quantile2, color="DodgerBlue", alpha=0.5)
 
     # Set x-axis limits.
     plt.xlim(0, max_gens + 1)
 
     # Set title and axes.
-    plt.title("Average " + stat_name)
+    #plt.title("Average " + stat_name)
+    plt.title('Median and Quantile of ' + stat_name)
     plt.xlabel('Generation', fontsize=14)
-    plt.ylabel('Average ' + stat_name, fontsize=14)
+    plt.ylabel('Median ' + stat_name, fontsize=14)
+    #plt.ylabel('Average ' + stat_name, fontsize=14)
 
     # Save graph under the same name as the original .csv file but with a
     # .pdf extension instead.
@@ -287,7 +321,8 @@ def save_average_plot_across_runs(filename):
 
 if __name__ == "__main__":
     # Get experiment name and graphing flag from command line parser.
-    experiment_name = parse_opts(sys.argv)
+    #experiment_name = parse_opts(sys.argv)
+    experiment_name = 'mog1'
 
     # Call statistics parser for experiment name.
     parse_stats_from_runs(experiment_name)

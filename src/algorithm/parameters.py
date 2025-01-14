@@ -12,18 +12,18 @@ params = {
     'STEP': 'step',
 
     # Evolutionary Parameters
-    'POPULATION_SIZE': 100,
-    'GENERATIONS': 500,
+    'POPULATION_SIZE': 50,
+    'GENERATIONS': 100,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': None,
+    'EXPERIMENT_NAME': 'mog1',
     'PROGRAM_NAME': 'mog1',
     'DEPENDENCIES_BENEFIT': True,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 1,
+    'RUNS': 2,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",

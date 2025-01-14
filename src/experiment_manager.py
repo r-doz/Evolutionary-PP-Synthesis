@@ -5,7 +5,8 @@
     Hereby licensed under the GNU GPL v3."""
 
 from sys import path, executable
-path.append("../src")
+#path.append("../src")
+#path.insert(1, '../src')
 
 from utilities.algorithm.general import check_python_version
 
@@ -16,7 +17,7 @@ from subprocess import call
 import sys
 
 from algorithm.parameters import params, set_params
-from scripts.stats_parser import parse_stats_from_runs
+from stats_parser import parse_stats_from_runs
 
 
 def execute_run(seed):
@@ -84,7 +85,7 @@ def main():
     """
 
     # Setup run parameters.
-    set_params(sys.argv[1:], create_files=False)
+    set_params(sys.argv[1:], create_files=True)
 
     # Check the correct parameters are set for this set of runs.
     check_params()

@@ -12,8 +12,8 @@ params = {
     'STEP': 'step',
 
     # Evolutionary Parameters
-    'POPULATION_SIZE': 50,
-    'GENERATIONS': 100,
+    'POPULATION_SIZE': 150,
+    'GENERATIONS': 500,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all", 
 
@@ -23,7 +23,7 @@ params = {
     'DEPENDENCIES_BENEFIT': True,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 4,
+    'RUNS': 10,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",
@@ -134,7 +134,7 @@ params = {
     # Multi-core parallel processing of phenotype evaluations.
     'MULTICORE': True,
     # Set the number of cpus to be used for multiprocessing
-    'CORES': cpu_count(),
+    'CORES': cpu_count()-1,
 
     # STATE SAVING/LOADING
     # Save the state of the evolutionary run every generation. You can

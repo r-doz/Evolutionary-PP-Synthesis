@@ -1,6 +1,6 @@
 # Grammar for a SOGA program
 
-<fc> ::= mu = <add>; {::}sigma = <add>; {::}x = <add>;{::}<hole>
+<fc> ::= mu = <add>; {::}sigma = <add>; {::}x = <add>;{::}x = <add>;
 #<code> ::= mu = <right_assign> {::}sigma = <right_assign> {::}x = <right_assign>
 #<code> ::=<hole>
 

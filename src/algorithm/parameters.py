@@ -18,12 +18,12 @@ params = {
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'mog1', # name of the folder
+    'EXPERIMENT_NAME': 'mog1_cpu', # name of the folder
     'PROGRAM_NAME': 'mog1',
     'DEPENDENCIES_BENEFIT': True,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 10,
+    'RUNS': cpu_count()-2,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",

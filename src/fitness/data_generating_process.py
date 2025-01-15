@@ -15,7 +15,12 @@ def get_vars(process_name):
         data_var_list = ['burglary', 'earthquake', 'alarm', 'johncalls']
         dependencies = {'alarm': ['burglary', 'earthquake'], 'johncalls': ['alarm']}
         weights = {'alarm': 0.1, 'johncalls':0.1}  # Weights for the dependencies
-        return data_var_list, dependencies, weights       
+        return data_var_list, dependencies, weights  
+    if process_name == 'easytugwar':
+        data_var_list = ['skill1', 'skill2', 'p1wins']
+        dependencies = {'p1wins': ['skill1', 'skill2']}
+        weights = {'p1wins': 0.1} 
+        return data_var_list, dependencies, weights    
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -26,6 +31,8 @@ def generate_dataset(process_name, data_size):
         return generate_mog1_dataset(data_size)
     if process_name == 'burglary':
         return generate_burglary_dataset(data_size)
+    if process_name == 'easytugwar':
+        return generate_easytugwar_dataset(data_size)
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -79,4 +86,16 @@ def generate_burglary_dataset(data_size):
         else:
             johncalls = np.random.binomial(1, 0.05)
         data.append([burglary, earthquake, alarm, johncalls])
+    return data
+
+def generate_easytugwar_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        skill1 = np.random.normal(20, 4)
+        skill2 = np.random.normal(20, 4)
+        if skill1 > skill2:
+            p1wins = 1.0
+        else:
+            p1wins = 0.0
+        data.append([skill1, skill2, p1wins])
     return data

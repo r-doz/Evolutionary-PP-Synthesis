@@ -37,8 +37,12 @@ def compute_likelihood(output_dist, data_var_list, data):
     data = torch.tensor(data)
     likelihood = 0
     # extract indexes of the variables in the data
-    data_var_index = [output_dist.var_list.index(element) for element in data_var_list ]
-    
+    try:
+        data_var_index = [output_dist.var_list.index(element) for element in data_var_list ]
+    except ValueError:  # if the program doesn't have all the variables we are using for the likelihood
+            return torch.tensor(-np.inf)
+    except:
+            raise
     for k in range(output_dist.gm.n_comp()):
         # extract the covariance matrix only for the variables in the data
         sigma = output_dist.gm.sigma[k][data_var_index][:, data_var_index]

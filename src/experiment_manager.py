@@ -15,6 +15,7 @@ check_python_version()
 from multiprocessing import Pool
 from subprocess import call
 import sys
+import time as timeit
 
 from algorithm.parameters import params, set_params
 from stats_parser import parse_stats_from_runs
@@ -90,8 +91,14 @@ def main():
     # Check the correct parameters are set for this set of runs.
     check_params()
 
+    start = timeit.time()
     # Execute multiple runs.
     execute_runs()
+
+    end = timeit.time()
+    print("Total time taken: " + str(end - start) + " seconds.")
+    print("Average time per run: " + str((end - start) / params['RUNS']) )
+
 
     # Save spreadsheets and all plots for all runs in the 'EXPERIMENT_NAME'
     # folder.

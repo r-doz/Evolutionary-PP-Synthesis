@@ -98,8 +98,8 @@ class soga_fitness_trueskills(base_ff):
         except TimeoutException as e:
             print("Caught TimeoutException")
             fitness = self.default_fitness
-        #except:
-        #    fitness = self.default_fitness
+        except:
+            fitness = self.default_fitness
             #I do not define the indiviaduals as invalid in order to allow crossover
             #if not hasattr(params['FITNESS_FUNCTION'], "multi_objective"):
                 #stats['invalids'] += 1

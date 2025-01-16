@@ -18,8 +18,8 @@ params = {
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'mog1_cpu', # name of the folder
-    'PROGRAM_NAME': 'mog1',
+    'EXPERIMENT_NAME': 'easytugwar_sketch3', # name of the folder
+    'PROGRAM_NAME': 'easytugwar',
     'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
@@ -36,7 +36,7 @@ params = {
 
     # Set grammar file
     #'GRAMMAR_FILE': "soga_holes.pybnf",
-    'GRAMMAR_FILE': "soga_mog1.pybnf",
+    'GRAMMAR_FILE': "soga_easytugwar.pybnf",
 
     # Set the number of depths permutations are calculated for
     # (starting from the minimum path of the grammar).

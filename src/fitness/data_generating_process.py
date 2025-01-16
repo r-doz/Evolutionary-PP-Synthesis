@@ -36,6 +36,12 @@ def get_vars(process_name):
         dependencies = {'sprinkler':['rain'], 'grasswet': ['rain', 'sprinkler']}
         weights = {'sprinkler': 0.1, 'grasswet': 0.1}
         return data_var_list, dependencies, weights
+        return data_var_list, dependencies, weights  
+    if process_name == 'easytugwar':
+        data_var_list = ['skill1', 'skill2', 'p1wins']
+        dependencies = {'p1wins': ['skill1', 'skill2']}
+        weights = {'p1wins': 0.1} 
+        return data_var_list, dependencies, weights    
     if process_name == 'hurricane':
         data_var_list = ['preplevel', 'damage']
         dependencies = {'damage': ['preplevel']}
@@ -64,6 +70,8 @@ def generate_dataset(process_name, data_size):
         return generate_eyecolor_dataset(data_size)
     if process_name == 'grass':
         return generate_grass_dataset(data_size)
+    if process_name == 'easytugwar':
+        return generate_easytugwar_dataset(data_size)
     if process_name == 'hurricane':
         return generate_hurricane_dataset(data_size)
     if process_name == 'icecream':
@@ -219,6 +227,19 @@ def generate_grass_dataset(data_size):
                 grasswet = 0
         data.append([rain, sprinkler, grasswet])
     return data
+
+def generate_easytugwar_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        skill1 = np.random.normal(20, 4)
+        skill2 = np.random.normal(20, 4)
+        if skill1 > skill2:
+            p1wins = 1.0
+        else:
+            p1wins = 0.0
+        data.append([skill1, skill2, p1wins])
+    return data
+
 
 def generate_hurricane_dataset(data_size):
     data = []

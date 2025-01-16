@@ -41,7 +41,17 @@ def get_vars(process_name):
         data_var_list = ['skill1', 'skill2', 'p1wins']
         dependencies = {'p1wins': ['skill1', 'skill2']}
         weights = {'p1wins': 0.1} 
-        return data_var_list, dependencies, weights    
+        return data_var_list, dependencies, weights 
+    if process_name == 'biasedtugwar':
+        data_var_list = ['skill1', 'skill2', 'p1wins']
+        dependencies = {'p1wins': ['skill1', 'skill2']}
+        weights = {'p1wins': 0.1} 
+        return data_var_list, dependencies, weights
+    if process_name == 'if':
+        data_var_list = ['a', 'b']
+        dependencies = {'b': ['a']}
+        weights = {'b': 0.1} 
+        return data_var_list, dependencies, weights       
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -62,6 +72,10 @@ def generate_dataset(process_name, data_size):
         return generate_grass_dataset(data_size)
     if process_name == 'easytugwar':
         return generate_easytugwar_dataset(data_size)
+    if process_name == 'biasedtugwar':
+        return generate_biasedtugwar_dataset(data_size)
+    if process_name == 'if':
+        return generate_if_dataset(data_size)
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -224,4 +238,27 @@ def generate_easytugwar_dataset(data_size):
         else:
             p1wins = 0.0
         data.append([skill1, skill2, p1wins])
+    return data
+
+def generate_biasedtugwar_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        skill1 = np.random.normal(20, 4)
+        skill2 = np.random.normal(20, 4)
+        if skill1 > 1.3 * skill2:
+            p1wins = 1.0
+        else:
+            p1wins = 0.0
+        data.append([skill1, skill2, p1wins])
+    return data
+
+def generate_if_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        a = np.random.normal(1, 2)
+        if a < 0:
+            b = a * 3 + np.random.normal(0, 1)
+        else:
+            b = np.random.normal(8, 1)
+        data.append([a, b])
     return data

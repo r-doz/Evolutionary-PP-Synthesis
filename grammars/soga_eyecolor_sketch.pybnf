@@ -1,8 +1,5 @@
 # Grammar for a SOGA program
 
-# no sketch: forced to assign all variables at the beginning, restricted distributions to bernoulli, numbers 0-9
-# <fc> ::= eyecolor = <right_assign> {::} haircolor = <right_assign> {::} hairlength = <right_assign> {::} <hole>
-
 # sketching: removing all right assignments
 <fc> ::=  eyecolor = <right_assign> {::}if eyecolor == 0 { {:    haircolor = <right_assign> :}} else { {:    if eyecolor == 1 { {:        haircolor = <right_assign> :}    } else { {:         if eyecolor == 2 { {:                haircolor = <right_assign> :}        } else { {:                haircolor = <right_assign> :}        } end if; :}    } end if; :}} end if; {::}hairlength = <right_assign>
 

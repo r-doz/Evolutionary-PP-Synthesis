@@ -20,7 +20,7 @@ params = {
     # Set optional experiment name
     'EXPERIMENT_NAME': 'mog1_cpu', # name of the folder
     'PROGRAM_NAME': 'mog1',
-    'DEPENDENCIES_BENEFIT': True,
+    'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
     'RUNS': cpu_count()-2,

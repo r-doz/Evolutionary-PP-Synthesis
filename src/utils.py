@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import multivariate_normal
+from os import getcwd, listdir, path, sep
+
 
 def create_histogram(data, data_var_list):
     """ Creates a plot with one histogram for each variable in data_var_list, where data are the samples of the variables (data has shape (n_samples, n_vars)). """
@@ -90,3 +92,50 @@ def sample_gmm(dist, n_samples):
     np.random.shuffle(samples)  # Shuffle to mix samples from different components
 
     return samples
+
+
+def read_fitness_and_program(model_name):
+    file_path = path.join(getcwd(), "..", "results")
+    file_path = path.join(file_path, model_name)
+
+    # Find list of all runs contained in the specified folder.
+    runs = [run for run in listdir(file_path) if
+            path.isdir(path.join(file_path, run))]
+
+    avg_fitness_5000 = []
+
+    # Iterate over all runs
+    for run in runs:
+        # Get file name
+        file_name = path.join(file_path, str(run), "best.txt")
+
+        try:
+            # Load in data
+            file = open(file_name) 
+        except:
+            avg_fitness_5000.append(np.nan)
+            continue
+        flag = False
+        for line in file.readlines():
+            if 'Fitness on 5000 data' in line:
+                flag = True
+                continue
+            if flag:
+                avg_fitness_5000.append(float(line[:-2]))
+                break
+
+    best_program_file = path.join(file_path, str(runs[np.nanargmax(avg_fitness_5000)]), "best.txt")
+    file = open(best_program_file)
+    text_bf = ''
+    flag = False
+    for line in file.readlines():
+        if 'Phenotype' in line:
+            flag = True
+            continue
+        if 'Genotype' in line:
+            flag = False
+            break
+        if flag:
+            text_bf += line + ' '
+
+    return avg_fitness_5000, text_bf

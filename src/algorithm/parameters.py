@@ -12,18 +12,18 @@ params = {
     'STEP': 'step',
 
     # Evolutionary Parameters
-    'POPULATION_SIZE': 150,
+    'POPULATION_SIZE': 200,
     'GENERATIONS': 500,
     'HILL_CLIMBING_HISTORY': 1000,
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'if_nosketch', # name of the folder
-    'PROGRAM_NAME': 'if',
+    'EXPERIMENT_NAME': 'easytugwar_nosketch_30', # name of the folder
+    'PROGRAM_NAME': 'easytugwar',
     'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': cpu_count()-2,
+    'RUNS': 30,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",
@@ -36,7 +36,7 @@ params = {
 
     # Set grammar file
     #'GRAMMAR_FILE': "soga_holes.pybnf",
-    'GRAMMAR_FILE': "soga_if.pybnf",
+    'GRAMMAR_FILE': "soga_easytugwar.pybnf",
 
     # Set the number of depths permutations are calculated for
     # (starting from the minimum path of the grammar).
@@ -134,7 +134,7 @@ params = {
     # Multi-core parallel processing of phenotype evaluations.
     'MULTICORE': True,
     # Set the number of cpus to be used for multiprocessing
-    'CORES': cpu_count()-1,
+    'CORES': cpu_count()-2,
 
     # STATE SAVING/LOADING
     # Save the state of the evolutionary run every generation. You can

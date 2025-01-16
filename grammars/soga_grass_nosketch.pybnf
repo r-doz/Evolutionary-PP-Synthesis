@@ -3,9 +3,6 @@
 # no sketch: forced to assign all variables at the beginning, numbers 0-9
 <fc> ::= rain = <right_assign> {::} sprinkler = <right_assign> {::} wetgrass = <right_assign> {::} <hole>
 
-# sketching: removing all right assignments
-# <fc> ::=   rain = <right_assign> {::}if rain <loperator> <num>  { {:    sprinkler = <right_assign> :}} else { {:    sprinkler = <right_assign> :}} end if; {::}if rain <loperator> <num> { {:    grasswet = <right_assign> :}} else { {:    if sprinkler == 1 { {:        grasswet = <right_assign> :}    } else { {:        grasswet = <right_assign> :}    } end if; :}}end if; 
-
 <hole> ::= <instr> | <instr>{::}<hole> | <instr>{::}<instr>{::}<hole> | <instr>{::}<hole>
 
 #Definition of instruction

@@ -3,9 +3,6 @@
 # no sketch: forced to assign all variables at the beginning, restricted distributions to bernoulli, numbers 0-9
 <fc> ::= healthconscius = <right_assign> {::} littlefreetime = <right_assign> {::} exercise = <right_assign> {::} gooddiet = <right_assign> {::} normalweight = <right_assign> {::} colesterol = <right_assign> {::} tested = <right_assign> {::} <hole>
 
-# sketching: removing all right assignments
-# <fc> ::=  healthconscius = <right_assign> {::} littlefreetime = <right_assign> {::} if healthconscius == 1 { {:     if littlefreetime == 1 { {:         exercise = <right_assign> :}    } else { {:        exercise = <right_assign> :}    } end if; :}} else { {:    if littlefreetime == 1 { {:        exercise = <right_assign> :}    } else { {:        exercise = <right_assign> :}    } end if;:} } end if; {::}if healthconscius == 1 { {:    gooddiet = <right_assign> :}} else { {:    gooddiet = <right_assign> :}} end if; {::}if gooddiet == 1 { {:    if exercise == 1 { {:        normalweight = <right_assign> :}    } else { {:        normalweight = <right_assign> :}    } end if; :}} else { {:    if exercise == 1 { {:        normalweight = <right_assign> :}    } else { {:        normalweight = <right_assign> :}    } end if; :}} end if; {::}if gooddiet == 1 { {:    colesterol = <right_assign> :}} else { {:    colesterol = <right_assign> :}} end if; {::}if colesterol == 1 { {:    tested = <right_assign> :}} else { {:    tested = <right_assign> :}} end if;
-
 <hole> ::= <instr> | <instr>{::}<hole> | <instr>{::}<instr>{::}<hole> | <instr>{::}<hole>
 
 #Definition of instruction

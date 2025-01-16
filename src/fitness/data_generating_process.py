@@ -41,6 +41,17 @@ def get_vars(process_name):
         data_var_list = ['skill1', 'skill2', 'p1wins']
         dependencies = {'p1wins': ['skill1', 'skill2']}
         weights = {'p1wins': 0.1} 
+        return data_var_list, dependencies, weights    
+    if process_name == 'hurricane':
+        data_var_list = ['preplevel', 'damage']
+        dependencies = {'damage': ['preplevel']}
+        weights = {'damage': 0.1}
+        return data_var_list, dependencies, weights
+    if process_name == 'icecream':
+        data_var_list = ['currentseason', 'icecream', 'crime']
+        dependencies = {'icecream': ['currentseason'], 'crime': ['currentseason']}
+        weights = {'icecream': 0.1, 'crime': 0.1}
+        return data_var_list, dependencies, weights
         return data_var_list, dependencies, weights 
     if process_name == 'biasedtugwar':
         data_var_list = ['skill1', 'skill2', 'p1wins']
@@ -72,6 +83,10 @@ def generate_dataset(process_name, data_size):
         return generate_grass_dataset(data_size)
     if process_name == 'easytugwar':
         return generate_easytugwar_dataset(data_size)
+    if process_name == 'hurricane':
+        return generate_hurricane_dataset(data_size)
+    if process_name == 'icecream':
+        return generate_icecream_dataset(data_size)
     if process_name == 'biasedtugwar':
         return generate_biasedtugwar_dataset(data_size)
     if process_name == 'if':
@@ -240,6 +255,38 @@ def generate_easytugwar_dataset(data_size):
         data.append([skill1, skill2, p1wins])
     return data
 
+
+def generate_hurricane_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        preplevel = np.random.choice([0, 1, 2], p=[0.5, 0.2, 0.3])
+        if preplevel == 0:
+            damage = np.random.choice([0,1], p=[0.2, 0.8])
+        elif preplevel == 1:
+            damage = np.random.choice([0,1], p=[0.2, 0.8])
+        elif preplevel == 2:
+            damage = np.random.choice([0,1], p=[0.8, 0.2])
+        data.append([preplevel, damage])
+    return 
+
+def generate_icecream_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        currentseason = np.random.choice([0, 1, 2, 3], p=[0.25, 0.25, 0.25, 0.25])
+        if currentseason == 0:
+            icecream = np.random.normal(10, 1)
+            crime = np.random.normal(10, 1)
+        elif currentseason == 1:
+            icecram = np.random.normal(15, 3)
+            crime = np.rancom.normal(15, 3)
+        elif currentseason == 2:
+            icecream = np.random.normal(50, 6)
+            crime = np.random.normal(50, 6)
+        elif currentseason == 3:
+            icecram = np.random.normal(17, 4)
+            crime = np.random.normal(17, 4)
+        data.append([currentseason, icecream, crime])
+    return data
 def generate_biasedtugwar_dataset(data_size):
     data = []
     for _ in range(data_size):

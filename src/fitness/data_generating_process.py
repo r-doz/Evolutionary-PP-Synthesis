@@ -62,7 +62,17 @@ def get_vars(process_name):
         data_var_list = ['a', 'b']
         dependencies = {'b': ['a']}
         weights = {'b': 0.1} 
-        return data_var_list, dependencies, weights       
+        return data_var_list, dependencies, weights
+    if process_name == 'tugwaraddition':
+        data_var_list = ['skill1', 'skill2', 'skill3' 'p1wins']
+        dependencies = {'p1wins': ['skill1', 'skill2', 'skill3']}
+        weights = {'p1wins': 0.1} 
+        return data_var_list, dependencies, weights  
+    if process_name == 'mixedcondition':
+        data_var_list = ['u', 'v', 'w']
+        dependencies = {'w': ['u', 'v']}
+        weights = {'w': 0.1} 
+        return data_var_list, dependencies, weights     
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -91,6 +101,10 @@ def generate_dataset(process_name, data_size):
         return generate_biasedtugwar_dataset(data_size)
     if process_name == 'if':
         return generate_if_dataset(data_size)
+    if process_name == 'tugwaraddition':
+        return generate_biasedtugwar_dataset(data_size)
+    if process_name == 'mixedcondition':
+        return generate_mixedcondition_dataset(data_size)
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -308,4 +322,29 @@ def generate_if_dataset(data_size):
         else:
             b = np.random.normal(8, 1)
         data.append([a, b])
+    return data
+
+def generate_tugwaraddition_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        skill1 = np.random.normal(38, 6)
+        skill2 = np.random.normal(20, 4)
+        skill3 = np.random.normal(20, 4)
+        if skill1 > skill2 + skill3:
+            p1wins = 1.0
+        else:
+            p1wins = 0.0
+        data.append([skill1, skill2, p1wins])
+    return data
+
+def generate_mixedcondition_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        u = np.random.binomial(1, 0.3)
+        v = np.random.normal(10, 2)
+        if u and v > 12.0:
+            w = np.random.normal(12, 2)
+        else:
+            w = np.random.normal(6, 2)
+        data.append([u, v, w])
     return data

@@ -121,7 +121,11 @@ def read_fitness_and_program(model_name):
                 flag = True
                 continue
             if flag:
-                avg_fitness_5000.append(float(line[:-2]))
+                try:
+                    avg_fitness_5000.append(float(line[:-2]))
+                except:
+                    print("run ", run, " did not converge")  
+                    continue
                 break
 
     best_program_file = path.join(file_path, str(runs[np.nanargmax(avg_fitness_5000)]), "best.txt")

@@ -46,12 +46,14 @@ def compute_likelihood(output_dist, data_var_list, data):
     for k in range(output_dist.gm.n_comp()):
         # extract the covariance matrix only for the variables in the data
         sigma = output_dist.gm.sigma[k][data_var_index][:, data_var_index]
+        # first I consider the mu only for variables in the data
+        mu = torch.tensor(output_dist.gm.mu[k][data_var_index])
         # selects indices of delta (discrete) variables and non-delta (continuous) variables
         deltas = np.where(np.diag(sigma) == 0)[0]
         not_deltas = np.where(np.diag(sigma) != 0)[0]
         # saves means of delta and non-delta variables and covariance matrix of non-delta
-        mu_delta = torch.tensor(output_dist.gm.mu[k][deltas])
-        mu_not_delta = torch.tensor(output_dist.gm.mu[k][not_deltas])
+        mu_delta = mu[deltas]
+        mu_not_delta = mu[not_deltas]
         sigma_not_delta = torch.tensor(sigma[not_deltas][:, not_deltas])
         try:
             # computes pdf of non-delta variables 

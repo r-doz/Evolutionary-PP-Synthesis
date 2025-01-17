@@ -1,10 +1,7 @@
 # Grammar for a SOGA program
 
-# no sketch: forced to assign all variables at the beginning, restricted distributions to bernoulli, numbers 0-9
-<fc> ::= burglary = <right_assign> {::} earthquake = <right_assign> {::} alarm = <right_assign> {::} johncalls = <right_assign> {::} <hole>
-
-# sketching: removing all right assignments
-# <fc> ::= burglary = <right_assign> {::} earthquake = <right_assign> {::} if burglary == 1 { {: if earthquake == 1 { {: alarm = <right_assign> :} } else { {: alarm = <right_assign> :} } end if; :} } else { {: if earthquake == 1 { {: alarm = <right_assign> :} } else { {: alarm = <right_assign> :} } end if; :} } end if; {::} if alarm == 1 { {: johncalls = <right_assign> :} } else { {: johncalls = <right_assign> :} } end if;
+# no sketch: restricted distributions to bernoulli, numbers 0-9
+<fc> ::= <hole>
 
 <hole> ::= <instr> | <instr>{::}<hole> | <instr>{::}<instr>{::}<hole> | <instr>{::}<hole>
 
@@ -25,7 +22,7 @@
 <vars> ::= <idv> | gm([<num>, 1, 0], [<num>, 0, 0]) # | gm(<triplets>) | uniform([<num>, <num_pos>], <int_pos_trunc>)
 
 #<gm> ::= 
-<triplets> ::= [<element>, <element>, 0] | [<element>, <element>, 0], <triplets>
+# <triplets> ::= [<element>, <element>, 0] | [<element>, <element>, 0], <triplets>
 <element> ::= <num> | <num>.<int_pos>
 
 #<uniform> ::= 

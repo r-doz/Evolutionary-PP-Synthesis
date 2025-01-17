@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+damage = 9  - 5  * damage;
+
+Genotype:
+[12, 356, 404, 137, 499, 332, 17, 322, 434, 339, 395, 94, 461, 399, 445, 488, 489, 333, 263]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> damage)  =  (<add> (<add_term> (<const_term> (<num> 9)))   -  (<add_term> (<num> 5)   *  (<vars> (<idv> damage)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

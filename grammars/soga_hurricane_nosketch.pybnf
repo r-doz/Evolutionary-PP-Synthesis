@@ -1,7 +1,7 @@
 # Grammar for a SOGA program
 
 # no sketch: forced to assign all variables at the beginning, numbers 0-9
-<fc> ::= preplevel = <right_assign> {::} damage = <right_assign> {::} <hole>
+<fc> ::= <hole>
 
 <hole> ::= <instr> | <instr>{::}<hole> | <instr>{::}<instr>{::}<hole> | <instr>{::}<hole>
 

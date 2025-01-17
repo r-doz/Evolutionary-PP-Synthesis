@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+gooddiet = 5  - gooddiet;
+
+Genotype:
+[43, 376, 310, 297, 353, 341, 21, 476, 381, 137, 12, 115, 69, 261, 261, 184, 263, 345]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> gooddiet)  =  (<add> (<add_term> (<const_term> (<num> 5)))   -  (<add_term> (<vars> (<idv> gooddiet)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+johncalls = gm([8, 1, 0], [6, 0, 0])  - 6  * gm([4, 1, 0], [2, 0, 0]);
+
+Genotype:
+[306, 260, 212, 53, 173, 381, 429, 130, 266, 438, 143, 306, 482, 374, 423, 316, 434, 397, 458, 50, 374, 480]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> johncalls)  =  (<add> (<add_term> (<vars> gm([ (<num> 8) , 1, 0], [ (<num> 6) , 0, 0])))   -  (<add_term> (<num> 6)   *  (<vars> gm([ (<num> 4) , 1, 0], [ (<num> 2) , 0, 0])))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

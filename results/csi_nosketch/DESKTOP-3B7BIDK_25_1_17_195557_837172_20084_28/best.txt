@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+v = x;
+
+Genotype:
+[417, 66, 107, 201, 465, 21, 34, 459, 161, 356, 422, 66]
+Tree:
+(<hole> (<instr> (<assignment> (<idv> v)  =  (<add> (<add_term> (<vars> (<idv> x)))) ;)))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+haircolor = haircolor  - 3 * 1;
+
+Genotype:
+[390, 0, 494, 394, 376, 317, 432, 470, 170, 313, 359, 443, 21, 301, 462, 102, 423, 335, 467]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> haircolor)  =  (<add> (<add_term> (<vars> (<idv> haircolor)))   -  (<add_term> (<const_term> (<num> 3)  *  (<num> 1)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

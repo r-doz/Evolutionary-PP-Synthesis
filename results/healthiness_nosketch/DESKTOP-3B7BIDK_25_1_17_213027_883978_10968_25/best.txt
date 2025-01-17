@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+normalweight = 6;
+
+Genotype:
+[109, 20, 156, 301, 179, 420, 362, 306, 226, 96, 346, 82, 316]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> normalweight)  =  (<add> (<add_term> (<const_term> (<num> 6)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+eyecolor = 4  * eyecolor  - 5;
+
+Genotype:
+[111, 84, 412, 225, 488, 396, 340, 254, 394, 251, 414, 472, 215, 458, 380, 35, 159, 49, 125]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> eyecolor)  =  (<add> (<add_term> (<num> 4)   *  (<vars> (<idv> eyecolor)))   -  (<add_term> (<const_term> (<num> 5)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

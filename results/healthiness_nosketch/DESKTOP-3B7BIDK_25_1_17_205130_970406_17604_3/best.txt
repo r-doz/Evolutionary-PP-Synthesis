@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+tested = 3  * normalweight  - tested;
+
+Genotype:
+[189, 308, 132, 367, 422, 490, 403, 468, 342, 453, 398, 244, 347, 365, 403, 471, 218, 202, 372]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> tested)  =  (<add> (<add_term> (<num> 3)   *  (<vars> (<idv> normalweight)))   -  (<add_term> (<vars> (<idv> tested)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

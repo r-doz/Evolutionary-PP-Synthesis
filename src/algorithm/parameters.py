@@ -289,21 +289,24 @@ def set_params(command_line_args, create_files=True):
         setattr(trackers, "state_individuals", individuals)
 
     else:
-        if params['REPLACEMENT'].split(".")[-1] == "steady_state":
-            # Set steady state step and replacement.
-            params['STEP'] = "steady_state_step"
-            params['GENERATION_SIZE'] = 2
+        try:
+            if params['REPLACEMENT'].split(".")[-1] == "steady_state":
+                # Set steady state step and replacement.
+                params['STEP'] = "steady_state_step"
+                params['GENERATION_SIZE'] = 2
 
-        else:
-            # Elite size is set to either 1 or 1% of the population size,
-            # whichever is bigger if no elite size is previously set.
-            if params['ELITE_SIZE'] is None:
-                params['ELITE_SIZE'] = return_one_percent(1, params[
-                    'POPULATION_SIZE'])
+            else:
+                # Elite size is set to either 1 or 1% of the population size,
+                # whichever is bigger if no elite size is previously set.
+                if params['ELITE_SIZE'] is None:
+                   params['ELITE_SIZE'] = return_one_percent(1, params[
+                       'POPULATION_SIZE'])
 
-            # Set the size of a generation
-            params['GENERATION_SIZE'] = params['POPULATION_SIZE'] - \
-                                        params['ELITE_SIZE']
+                # Set the size of a generation
+                params['GENERATION_SIZE'] = params['POPULATION_SIZE'] - \
+                                         params['ELITE_SIZE']
+        except:
+            pass
 
         if (params['MUTATION_PROBABILITY'] is not None and
             params['MUTATION_EVENTS'] != 1):
@@ -321,7 +324,10 @@ def set_params(command_line_args, create_files=True):
         set_param_imports()
 
         # Clean the stats dict to remove unused stats.
-        clean_stats.clean_stats()
+        try:
+            clean_stats.clean_stats()
+        except:
+            pass
 
         # Set GENOME_OPERATIONS automatically for faster linear operations.
         if (params['CROSSOVER'].representation == "subtree" or

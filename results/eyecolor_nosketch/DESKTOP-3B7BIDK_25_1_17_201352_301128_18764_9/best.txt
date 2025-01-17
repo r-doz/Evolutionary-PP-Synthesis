@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+hairlength = eyecolor  - eyecolor;
+
+Genotype:
+[136, 440, 256, 171, 293, 347, 129, 84, 396, 470, 171, 204, 466, 107, 203, 143, 174, 414]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> hairlength)  =  (<add> (<add_term> (<vars> (<idv> eyecolor)))   -  (<add_term> (<vars> (<idv> eyecolor)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

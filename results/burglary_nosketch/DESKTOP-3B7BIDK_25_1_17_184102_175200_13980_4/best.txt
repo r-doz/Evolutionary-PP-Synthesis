@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+earthquake = 4  * gm([8, 1, 0], [5, 0, 0]) + burglary;
+
+Genotype:
+[52, 76, 10, 409, 265, 133, 163, 174, 237, 45, 425, 158, 242, 480, 478, 418, 443, 482, 280, 430, 153]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> earthquake)  =  (<add> (<add_term> (<num> 4)   *  (<vars> gm([ (<num> 8) , 1, 0], [ (<num> 5) , 0, 0])))  +  (<add_term> (<vars> (<idv> burglary)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

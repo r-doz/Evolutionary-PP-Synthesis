@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+earthquake = 5;
+
+Genotype:
+[8, 192, 370, 227, 317, 81, 383, 262, 495, 29, 105, 400, 18]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> earthquake)  =  (<add> (<add_term> (<const_term> (<num> 5)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

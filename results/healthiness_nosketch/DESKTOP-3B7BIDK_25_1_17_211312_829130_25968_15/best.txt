@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+exercise = 6  * gooddiet + 4  * gooddiet;
+
+Genotype:
+[266, 464, 28, 122, 415, 301, 175, 241, 464, 118, 374, 236, 283, 496, 442, 414, 33, 251, 491, 483, 429]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> exercise)  =  (<add> (<add_term> (<num> 6)   *  (<vars> (<idv> gooddiet)))  +  (<add_term> (<num> 4)   *  (<vars> (<idv> gooddiet)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+u = 8  * w + 0 * 7;
+
+Genotype:
+[63, 376, 310, 296, 490, 392, 257, 11, 227, 403, 129, 12, 90, 69, 261, 261, 184, 263, 345]
+Tree:
+(<hole> (<instr> (<assignment> (<idv> u)  =  (<add> (<add_term> (<num> 8)   *  (<vars> (<idv> w)))  +  (<add_term> (<const_term> (<num> 0)  *  (<num> 7)))) ;)))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

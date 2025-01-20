@@ -93,7 +93,7 @@ class soga_fitness_trueskills(base_ff):
         #print("\n -----------------------------------------")
 
         fitness = 0
-        timer = threading.Timer(60, timeout_handler)
+        timer = threading.Timer(20, timeout_handler)
         #t0 = time.time()
         try:
             #signal.signal(signal.SIGALRM, handler)

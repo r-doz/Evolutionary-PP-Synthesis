@@ -1,0 +1,34 @@
+Generation:
+500
+
+Phenotype:
+burglary = gm([0, 1, 0], [3, 0, 0])  - 2; 
+alarm = 7; 
+  if 4 * burglary < 3 { 
+      if 0 * gm([7, 1, 0], [9, 0, 0]) < 7 { 
+             earthquake = 9  * earthquake + burglary; 
+       } else { 
+             johncalls = 3  * johncalls  - 1; 
+       } end if; 
+ } else { 
+       if alarm > 3 { 
+             johncalls = johncalls  - 9  * gm([2, 1, 0], [3, 0, 0]); 
+       } else { 
+             johncalls = johncalls  - 4  * gm([5, 1, 0], [3, 0, 0]); 
+       } end if; 
+ } end if; 
+  if burglary <= 3 { 
+       burglary = earthquake; 
+ } else { 
+       earthquake = gm([4, 1, 0], [0, 0, 0]) + 6; 
+ } end if;
+
+Genotype:
+[221, 65, 21, 325, 383, 401, 340, 93, 305, 280, 15, 413, 329, 307, 242, 223, 448, 393, 311, 45, 64, 24, 233, 251, 401, 361, 59, 50, 492, 212, 177, 308, 494, 435, 496, 296, 354, 25, 82, 104, 310, 430, 412, 247, 16, 494, 157, 74, 319, 321, 442, 108, 203, 173, 243, 122, 77, 108, 72, 18, 416, 481, 39, 275, 381, 261, 30, 154, 148, 419, 167, 496, 309, 160, 39, 142, 144, 259, 355, 308, 485, 151, 480, 0, 68, 494, 62, 379, 493, 384, 324, 188, 137, 154, 229, 37, 299, 307, 339, 105, 140, 289, 493, 138, 447, 222, 295, 211, 225, 455, 216, 260, 100, 141, 110, 350, 51, 486, 357, 319, 399, 472, 67, 282, 203, 152, 249, 328, 486, 34, 230, 271, 257, 470, 16, 484, 154, 74, 319, 330, 437, 485, 470, 321, 187, 328, 457, 254, 260, 184, 293, 181, 445, 328, 366, 442, 289, 340, 8]
+Tree:
+(<fc> (<assignment> (<idv> burglary)  =  (<add> (<add_term> (<vars> gm([ (<num> 0) , 1, 0], [ (<num> 3) , 0, 0])))   -  (<add_term> (<const_term> (<num> 2)))) ;)  {::} (<assignment> (<idv> alarm)  =  (<add> (<add_term> (<const_term> (<num> 7)))) ;)  {::}  if  (<bexpr> (<lexpr> (<monom> (<num> 4)  *  (<vars> (<idv> burglary))))   (<loperator> <)   (<num> 3))  { {:    if  (<bexpr> (<lexpr> (<monom> (<num> 0)  *  (<vars> gm([ (<num> 7) , 1, 0], [ (<num> 9) , 0, 0]))))   (<loperator> <)   (<num> 7))  { {:          (<assignment> (<idv> earthquake)  =  (<add> (<add_term> (<num> 9)   *  (<vars> (<idv> earthquake)))  +  (<add_term> (<vars> (<idv> burglary)))) ;)  :}     } else { {:          (<assignment> (<idv> johncalls)  =  (<add> (<add_term> (<num> 3)   *  (<vars> (<idv> johncalls)))   -  (<add_term> (<const_term> (<num> 1)))) ;)  :}     } end if; :} } else { {:     if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> alarm))))   (<loperator> >)   (<num> 3))  { {:          (<assignment> (<idv> johncalls)  =  (<add> (<add_term> (<vars> (<idv> johncalls)))   -  (<add_term> (<num> 9)   *  (<vars> gm([ (<num> 2) , 1, 0], [ (<num> 3) , 0, 0])))) ;)  :}     } else { {:          (<assignment> (<idv> johncalls)  =  (<add> (<add_term> (<vars> (<idv> johncalls)))   -  (<add_term> (<num> 4)   *  (<vars> gm([ (<num> 5) , 1, 0], [ (<num> 3) , 0, 0])))) ;)  :}     } end if; :} } end if; {::}  if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> burglary))))   (<loperator> <=)   (<num> 3))  { {:      (<assignment> (<idv> burglary)  =  (<add> (<add_term> (<vars> (<idv> earthquake)))) ;)  :} } else { {:      (<assignment> (<idv> earthquake)  =  (<add> (<add_term> (<vars> gm([ (<num> 4) , 1, 0], [ (<num> 0) , 0, 0])))  +  (<add_term> (<const_term> (<num> 6)))) ;)  :} } end if;)
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

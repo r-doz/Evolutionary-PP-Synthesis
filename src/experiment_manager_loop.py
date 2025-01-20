@@ -21,16 +21,16 @@ from algorithm.parameters import params, set_params
 from stats_parser import parse_stats_from_runs
 
 models = [#'burglary', 
-          'csi', 
-          'eyecolor', 
-          'healthiness',
+          #'csi', 
+          #'eyecolor', 
+          ##'healthiness', keep it commented, it makes the shell crash
           'hurricane']
 
 parameter_configs = [
     {   'GENERATIONS': 500,
         'POPULATION_SIZE': 200,
-        'EXPERIMENT_NAME': model+'_nosketch', # name of the folder
-        'GRAMMAR_FILE': "soga_"+model+"_nosketch.pybnf"
+        'EXPERIMENT_NAME': model+'_sketch1', # name of the folder
+        'GRAMMAR_FILE': "soga_"+model+"_sketch1.pybnf"
     } for model in models 
     ]  
 

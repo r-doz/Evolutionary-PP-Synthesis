@@ -1,0 +1,24 @@
+Generation:
+500
+
+Phenotype:
+damage = 8  * damage + damage; 
+  if 0 * damage > 1 { 
+       damage = damage; 
+ } else { 
+       if damage >= 8 { 
+             damage = 3 + damage; 
+       } else { 
+             preplevel = 4  * damage + 1; 
+       } end if; 
+ } end if;
+
+Genotype:
+[8, 216, 67, 226, 317, 54, 215, 183, 400, 337, 496, 433, 439, 293, 91, 454, 494, 135, 128, 42, 28, 482, 374, 231, 459, 167, 81, 362, 168, 470, 241, 499, 400, 11, 9, 274, 176, 376, 38, 280, 487, 46, 338, 417, 163, 85, 391, 417, 35, 216, 395, 440, 285, 312, 281, 26, 423, 145, 55, 12, 323, 71, 170, 494, 286, 373, 427, 220, 127, 84, 487, 338, 40, 172, 287, 352]
+Tree:
+(<fc> (<assignment> (<idv> damage)  =  (<add> (<add_term> (<num> 8)   *  (<vars> (<idv> damage)))  +  (<add_term> (<vars> (<idv> damage)))) ;)  {::}  if  (<bexpr> (<lexpr> (<monom> (<num> 0)  *  (<vars> (<idv> damage))))   (<loperator> >)   (<num> 1))  { {:      (<assignment> (<idv> damage)  =  (<add> (<add_term> (<vars> (<idv> damage)))) ;)  :} } else { {:     if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> damage))))   (<loperator> >=)   (<num> 8))  { {:          (<assignment> (<idv> damage)  =  (<add> (<add_term> (<const_term> (<num> 3)))  +  (<add_term> (<vars> (<idv> damage)))) ;)  :}     } else { {:          (<assignment> (<idv> preplevel)  =  (<add> (<add_term> (<num> 4)   *  (<vars> (<idv> damage)))  +  (<add_term> (<const_term> (<num> 1)))) ;)  :}     } end if; :} } end if;)
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

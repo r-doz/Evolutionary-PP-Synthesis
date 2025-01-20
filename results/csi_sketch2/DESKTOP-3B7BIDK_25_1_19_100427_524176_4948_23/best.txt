@@ -1,0 +1,30 @@
+Generation:
+500
+
+Phenotype:
+x = x; 
+w = 0  * gm([9, 1, 0], [6, 0, 0]); 
+w = 6  * w  - 6  * v; 
+  if u < 3 { 
+       if w <= 7{ 
+             x = 8 * 4  - 7; 
+       } else { 
+            x = x  - 7; 
+      } end if; 
+ } else { 
+       if 4 * gm([8, 1, 0], [1, 0, 0]) > 7{ 
+             v = 9  * w; 
+       } else { 
+             w = 8 * 5; 
+       } end if; 
+ } end if;
+
+Genotype:
+[8, 216, 66, 204, 113, 463, 43, 293, 183, 400, 338, 497, 290, 339, 416, 365, 347, 93, 408, 298, 75, 290, 215, 254, 220, 392, 77, 363, 169, 75, 230, 440, 17, 350, 42, 383, 10, 148, 201, 152, 487, 58, 352, 185, 214, 224, 467, 458, 317, 278, 292, 470, 216, 320, 494, 332, 485, 430, 120, 315, 172, 402, 105, 334, 491, 490, 425, 393, 382, 59, 442, 13, 295, 209, 191, 198, 455, 387, 195, 265, 438, 58, 317, 236, 61, 142, 289, 394, 226, 3, 439, 18, 132, 400, 435, 56, 126, 390, 288, 324, 240, 21, 208, 413, 40, 141, 102, 185, 289, 75, 318, 428, 399, 46, 92, 377, 260, 202, 312, 347, 184, 150, 40]
+Tree:
+(<fc> (<assignment> (<idv> x)  =  (<add> (<add_term> (<vars> (<idv> x)))) ;)  {::} (<assignment> (<idv> w)  =  (<add> (<add_term> (<num> 0)   *  (<vars> gm([ (<num> 9) , 1, 0], [ (<num> 6) , 0, 0])))) ;)  {::} (<assignment> (<idv> w)  =  (<add> (<add_term> (<num> 6)   *  (<vars> (<idv> w)))   -  (<add_term> (<num> 6)   *  (<vars> (<idv> v)))) ;)  {::}  if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> u))))   (<loperator> <)   (<num> 3))  { {:     if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> w))))   (<loperator> <=)   (<num> 7)) { {:          (<assignment> (<idv> x)  =  (<add> (<add_term> (<const_term> (<num> 8)  *  (<num> 4)))   -  (<add_term> (<const_term> (<num> 7)))) ;)  :}     } else { {:         (<assignment> (<idv> x)  =  (<add> (<add_term> (<vars> (<idv> x)))   -  (<add_term> (<const_term> (<num> 7)))) ;)  :}    } end if; :} } else { {:     if  (<bexpr> (<lexpr> (<monom> (<num> 4)  *  (<vars> gm([ (<num> 8) , 1, 0], [ (<num> 1) , 0, 0]))))   (<loperator> >)   (<num> 7)) { {:          (<assignment> (<idv> v)  =  (<add> (<add_term> (<num> 9)   *  (<vars> (<idv> w)))) ;)  :}     } else { {:          (<assignment> (<idv> w)  =  (<add> (<add_term> (<const_term> (<num> 8)  *  (<num> 5)))) ;)  :}     } end if; :} } end if;)
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

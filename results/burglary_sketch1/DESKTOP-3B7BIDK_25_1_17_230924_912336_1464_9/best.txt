@@ -1,0 +1,19 @@
+Generation:
+500
+
+Phenotype:
+burglary=3  * johncalls  - johncalls; 
+ earthquake=2; 
+ alarm=gm([3, 1, 0], [0, 0, 0]); 
+ johncalls=alarm; 
+ alarm = burglary;
+
+Genotype:
+[136, 443, 257, 171, 372, 345, 129, 84, 455, 296, 470, 171, 455, 160, 174, 153, 450, 458, 71, 273, 62, 153, 456, 342, 292, 214, 99, 356, 465, 207, 377, 70, 103, 434, 345, 267, 302, 289, 396, 352, 44, 444, 177, 56, 442, 451, 299, 187, 231, 107, 205]
+Tree:
+(<fc> burglary= (<right_assign> (<add> (<add_term> (<num> 3)   *  (<vars> (<idv> johncalls)))   -  (<add_term> (<vars> (<idv> johncalls)))) ;)  {::} earthquake= (<right_assign> (<add> (<add_term> (<const_term> (<num> 2)))) ;)  {::} alarm= (<right_assign> (<add> (<add_term> (<vars> gm([ (<num> 3) , 1, 0], [ (<num> 0) , 0, 0])))) ;)  {::} johncalls= (<right_assign> (<add> (<add_term> (<vars> (<idv> alarm)))) ;)  {::}  (<hole> (<instr> (<assignment> (<idv> alarm)  =  (<add> (<add_term> (<vars> (<idv> burglary)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,19 @@
+Generation:
+500
+
+Phenotype:
+burglary=burglary  - 0 * 9; 
+ earthquake=alarm + gm([2, 1, 0], [7, 0, 0]); 
+ alarm=2  - 0  * earthquake; 
+ johncalls=5  * gm([6, 1, 0], [9, 0, 0]) + johncalls; 
+ earthquake = alarm + gm([9, 1, 0], [3, 0, 0]);
+
+Genotype:
+[231, 92, 322, 48, 72, 304, 472, 477, 50, 144, 398, 337, 179, 4, 351, 209, 362, 485, 221, 288, 55, 52, 108, 300, 215, 485, 173, 171, 91, 75, 357, 349, 342, 374, 329, 202, 1, 199, 94, 419, 90, 167, 426, 46, 106, 3, 318, 372, 89, 402, 78, 159, 465, 116, 418, 312, 127, 371, 97, 81, 378, 322, 481, 283, 100, 351, 486, 198, 451, 247, 309, 40, 215, 24, 53]
+Tree:
+(<fc> burglary= (<right_assign> (<add> (<add_term> (<vars> (<idv> burglary)))   -  (<add_term> (<const_term> (<num> 0)  *  (<num> 9)))) ;)  {::} earthquake= (<right_assign> (<add> (<add_term> (<vars> (<idv> alarm)))  +  (<add_term> (<vars> gm([ (<num> 2) , 1, 0], [ (<num> 7) , 0, 0])))) ;)  {::} alarm= (<right_assign> (<add> (<add_term> (<const_term> (<num> 2)))   -  (<add_term> (<num> 0)   *  (<vars> (<idv> earthquake)))) ;)  {::} johncalls= (<right_assign> (<add> (<add_term> (<num> 5)   *  (<vars> gm([ (<num> 6) , 1, 0], [ (<num> 9) , 0, 0])))  +  (<add_term> (<vars> (<idv> johncalls)))) ;)  {::}  (<hole> (<instr> (<assignment> (<idv> earthquake)  =  (<add> (<add_term> (<vars> (<idv> alarm)))  +  (<add_term> (<vars> gm([ (<num> 9) , 1, 0], [ (<num> 3) , 0, 0])))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

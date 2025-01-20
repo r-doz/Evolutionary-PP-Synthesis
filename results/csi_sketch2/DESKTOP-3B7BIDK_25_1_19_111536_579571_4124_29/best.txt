@@ -1,0 +1,30 @@
+Generation:
+500
+
+Phenotype:
+x = 10 * 2; 
+v = 3 * 10  - 2 * 0; 
+u = x  - 3  * gm([0, 1, 0], [10, 0, 0]); 
+  if 10 * gm([4, 1, 0], [5, 0, 0]) > 3 { 
+       if 4 * v > 2{ 
+             w = 6 * 8; 
+       } else { 
+            v = gm([10, 1, 0], [7, 0, 0])  - gm([3, 1, 0], [1, 0, 0]); 
+      } end if; 
+ } else { 
+       if w <= 7{ 
+             v = 6  * v + 6  * gm([8, 1, 0], [0, 0, 0]); 
+       } else { 
+             w = gm([4, 1, 0], [5, 0, 0]); 
+       } end if; 
+ } end if;
+
+Genotype:
+[306, 44, 201, 498, 433, 409, 255, 428, 229, 333, 433, 279, 142, 491, 397, 387, 202, 439, 76, 282, 213, 205, 381, 7, 475, 104, 222, 370, 236, 480, 27, 114, 189, 14, 345, 97, 128, 290, 105, 482, 3, 440, 159, 246, 295, 290, 27, 347, 199, 112, 207, 221, 34, 410, 91, 123, 329, 422, 491, 66, 223, 144, 365, 408, 473, 99, 418, 115, 278, 201, 160, 409, 186, 389, 96, 457, 230, 326, 241, 187, 483, 81, 250, 134, 308, 493, 149, 314, 360, 168, 225, 259, 151, 271, 445, 284, 111, 130, 257, 378, 448, 118, 423, 117, 367, 107, 124, 126, 321, 105, 242, 329, 155, 395, 21, 345, 54, 457, 417, 217, 392, 73, 5, 138, 473, 378, 296, 359, 309, 329, 173, 203, 309, 296, 157, 35]
+Tree:
+(<fc> (<assignment> (<idv> x)  =  (<add> (<add_term> (<const_term> (<num> 10)  *  (<num> 2)))) ;)  {::} (<assignment> (<idv> v)  =  (<add> (<add_term> (<const_term> (<num> 3)  *  (<num> 10)))   -  (<add_term> (<const_term> (<num> 2)  *  (<num> 0)))) ;)  {::} (<assignment> (<idv> u)  =  (<add> (<add_term> (<vars> (<idv> x)))   -  (<add_term> (<num> 3)   *  (<vars> gm([ (<num> 0) , 1, 0], [ (<num> 10) , 0, 0])))) ;)  {::}  if  (<bexpr> (<lexpr> (<monom> (<num> 10)  *  (<vars> gm([ (<num> 4) , 1, 0], [ (<num> 5) , 0, 0]))))   (<loperator> >)   (<num> 3))  { {:     if  (<bexpr> (<lexpr> (<monom> (<num> 4)  *  (<vars> (<idv> v))))   (<loperator> >)   (<num> 2)) { {:          (<assignment> (<idv> w)  =  (<add> (<add_term> (<const_term> (<num> 6)  *  (<num> 8)))) ;)  :}     } else { {:         (<assignment> (<idv> v)  =  (<add> (<add_term> (<vars> gm([ (<num> 10) , 1, 0], [ (<num> 7) , 0, 0])))   -  (<add_term> (<vars> gm([ (<num> 3) , 1, 0], [ (<num> 1) , 0, 0])))) ;)  :}    } end if; :} } else { {:     if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> w))))   (<loperator> <=)   (<num> 7)) { {:          (<assignment> (<idv> v)  =  (<add> (<add_term> (<num> 6)   *  (<vars> (<idv> v)))  +  (<add_term> (<num> 6)   *  (<vars> gm([ (<num> 8) , 1, 0], [ (<num> 0) , 0, 0])))) ;)  :}     } else { {:          (<assignment> (<idv> w)  =  (<add> (<add_term> (<vars> gm([ (<num> 4) , 1, 0], [ (<num> 5) , 0, 0])))) ;)  :}     } end if; :} } end if;)
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

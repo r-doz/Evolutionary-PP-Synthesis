@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+u = 9  * v;
+
+Genotype:
+[369, 116, 209, 486, 148, 109, 404, 185, 413, 310, 341, 323, 14]
+Tree:
+(<hole> (<instr> (<assignment> (<idv> u)  =  (<add> (<add_term> (<num> 9)   *  (<vars> (<idv> v)))) ;)))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

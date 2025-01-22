@@ -281,7 +281,7 @@ def generate_hurricane_dataset(data_size):
         elif preplevel == 2:
             damage = np.random.choice([0,1], p=[0.8, 0.2])
         data.append([preplevel, damage])
-    return 
+    return data
 
 def generate_icecream_dataset(data_size):
     data = []
@@ -301,6 +301,7 @@ def generate_icecream_dataset(data_size):
             crime = np.random.normal(17, 4)
         data.append([currentseason, icecream, crime])
     return data
+
 def generate_biasedtugwar_dataset(data_size):
     data = []
     for _ in range(data_size):

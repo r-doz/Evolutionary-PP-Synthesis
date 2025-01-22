@@ -1,7 +1,7 @@
 # Grammar for a SOGA program
 
 # no sketch: forced to assign all variables at the beginning, restricted distributions to bernoulli, numbers 0-9
-<fc> ::= healthconscius = <right_assign> {::} littlefreetime = <right_assign> {::} exercise = <right_assign> {::} gooddiet = <right_assign> {::} normalweight = <right_assign> {::} colesterol = <right_assign> {::} tested = <right_assign> {::} <hole>
+<fc> ::= <hole>
 
 <hole> ::= <instr> | <instr>{::}<hole> | <instr>{::}<instr>{::}<hole> | <instr>{::}<hole>
 
@@ -19,10 +19,10 @@
 
 <add> ::= <add_term> | <add_term> + <add_term> | <add_term>  - <add_term>
 <add_term> ::= <vars> | <num>  * <vars> | <const_term>
-<vars> ::= <idv> | gm([<num>, 1, 0], [<num>, 0, 0]) # | gm(<triplets>) | uniform([<num>, <num_pos>], <int_pos_trunc>)
+<vars> ::= <idv> | gm(<triplets>) # | gm(<triplets>) | uniform([<num>, <num_pos>], <int_pos_trunc>)
 
 #<gm> ::= 
-<triplets> ::= [<element>, <element>, 0] | [<element>, <element>, 0], <triplets>
+<triplets> ::= [<element>, <element>, 0] | [<element>, <element>, 0], <triplets> | [<element>, <element>, 0], <triplets>
 <element> ::= <num> | <num>.<int_pos>
 
 #<uniform> ::= 

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+hairlength = 3  - 4 * 9;
+
+Genotype:
+[231, 408, 48, 72, 488, 305, 473, 11, 18, 383, 167, 129, 314, 2, 339, 43, 234, 335, 142]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> hairlength)  =  (<add> (<add_term> (<const_term> (<num> 3)))   -  (<add_term> (<const_term> (<num> 4)  *  (<num> 9)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

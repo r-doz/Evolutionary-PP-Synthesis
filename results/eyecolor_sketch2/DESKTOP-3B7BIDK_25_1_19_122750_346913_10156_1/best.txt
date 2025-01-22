@@ -1,0 +1,29 @@
+Generation:
+500
+
+Phenotype:
+haircolor = 4  * eyecolor  - 8  * hairlength; 
+  if 3 * eyecolor > 3 { 
+       haircolor = 4  * eyecolor; 
+ } else { 
+       if haircolor > 8 { 
+             hairlength = 4  * haircolor  - 1  * eyecolor; 
+       } else { 
+             if 8 * eyecolor < 0 { 
+                       eyecolor = eyecolor  - 4  * hairlength; 
+             } else { 
+                       hairlength = 3  * eyecolor  - hairlength; 
+             } end if; 
+       } end if; 
+ } end if; 
+  haircolor = 7  - 1  * eyecolor;
+
+Genotype:
+[130, 389, 333, 48, 456, 221, 356, 175, 243, 13, 480, 273, 330, 480, 179, 168, 475, 427, 95, 227, 257, 386, 155, 383, 451, 187, 133, 448, 281, 491, 191, 240, 454, 455, 131, 6, 358, 394, 272, 421, 400, 264, 327, 280, 251, 265, 235, 403, 440, 168, 42, 6, 204, 176, 84, 406, 414, 447, 242, 237, 214, 198, 391, 418, 12, 27, 228, 329, 403, 114, 23, 336, 228, 36, 438, 194, 318, 84, 29, 492, 130, 154, 156, 293, 345, 459, 221, 302, 99, 252, 53, 480, 340, 199, 151, 258, 255, 8, 166, 313, 446, 205, 460, 144, 9, 80, 102, 439, 167, 415, 288, 400, 69, 173, 219, 109, 136, 345, 49, 428, 194, 477, 280, 176]
+Tree:
+(<fc> (<assignment> (<idv> haircolor)  =  (<add> (<add_term> (<num> 4)   *  (<vars> (<idv> eyecolor)))   -  (<add_term> (<num> 8)   *  (<vars> (<idv> hairlength)))) ;)  {::}  if  (<bexpr> (<lexpr> (<monom> (<num> 3)  *  (<vars> (<idv> eyecolor))))   (<loperator> >)   (<num> 3))  { {:      (<assignment> (<idv> haircolor)  =  (<add> (<add_term> (<num> 4)   *  (<vars> (<idv> eyecolor)))) ;)  :} } else { {:     if  (<bexpr> (<lexpr> (<monom> (<vars> (<idv> haircolor))))   (<loperator> >)   (<num> 8))  { {:          (<assignment> (<idv> hairlength)  =  (<add> (<add_term> (<num> 4)   *  (<vars> (<idv> haircolor)))   -  (<add_term> (<num> 1)   *  (<vars> (<idv> eyecolor)))) ;)  :}     } else { {:         if  (<bexpr> (<lexpr> (<monom> (<num> 8)  *  (<vars> (<idv> eyecolor))))   (<loperator> <)   (<num> 0))  { {:                  (<assignment> (<idv> eyecolor)  =  (<add> (<add_term> (<vars> (<idv> eyecolor)))   -  (<add_term> (<num> 4)   *  (<vars> (<idv> hairlength)))) ;)  :}         } else { {:                  (<assignment> (<idv> hairlength)  =  (<add> (<add_term> (<num> 3)   *  (<vars> (<idv> eyecolor)))   -  (<add_term> (<vars> (<idv> hairlength)))) ;)  :}         } end if; :}     } end if; :} } end if; {::}   (<assignment> (<idv> haircolor)  =  (<add> (<add_term> (<const_term> (<num> 7)))   -  (<add_term> (<num> 1)   *  (<vars> (<idv> eyecolor)))) ;))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

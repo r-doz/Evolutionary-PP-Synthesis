@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+damage = damage;
+
+Genotype:
+[202, 420, 298, 19, 215, 69, 432, 322, 25, 499, 113, 23, 285]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> damage)  =  (<add> (<add_term> (<vars> (<idv> damage)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

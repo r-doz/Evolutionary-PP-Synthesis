@@ -1,0 +1,18 @@
+Generation:
+500
+
+Phenotype:
+eyecolor = 8 + 9; 
+ haircolor = 9  - 8  * gm([5.6, 2, 0]); 
+ hairlength = hairlength; 
+ eyecolor = 7  * hairlength + eyecolor;
+
+Genotype:
+[202, 420, 448, 164, 222, 123, 278, 485, 482, 449, 168, 104, 109, 293, 438, 296, 285, 288, 139, 397, 296, 195, 186, 199, 419, 310, 262, 387, 476, 31, 440, 268, 296, 69, 447, 237, 344, 454, 354, 392, 59, 252, 30, 111, 393, 147, 66, 378, 126, 203, 200, 469, 446, 254, 41, 85, 229, 205, 281, 142]
+Tree:
+(<fc> eyecolor =  (<right_assign> (<add> (<add_term> (<const_term> (<num> 8)))  +  (<add_term> (<const_term> (<num> 9)))) ;)  {::} haircolor =  (<right_assign> (<add> (<add_term> (<const_term> (<num> 9)))   -  (<add_term> (<num> 8)   *  (<vars> gm( (<triplets> [ (<element> (<num> 5) . (<int_pos> 6)) ,  (<element> (<num> 2)) , 0]) )))) ;)  {::} hairlength =  (<right_assign> (<add> (<add_term> (<vars> (<idv> hairlength)))) ;)  {::}  (<hole> (<instr> (<assignment> (<idv> eyecolor)  =  (<add> (<add_term> (<num> 7)   *  (<vars> (<idv> hairlength)))  +  (<add_term> (<vars> (<idv> eyecolor)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

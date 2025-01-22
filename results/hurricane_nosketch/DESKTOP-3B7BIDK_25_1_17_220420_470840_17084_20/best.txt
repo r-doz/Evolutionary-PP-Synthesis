@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+damage = 3  * damage + preplevel;
+
+Genotype:
+[345, 292, 210, 52, 243, 160, 481, 168, 480, 207, 363, 102, 96, 129, 355, 391, 145, 156, 353]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> damage)  =  (<add> (<add_term> (<num> 3)   *  (<vars> (<idv> damage)))  +  (<add_term> (<vars> (<idv> preplevel)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+burglary = 4  * gm([1, 1, 0], [0, 0, 0])  - 4 * 9;
+
+Genotype:
+[111, 84, 412, 225, 488, 264, 340, 255, 394, 251, 341, 130, 459, 64, 99, 419, 434, 250, 440, 145, 136, 287]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> burglary)  =  (<add> (<add_term> (<num> 4)   *  (<vars> gm([ (<num> 1) , 1, 0], [ (<num> 0) , 0, 0])))   -  (<add_term> (<const_term> (<num> 4)  *  (<num> 9)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

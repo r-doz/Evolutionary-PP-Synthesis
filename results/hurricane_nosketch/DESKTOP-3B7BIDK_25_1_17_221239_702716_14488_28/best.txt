@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+preplevel = preplevel;
+
+Genotype:
+[279, 64, 106, 200, 310, 21, 51, 458, 90, 462, 477, 259, 266]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> preplevel)  =  (<add> (<add_term> (<vars> (<idv> preplevel)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

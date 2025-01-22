@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+v = gm([10, 1, 0], [9, 0, 0]);
+
+Genotype:
+[162, 20, 156, 450, 261, 420, 269, 483, 416, 182, 212, 180, 96]
+Tree:
+(<hole> (<instr> (<assignment> (<idv> v)  =  (<add> (<add_term> (<vars> gm([ (<num> 10) , 1, 0], [ (<num> 9) , 0, 0])))) ;)))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

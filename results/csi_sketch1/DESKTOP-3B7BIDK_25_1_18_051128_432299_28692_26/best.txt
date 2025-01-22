@@ -1,0 +1,19 @@
+Generation:
+500
+
+Phenotype:
+u = v + 0; 
+ v = 2; 
+ w = 4  * gm([7, 1, 0], [8, 0, 0])  - gm([3, 1, 0], [0, 0, 0]); 
+ x = 5  * gm([3, 1, 0], [0, 0, 0]); 
+ v = 0  * gm([5, 1, 0], [9, 0, 0]) + 1;
+
+Genotype:
+[221, 96, 373, 324, 312, 341, 99, 371, 187, 15, 433, 328, 307, 325, 36, 481, 328, 50, 376, 35, 166, 436, 287, 286, 297, 270, 406, 345, 423, 368, 273, 22, 8, 474, 17, 26, 37, 83, 114, 310, 473, 19, 227, 66, 311, 121, 156, 119, 74, 429, 305, 256, 197, 205, 319, 413, 161, 358, 41, 263, 471, 334, 33, 374, 79, 475, 352]
+Tree:
+(<fc> u =  (<right_assign> (<add> (<add_term> (<vars> (<idv> v)))  +  (<add_term> (<const_term> (<num> 0)))) ;)  {::} v =  (<right_assign> (<add> (<add_term> (<const_term> (<num> 2)))) ;)  {::} w =  (<right_assign> (<add> (<add_term> (<num> 4)   *  (<vars> gm([ (<num> 7) , 1, 0], [ (<num> 8) , 0, 0])))   -  (<add_term> (<vars> gm([ (<num> 3) , 1, 0], [ (<num> 0) , 0, 0])))) ;)  {::} x =  (<right_assign> (<add> (<add_term> (<num> 5)   *  (<vars> gm([ (<num> 3) , 1, 0], [ (<num> 0) , 0, 0])))) ;)  {::}  (<hole> (<instr> (<assignment> (<idv> v)  =  (<add> (<add_term> (<num> 0)   *  (<vars> gm([ (<num> 5) , 1, 0], [ (<num> 9) , 0, 0])))  +  (<add_term> (<const_term> (<num> 1)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

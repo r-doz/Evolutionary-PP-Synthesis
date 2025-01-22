@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+littlefreetime = 3  * colesterol;
+
+Genotype:
+[8, 192, 370, 227, 407, 63, 16, 394, 23, 159, 317, 110, 497, 376, 185]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> littlefreetime)  =  (<add> (<add_term> (<num> 3)   *  (<vars> (<idv> colesterol)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

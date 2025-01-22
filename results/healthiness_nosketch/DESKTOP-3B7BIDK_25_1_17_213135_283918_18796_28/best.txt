@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+tested = colesterol;
+
+Genotype:
+[279, 64, 106, 200, 118, 21, 51, 458, 117, 90, 462, 477, 259]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> tested)  =  (<add> (<add_term> (<vars> (<idv> colesterol)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

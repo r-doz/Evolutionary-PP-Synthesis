@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+tested = 5  * exercise  - 1 * 0;
+
+Genotype:
+[20, 204, 182, 144, 90, 464, 76, 460, 422, 275, 491, 227, 350, 461, 430, 204, 363, 422, 401, 342, 320]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> tested)  =  (<add> (<add_term> (<num> 5)   *  (<vars> (<idv> exercise)))   -  (<add_term> (<const_term> (<num> 1)  *  (<num> 0)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

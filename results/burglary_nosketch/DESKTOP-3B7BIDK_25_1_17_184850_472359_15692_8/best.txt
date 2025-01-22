@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+johncalls = 6  * gm([1, 1, 0], [7, 0, 0]) + burglary;
+
+Genotype:
+[492, 96, 70, 205, 251, 379, 67, 15, 267, 247, 421, 416, 396, 336, 29, 173, 120, 353, 44, 254, 462]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> johncalls)  =  (<add> (<add_term> (<num> 6)   *  (<vars> gm([ (<num> 1) , 1, 0], [ (<num> 7) , 0, 0])))  +  (<add_term> (<vars> (<idv> burglary)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

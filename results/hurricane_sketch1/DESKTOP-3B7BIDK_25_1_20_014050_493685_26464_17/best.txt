@@ -1,0 +1,17 @@
+Generation:
+500
+
+Phenotype:
+preplevel = 8  * gm([0, 3, 0]); 
+ damage = 0  * gm([5, 2, 0])  - gm([7, 1.1, 0]); 
+ preplevel = 0;
+
+Genotype:
+[491, 89, 56, 196, 128, 327, 423, 150, 410, 161, 450, 313, 308, 417, 330, 458, 300, 444, 58, 402, 170, 148, 337, 243, 49, 171, 480, 238, 407, 193, 471, 351, 372, 100, 432, 24, 205, 25, 82, 474, 214, 47, 353, 394, 159, 429, 128, 336, 206, 245, 38, 277, 43, 278, 325]
+Tree:
+(<fc> preplevel =  (<right_assign> (<add> (<add_term> (<num> 8)   *  (<vars> gm( (<triplets> [ (<element> (<num> 0)) ,  (<element> (<num> 3)) , 0]) )))) ;)  {::} damage =  (<right_assign> (<add> (<add_term> (<num> 0)   *  (<vars> gm( (<triplets> [ (<element> (<num> 5)) ,  (<element> (<num> 2)) , 0]) )))   -  (<add_term> (<vars> gm( (<triplets> [ (<element> (<num> 7)) ,  (<element> (<num> 1) . (<int_pos> 1)) , 0]) )))) ;)  {::}  (<hole> (<instr> (<assignment> (<idv> preplevel)  =  (<add> (<add_term> (<const_term> (<num> 0)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

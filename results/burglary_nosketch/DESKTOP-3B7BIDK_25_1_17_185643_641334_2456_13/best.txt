@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+alarm = 4  * alarm;
+
+Genotype:
+[350, 340, 328, 36, 14, 465, 112, 284, 406, 434, 119, 249, 459, 386, 281]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> alarm)  =  (<add> (<add_term> (<num> 4)   *  (<vars> (<idv> alarm)))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

@@ -1,0 +1,15 @@
+Generation:
+500
+
+Phenotype:
+alarm = 3 * 0 + gm([4, 1, 0], [2, 0, 0]);
+
+Genotype:
+[247, 236, 334, 266, 58, 22, 462, 215, 294, 233, 292, 315, 370, 83, 99, 481, 465, 155, 274, 187, 395]
+Tree:
+(<fc> (<hole> (<instr> (<assignment> (<idv> alarm)  =  (<add> (<add_term> (<const_term> (<num> 3)  *  (<num> 0)))  +  (<add_term> (<vars> gm([ (<num> 4) , 1, 0], [ (<num> 2) , 0, 0])))) ;))))
+Fitness on 5000 data:
+-inf
+
+Fitness:
+-inf

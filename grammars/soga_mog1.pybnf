@@ -1,8 +1,16 @@
 # Grammar for a SOGA program
+#SKETCH 3
+<fc> ::= <hole>{::} x = sigma * gm([1,1,1]);{::}x = x + mu;
 
-<fc> ::= mu = <add>; {::}sigma = <add>; {::}x = <add>;{::}x = <add>;
-#<code> ::= mu = <right_assign> {::}sigma = <right_assign> {::}x = <right_assign>
-#<code> ::=<hole>
+#SKETCH 2
+#<fc> ::= mu = <add>; {::}sigma = <add>;{::}x = <add>;{::}x = <add>;
+
+#SKETCH 1
+#<fc> ::= mu = <add>; {::}sigma = <add>; {::}x = <add>;{::}<hole>;
+
+#SKETCH0
+#<fc> ::=<hole>
+
 
 <hole> ::= <instr> |<instr>{::}<instr>{::}<hole>|<instr>{::}<hole>
 
@@ -12,29 +20,23 @@
 
 #Assignment
 
-<assignment> ::= <idv> = <const>; | <idv> = <add>;  #| <idv> = <mul>;
-<right_assign> ::=  <const>; | <add>;  #| <mul>;
+<assignment> ::=  <idv> = <add>;  #| <idv> = <mul>;| <idv> = <const>; 
+<right_assign> ::=   <add>;  #| <mul>;|<const>; |
 
-<const> ::= <const_term> | <const_term> + <const_term> | <const_term> - <const_term>
+#<const> ::= <const_term> | <const_term> + <const_term> | <const_term> - <const_term>
 <const_term> ::= <num> | <num> * <num> 
 
 <add> ::= <add_term> | <add_term> + <add_term> | <add_term>  - <add_term>
 <add_term> ::= <vars> | <num>  * <vars> | <const_term>
-<vars> ::= <idv> | gm(<triplets>) | uniform([<num>, <num_pos>], <int_pos_trunc>)
+<vars> ::= <idv> | gm(<triplets>) | uniform([<num>, <num_pos>], <int_pos_trunc>) #| bern(0.<int_pos>)
 
-#<gm> ::= 
 <triplets> ::= [<element>, <element>, <element>] | [<element>, <element>, <element>], <triplets>
 <element> ::= <num> | <num>.<int_pos>
 
-#<uniform> ::= 
 <num_pos> ::= <int_pos> | <num>.<int_pos>
 
 <mul> ::= <vars> * <vars> | <num> * <vars>
 
-
-#Conditional
-
-#<conditional> ::= 
 
 <bexpr> ::= <idv> <equal> <num> | <lexpr> <loperator> <num>
 <lexpr> ::= <monom> | <monom> + <lexpr> # | <monom> - <lexpr>

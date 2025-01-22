@@ -72,6 +72,8 @@ def sample_gmm(dist, n_samples):
 
     n_components = dist.gm.n_comp()
     weights = dist.gm.pi
+    weights = np.array(weights)
+    weights /= weights.sum()
     means = dist.gm.mu
     covariances = dist.gm.sigma
     samples = []

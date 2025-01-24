@@ -18,8 +18,8 @@ params = {
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'csi_sketch3', # name of the folder
-    'PROGRAM_NAME': 'csi',
+    'EXPERIMENT_NAME': 'easytugwar_sketch1_30', # name of the folder
+    'PROGRAM_NAME': 'easytugwar',
     'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.

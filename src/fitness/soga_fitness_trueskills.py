@@ -225,12 +225,12 @@ def smooth_program(program_text):
     return '\n'.join(modified_lines)   
 
 
-def likelihood_of_program_wrt_data(p, data_size = 100):
+def likelihood_of_program_wrt_data(p, data_size = 100, program = params['PROGRAM_NAME'] ):
     
     p = preprocess_program(p)
-    data_var_list, dependencies, weights = dgp.get_vars(params['PROGRAM_NAME'])
+    data_var_list, dependencies, weights = dgp.get_vars(program)
     dependencies_benefit = 0
-    data = dgp.generate_dataset(params['PROGRAM_NAME'], data_size)
+    data = dgp.generate_dataset(program, data_size)
     
     # Computes output distribution of the program
     compiledText=compile2SOGA_text(p)

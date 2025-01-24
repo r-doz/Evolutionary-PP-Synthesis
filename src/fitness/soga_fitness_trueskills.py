@@ -55,21 +55,20 @@ def compute_likelihood(output_dist, data_var_list, data):
         mu_delta = mu[deltas]
         mu_not_delta = mu[not_deltas]
         sigma_not_delta = torch.tensor(sigma[not_deltas][:, not_deltas])
-        try:
-            # computes pdf of non-delta variables 
-            if len(mu_not_delta) >= 1:  # if there is at least one continuous variable
-                continuous_pdf = output_dist.gm.pi[k]*MultivariateNormal(mu_not_delta, sigma_not_delta).log_prob(data[:,not_deltas]).exp()
-            else:
-                continuous_pdf = output_dist.gm.pi[k]*torch.ones(len(data))
-            # computes pmf of delta variables
-            if len(mu_delta) >= 1:   # if there is at least one discrete variable
-                discrete_pmf = torch.all((mu_delta == data[:, deltas]),dim=1)
-            else:
-                discrete_pmf = torch.ones(len(data))
-        except ValueError:  # if the covariance matrix is singular
-            return torch.tensor(-np.inf)
-        except:
-            raise
+        # computes pdf of non-delta variables 
+        if len(mu_not_delta) >= 1:  # if there is at least one continuous variable
+            continuous_pdf = output_dist.gm.pi[k]*MultivariateNormal(mu_not_delta, sigma_not_delta).log_prob(data[:,not_deltas]).exp()
+        else:
+            continuous_pdf = output_dist.gm.pi[k]*torch.ones(len(data))
+        # computes pmf of delta variables
+        if len(mu_delta) >= 1:   # if there is at least one discrete variable
+            discrete_pmf = torch.all((mu_delta == data[:, deltas]),dim=1)
+        else:
+            discrete_pmf = torch.ones(len(data))
+        #except ValueError:  # if the covariance matrix is singular
+        #    return torch.tensor(-np.inf)
+        #except:
+        #    raise
         likelihood += continuous_pdf*discrete_pmf # sums likelihood of every data over all components
     
     return torch.sum(torch.log(likelihood))/len(data)
@@ -93,7 +92,7 @@ class soga_fitness_trueskills(base_ff):
         #print("\n -----------------------------------------")
 
         fitness = 0
-        timer = threading.Timer(20, timeout_handler)
+        timer = threading.Timer(10, timeout_handler)
         #t0 = time.time()
         try:
             #signal.signal(signal.SIGALRM, handler)

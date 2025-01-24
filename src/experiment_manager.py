@@ -102,7 +102,7 @@ def main():
 
     # Save spreadsheets and all plots for all runs in the 'EXPERIMENT_NAME'
     # folder.
-    parse_stats_from_runs(params['EXPERIMENT_NAME'])
+    #parse_stats_from_runs(params['EXPERIMENT_NAME'])
 
 
 if __name__ == "__main__":

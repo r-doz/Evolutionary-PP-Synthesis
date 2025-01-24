@@ -18,12 +18,12 @@ params = {
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'biasedtugwar_nosketch_30', # name of the folder
-    'PROGRAM_NAME': 'biasedtugwar',
+    'EXPERIMENT_NAME': 'csi_sketch3', # name of the folder
+    'PROGRAM_NAME': 'csi',
     'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 30,
+    'RUNS': 12,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",
@@ -36,7 +36,7 @@ params = {
 
     # Set grammar file
     #'GRAMMAR_FILE': "soga_holes.pybnf",
-    'GRAMMAR_FILE': "soga_easytugwar.pybnf",
+    'GRAMMAR_FILE': "soga_csi_sketch3.pybnf",
 
     # Set the number of depths permutations are calculated for
     # (starting from the minimum path of the grammar).
@@ -134,7 +134,7 @@ params = {
     # Multi-core parallel processing of phenotype evaluations.
     'MULTICORE': True,
     # Set the number of cpus to be used for multiprocessing
-    'CORES': cpu_count()-2,
+    'CORES': cpu_count()-1,
 
     # STATE SAVING/LOADING
     # Save the state of the evolutionary run every generation. You can

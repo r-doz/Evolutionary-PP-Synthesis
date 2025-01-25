@@ -1,6 +1,5 @@
 # Grammar for a SOGA program
 
-# no sketch: restricted distributions to bernoulli, numbers 0-9
 <fc> ::= burglary=<add>; {::} earthquake=<add>; {::} alarm=<add>; {::} johncalls=<add>; {::} <hole>
 
 <hole> ::= <instr> | <instr>{::}<hole> | <instr>{::}<instr>{::}<hole>| <instr>{::}<instr>{::}<instr>{::}<hole> 

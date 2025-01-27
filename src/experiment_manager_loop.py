@@ -20,18 +20,20 @@ import time as timeit
 from algorithm.parameters import params, set_params
 from stats_parser import parse_stats_from_runs
 
-models = [#'burglary', 
-          #'csi', 
-          #'eyecolor', 
-          ##'healthiness', keep it commented, it makes the shell crash
-          'hurricane']
+models = [
+          #'csi_nosketch',
+          #'csi_sketch1',
+          'csi_sketch2',
+          'csi_sketch3', 
+          ]
 
 parameter_configs = [
-    {   'GENERATIONS': 500,
-        'POPULATION_SIZE': 200,
-        'EXPERIMENT_NAME': model+'_sketch1', # name of the folder
-        'GRAMMAR_FILE': "soga_"+model+"_sketch1.pybnf"
-    } for model in models 
+    {   'GENERATIONS': 1000,
+        'POPULATION_SIZE': 250,
+        'EXPERIMENT_NAME': model_name, # name of the folder
+        'GRAMMAR_FILE': "soga_"+model_name+".pybnf",
+        'FITNESS_FUNCTION': "soga_fitness_trueskills",
+    } for model_name in models 
     ]  
 
 def update_params(config):

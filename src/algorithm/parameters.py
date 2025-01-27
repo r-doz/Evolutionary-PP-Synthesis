@@ -23,7 +23,7 @@ params = {
     'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 30,
+    'RUNS': 15,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",
@@ -134,7 +134,7 @@ params = {
     # Multi-core parallel processing of phenotype evaluations.
     'MULTICORE': True,
     # Set the number of cpus to be used for multiprocessing
-    'CORES': cpu_count()-2,
+    'CORES': cpu_count()-1,
 
     # STATE SAVING/LOADING
     # Save the state of the evolutionary run every generation. You can

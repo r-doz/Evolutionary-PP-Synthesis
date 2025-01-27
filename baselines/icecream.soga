@@ -10,8 +10,10 @@ if currentseason == 0 {
     } else {
         if currentseason == 2 {
             icecream = gm([1, 50, 6]);
+            crime = gm([1, 50, 6]);
         } else {
             icecream = gm([1, 17, 4]);
+            crime = gm([1,17,4])
         } end if;
     } end if;
 

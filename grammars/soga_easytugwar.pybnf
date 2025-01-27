@@ -1,15 +1,17 @@
 # Grammar for a SOGA program
+#SKETCH 3
+<fc> ::= <hole>{::}if skill1-skill2 > 0 { {:p1wins = 1.0;:} } else { {: p1wins = 0.0; :} } end if;
+
+#SKETCH 2
+#<fc> ::= skill1 = <add>; {::}skill2 = <add>; {::}if <bexpr> { {:p1wins = <add>;:} } else { {:p1wins = <add>; :} } end if;
+
 #SKETCH 1
-<fc> ::= skill1 = <add>; {::}skill2 = <add>; {::}p1wins = <add>;{::}<hole>;
+#<fc> ::= skill1 = <add>; {::}skill2 = <add>; {::}p1wins = <add>;{::}<hole>;
 
 #SKETCH 0
 #<fc> ::=<hole>;
 
-#SKETCH 3
-#<fc> ::= <hole>{::}if skill1-skill2 > 0 { {:p1wins = 1.0;:} } else { {: p1wins = 0.0; :} } end if;
 
-#SKETCH 2
-#<fc> ::= skill1 = <add>; {::}skill2 = <add>; {::}if <bexpr> { {:p1wins = <add>;:} } else { {:p1wins = <add>; :} } end if;
 
 
 

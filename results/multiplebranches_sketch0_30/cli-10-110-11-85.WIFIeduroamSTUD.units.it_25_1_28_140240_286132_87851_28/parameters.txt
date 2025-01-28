@@ -12,7 +12,7 @@ DEPENDENCIES_BENEFIT:    False
 ELITE_SIZE:              10
 ERROR_METRIC:            None
 EXPERIMENT_NAME:         multiplebranches_sketch0_30
-FILE_PATH:               /Users/rominadoz/Desktop/Home/PONYGE_Forked/PonyGE2/src/../results/multiplebranches_sketch0_30/cli-10-110-11-85.WIFIeduroamSTUD.units.it_25_1_28_124310_892978_78216_11
+FILE_PATH:               /Users/rominadoz/Desktop/Home/PONYGE_Forked/PonyGE2/src/../results/multiplebranches_sketch0_30/cli-10-110-11-85.WIFIeduroamSTUD.units.it_25_1_28_140240_286132_87851_28
 FITNESS_FUNCTION:        soga_fitness_trueskills
 GENERATIONS:             500
 GENERATION_SIZE:         190
@@ -44,7 +44,7 @@ OPTIMIZE_CONSTANTS:      False
 PERMUTATION_RAMPS:       5
 POPULATION_SIZE:         200
 PROGRAM_NAME:            multiplebranches
-RANDOM_SEED:             11
+RANDOM_SEED:             28
 REPLACEMENT:             operators.replacement.generational
 REVERSE_MAPPING_TARGET:  None
 RUNS:                    30
@@ -61,7 +61,7 @@ SILENT:                  False
 STEP:                    step
 TARGET:                  ponyge_rocks
 TARGET_SEED_FOLDER:      None
-TIME_STAMP:              cli-10-110-11-85.WIFIeduroamSTUD.units.it_25_1_28_124310_892978_78216_11
+TIME_STAMP:              cli-10-110-11-85.WIFIeduroamSTUD.units.it_25_1_28_140240_286132_87851_28
 TOURNAMENT_SIZE:         3
 VERBOSE:                 False
 WITHIN_USED:             True

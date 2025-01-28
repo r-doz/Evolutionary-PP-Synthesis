@@ -73,6 +73,11 @@ def get_vars(process_name):
         dependencies = {'w': ['u', 'v']}
         weights = {'w': 0.1} 
         return data_var_list, dependencies, weights     
+    if process_name == 'multiplebranches':
+        data_var_list = ['contentDifficulty', 'questionsAfterLectureLength']
+        dependencies = {'questionsAfterLectureLength': ['contentDifficulty']}
+        weights = {'questionsAfterLectureLength': 0.1}
+        return data_var_list, dependencies, weights
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -105,6 +110,8 @@ def generate_dataset(process_name, data_size):
         return generate_biasedtugwar_dataset(data_size)
     if process_name == 'mixedcondition':
         return generate_mixedcondition_dataset(data_size)
+    if process_name == 'multiplebranches':
+        return generate_multiplebranches_dataset(data_size)
     else:
         raise ValueError(f"Unknown process name: {process_name}")
 
@@ -348,4 +355,19 @@ def generate_mixedcondition_dataset(data_size):
         else:
             w = np.random.normal(6, 2)
         data.append([u, v, w])
+    return data
+
+def generate_multiplebranches_dataset(data_size):
+    data = []
+    for _ in range(data_size):
+        contentDifficulty = np.random.normal(30, 5)
+        if contentDifficulty < 35:
+            if contentDifficulty < 20:
+                questionsAfterLectureLength = np.random.normal(2, 1)
+            else:
+                questionsAfterLectureLength = np.random.normal(10, 3)
+        else:
+            questionsAfterLectureLength = np.random.normal(25, 6)
+        data.append([contentDifficulty, questionsAfterLectureLength])
+
     return data

@@ -341,7 +341,7 @@ def save_average_plot_across_runs(filename):
 if __name__ == "__main__":
     # Get experiment name and graphing flag from command line parser.
     #experiment_name = parse_opts(sys.argv)
-    experiment_name = 'burglary_sketch2'
+    experiment_name = 'mog1_sketch0_more_samples'
 
     # Call statistics parser for experiment name.
     parse_stats_from_runs(experiment_name)

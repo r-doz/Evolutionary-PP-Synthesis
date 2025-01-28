@@ -225,7 +225,7 @@ def smooth_program(program_text):
     return '\n'.join(modified_lines)   
 
 
-def likelihood_of_program_wrt_data(p, data_size = 100, program = params['PROGRAM_NAME'] ):
+def likelihood_of_program_wrt_data(p, data_size = 500, program = params['PROGRAM_NAME'] ):
     
     p = preprocess_program(p)
     data_var_list, dependencies, weights = dgp.get_vars(program)

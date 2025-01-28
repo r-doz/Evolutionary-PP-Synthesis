@@ -1,15 +1,15 @@
 # Grammar for a SOGA program
+#SKETCH0
+<fc> ::=<hole>
+
 #SKETCH 3
-<fc> ::= <hole>{::} x = sigma * gm([1,1,1]);{::}x = x + mu;
+#<fc> ::= <hole>{::} x = sigma * gm([1,1,1]);{::}x = x + mu;
 
 #SKETCH 2
 #<fc> ::= mu = <add>; {::}sigma = <add>;{::}x = <add>;{::}x = <add>;
 
 #SKETCH 1
 #<fc> ::= mu = <add>; {::}sigma = <add>; {::}x = <add>;{::}<hole>;
-
-#SKETCH0
-#<fc> ::=<hole>
 
 
 <hole> ::= <instr> |<instr>{::}<instr>{::}<hole>|<instr>{::}<hole>

@@ -1,16 +1,18 @@
 # Grammar for a SOGA program
+#SKETCH 2
+<fc> ::= a = <add>; {::}if <bexpr> { {:b = <add>; :} } else { {:b = <add>; :} } end if;
+
+#SKETCH 1
+#<fc> ::= a = <add>; {::}b = <add>; {::}<hole>;
 
 #SKETCH 0
-<fc> ::=<hole>;
+#<fc> ::=<hole>;
 
 #SKETCH 3
 #<fc> ::= <hole> {::}if a < 0 { {:b = 3 * a + gm([1,0.,1.]); :} } else { {:b = gm([1,8.,1.]); :} } end if;
 
 #SKETCH 2
 #<fc> ::= a = <add>; {::}if <bexpr> { {:b = <add>; :} } else { {:b = <add>; :} } end if;
-
-#SKETCH 1
-#<fc> ::= a = <add>; {::}b = <add>; {::}<hole>;
 
 
 <hole> ::= <instr> |<instr>{::}<instr>{::}<hole>|<instr>{::}<hole>

@@ -18,12 +18,12 @@ params = {
     'SCHC_COUNT_METHOD': "count_all", 
 
     # Set optional experiment name
-    'EXPERIMENT_NAME': 'multiplebranches_sketch0_30', # name of the folder
-    'PROGRAM_NAME': 'multiplebranches',
+    'EXPERIMENT_NAME': 'if_time', # name of the folder
+    'PROGRAM_NAME': 'if',
     'DEPENDENCIES_BENEFIT': False,
     # Set default number of runs to be done.
     # ONLY USED WITH EXPERIMENT MANAGER.
-    'RUNS': 30,
+    'RUNS': 4,
 
     # Class of problem
     #'FITNESS_FUNCTION': "supervised_learning.regression",
@@ -36,7 +36,7 @@ params = {
 
     # Set grammar file
     #'GRAMMAR_FILE': "soga_holes.pybnf",
-    'GRAMMAR_FILE': "soga_multiplebranches.pybnf",
+    'GRAMMAR_FILE': "soga_if.pybnf",
 
     # Set the number of depths permutations are calculated for
     # (starting from the minimum path of the grammar).

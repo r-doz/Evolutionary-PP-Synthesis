@@ -36,7 +36,6 @@ def get_vars(process_name):
         dependencies = {'sprinkler':['rain'], 'grasswet': ['rain', 'sprinkler']}
         weights = {'sprinkler': 0.1, 'grasswet': 0.1}
         return data_var_list, dependencies, weights
-        return data_var_list, dependencies, weights  
     if process_name == 'easytugwar':
         data_var_list = ['skill1', 'skill2', 'p1wins']
         dependencies = {'p1wins': ['skill1', 'skill2']}
@@ -52,7 +51,6 @@ def get_vars(process_name):
         dependencies = {'icecream': ['currentseason'], 'crime': ['currentseason']}
         weights = {'icecream': 0.1, 'crime': 0.1}
         return data_var_list, dependencies, weights
-        return data_var_list, dependencies, weights 
     if process_name == 'biasedtugwar':
         data_var_list = ['skill1', 'skill2', 'p1wins']
         dependencies = {'p1wins': ['skill1', 'skill2']}

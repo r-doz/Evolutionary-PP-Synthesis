@@ -3,3 +3,8 @@ scipy
 matplotlib
 pandas
 scikit-learn>=0.23.2
+pytorch
+torchvision
+torchaudio
+torchtext
+antlr4-python3-runtime==4.10

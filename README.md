@@ -1,4 +1,3 @@
-# README: Evolutionary Synthesis of Probabilistic Programs
 
 ## Overview
 This repository contains the implementation of the methods described in the paper **"Evolutionary Synthesis of Probabilistic Programs"**. It exploits grammar-based evolution (by using PonyGE2) to synthesize probabilistic programs from data, in order to learn the data generating process represented by a probabilistic program. 

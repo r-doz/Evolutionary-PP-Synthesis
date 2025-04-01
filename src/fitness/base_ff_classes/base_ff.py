@@ -12,7 +12,7 @@ class base_ff:
     """
 
     # Default default fitness function is NaN.
-    default_fitness = np.NaN
+    default_fitness = np.nan
 
     # Default fitness objective is to minimise fitness.
     maximise = True

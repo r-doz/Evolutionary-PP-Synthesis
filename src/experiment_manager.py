@@ -20,7 +20,6 @@ import time as timeit
 from algorithm.parameters import params, set_params
 from stats_parser import parse_stats_from_runs
 
-
 def execute_run(seed):
     """
     Initialise all aspects of a run.

@@ -4,7 +4,7 @@ from shutil import rmtree
 
 from algorithm.parameters import params
 from utilities.stats import trackers
-from fitness.soga_fitness_trueskills import likelihood_of_program_wrt_data
+from fitness.soga_fitness import likelihood_of_program_wrt_data
 
 def save_stats_to_file(stats, end=False):
     """

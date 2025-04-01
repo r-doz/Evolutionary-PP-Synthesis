@@ -32,7 +32,7 @@ parameter_configs = [
         'POPULATION_SIZE': 250,
         'EXPERIMENT_NAME': model_name, # name of the folder
         'GRAMMAR_FILE': "soga_"+model_name+".pybnf",
-        'FITNESS_FUNCTION': "soga_fitness_trueskills",
+        'FITNESS_FUNCTION': "soga_fitness",
     } for model_name in models 
     ]  
 

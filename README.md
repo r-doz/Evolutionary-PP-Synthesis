@@ -1,64 +1,57 @@
-# Introduction
+# README: Evolutionary Synthesis of Probabilistic Programs
 
-Grammatical Evolution (GE) is a population-based evolutionary algorithm, where a BNF-style grammar is used in the genotype to phenotype mapping process [O'Neill & Ryan, 2003].
+## Overview
+This repository contains the implementation of the methods described in the paper **"Evolutionary Synthesis of Probabilistic Programs"**. It exploits grammar-based evolution (by using PonyGE2) to synthesize probabilistic programs from data, in order to learn the data generating process represented by a probabilistic program. 
 
-PonyGE2 is an implementation of GE in Python. It's intended as an advertisement and a starting-point for those new to GE, a reference for students and researchers, a rapid-prototyping medium for our own experiments, and as a Python workout.
+## Requirements
+To run the code, install the dependencies reported in the file requirements.txt
 
-The original version of PonyGE (https://github.com/jmmcd/ponyge) was originally designed to be a small single-file implementation of GE. However, over time this has grown to a stage where a more formal structured approach was needed. This has led to the development of PonyGE2 (https://github.com/PonyGE/PonyGE2), presented here.
+## Usage
 
-A technical paper describing PonyGE2 has been published and been made freely available on arXiv [here](https://arxiv.org/abs/1703.08535).
+#### Parameters:
 
-PonyGE2 can be referenced using the following citation:
+The parameters of the synthesis process are set in the file algorithm/parameters.py. You should take care of the following:
 
-> Fenton, M., McDermott, J., Fagan, D., Forstenlechner, S., Hemberg, E., and O'Neill, M. PonyGE2: Grammatical Evolution in Python. arXiv preprint, arXiv:1703.08535, 2017.
+- POPULATION_SIZE: Population size
+- GENERATIONS: Number of generations of the evolutionary process
+- EXPERIMENT_NAME: Name of the folder where you want to store the results
+- PROGRAM_NAME: The program you aim to synthesize, which has to be specified in baselines/PROGRAM_NAME.soga for comparison. Moreover, in fitness/data_generating_process.py the data generating process related to the process "PROGRAM_NAME" has to be described in order to generate data during the synthesis process.
+- RUNS: if you are using the experiment manager
+- GRAMMAR_FILE: name of the file .pybnf contained in the folder "grammar". The program structure (skecth) can be set in the <fc> line, the variable names can be specified in the <idv> line.
 
-# Requirements
+Other evolutionary parameters can be changed accordingly to the specific problems, but for the benchmark problems they were fixed. 
 
-We don't provide any `setup.py` script for now, so you cannot yet pip-install PonyGE2. PonyGE2 requires Python 3.5 (or higher) and it uses matplotlib, numpy, scipy, scikit-learn (sklearn), pandas, which can be installed as follows
+### Running the Evolutionary Synthesis
+To execute the main synthesis process, run:
 
-    pip install -r requirements.txt
+```sh
+cd src
+python ponyge.py
+```
+To execute multiple runs of the synthesis process, in a multicore framework, use the experiment manager provided by PonyGE2:
 
-All requirements can be satisfied with [Anaconda](https://www.continuum.io/downloads).
+```sh
+cd src
+python experiment_manager.py
+```
 
-# Running PonyGE2
-
-You can run an example problem (the default is regression, see below) just by typing:
-
-    $ cd src
-    $ python ponyge.py
-
-This will run an example problem and generate a results folder. The folder contains several files showing the run's stats, producing graphs and documenting the parameters used, as well as a file detailing the best individual. For a more verbose command line experience run the following:
-
-    $ cd src
-    $ python ponyge.py --verbose
-
-Each line of the verbose output corresponds to a generation in the evolution, and prints out all statistics on the current run (only if `--verbose` is specified). Upon completion of a run, the best individual is printed to the command line, along with summary statistics.
-
-There are a number of arguments that can be used for passing values via the command-line. To see a full list of these just run the following:
-
-    $ python ponyge.py --help
+You can find results in folder results/EXPERIMENT_NAME: one folder is created for each run, if you use the experiment manager, you get also a set of .csv and .pdf files with the statistics of the runs.
 
 
-# About PonyGE2
+## Citation
+If you use this code, please cite our paper:
 
-Grammatical Evolution (GE) [O'Neill & Ryan, 2003] is a grammar-based form of Genetic Programming [Koza, 1992]. It marries principles from molecular biology to the representational power of formal grammars. GE’s rich modularity gives a unique flexibility, making it possible to use alternative search strategies, whether evolutionary, deterministic or some other approach, and to radically change its behaviour by merely changing the grammar supplied. As a grammar is used to describe the structures that are generated by GE, it is trivial to modify the output structures by simply editing the plain text grammar. This is one of the main advantages that makes the GE approach so attractive. The genotype-phenotype mapping also means that instead of operating exclusively on solution trees, as in standard GP, GE allows search operators to be performed on the genotype (e.g., integer or binary chromosomes), in addition to partially derived phenotypes, and the fully formed phenotypic derivation trees themselves.
+```bibtex
+@article{evosynPP,
+  title={Evolutionary Synthesis of Probabilistic Programs},
+  author={Romina Doz, Francesca Randone, Eric Medvet, Luca Bortolussi},
+  journal={GECCO},
+  year={2025}
+}
+```
+## Reference
 
-PonyGE2 is primarily a Python implementation of canonical Grammatical Evolution, but it also includes a number of other popular techniques and EC aspects.
-
-# Documentation
-
-For full documentation of PonyGE2, see the [wiki](https://github.com/PonyGE/PonyGE2/wiki).
-
-# Contact
-
-The PonyGE2 development team can be contacted via [GitHub](https://github.com/jmmcd/PonyGE2/issues/new). 
-
-# License
-
-PonyGE2 is hereby licensed for use under the GNU General Public License v3.0. See the file [LICENSE](./LICENSE) for more details. PonyGE2 is copyright (C) 2009-2017.
-
-# References
-
-- Michael O'Neill and Conor Ryan, "Grammatical Evolution: Evolutionary Automatic Programming in an Arbitrary Language", Kluwer Academic Publishers, 2003.
-
-- Koza, J.R., 1992. "Genetic programming: on the programming of computers by means of natural selection (Vol. 1)". MIT press.
+Michael Fenton, James McDermott, David Fagan, Stefan Forstenlechner, Erik
+Hemberg, and Michael O’Neill. 2017. Ponyge2: Grammatical evolution in python.
+In Proceedings of the Genetic and Evolutionary Computation Conference Companion.
+1194–1201

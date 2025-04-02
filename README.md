@@ -41,10 +41,10 @@ You can find results in folder results/EXPERIMENT_NAME: one folder is created fo
 If you use this code, please cite our paper:
 
 ```bibtex
-@article{evosynPP,
+@inproceedingsdoz2025evolutionary,
   title={Evolutionary Synthesis of Probabilistic Programs},
-  author={Romina Doz, Francesca Randone, Eric Medvet, Luca Bortolussi},
-  journal={GECCO},
+  author={Doz, Romina and Randone, Francesca and Medvet, Eric and Bortolussi, Luca},
+  booktitle={Proceedings of the Genetic and Evolutionary Computation Conference},
   year={2025}
 }
 ```
